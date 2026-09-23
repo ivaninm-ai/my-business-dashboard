@@ -14,7 +14,7 @@ import { sourceUpdateRecipe, prepareSourceUpdate, saveSourceUpdate } from './sha
 import { TASK_RULES, ENTITIES } from './shared/model.mjs';
 import { isIsoDate, addDays, monthStart, daysInMonth, formatDate, todayIso, priorMonthSameDays } from './shared/dates.mjs';
 
-const APP_VERSION = '1.2.0-rc.1';
+const APP_VERSION = '1.2.0-rc.2';
 const SCOPE = 'https://www.googleapis.com/auth/drive.file';
 const LS_WORKSPACE = 'bd.workspaceId';
 const LS_PREFS = 'bd.prefs';

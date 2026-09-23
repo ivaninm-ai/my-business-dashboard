@@ -8,6 +8,46 @@ import { quoteSheet } from '../app/shared/sheets.mjs';
 
 const instructions = readFileSync(new URL('../prompts/data_mapping.md', import.meta.url), 'utf8');
 
+// Sent as responseJsonSchema so Gemini must answer in this shape (structured output).
+const TEXT = { type: 'string' };
+const TEXT_LIST = { type: 'array', items: TEXT };
+export const MAPPING_SCHEMA = {
+  type: 'object',
+  required: ['selections', 'status_map', 'document_tables', 'notes'],
+  properties: {
+    selections: { type: 'array', items: { type: 'object', required: ['name', 'entity', 'header_row', 'fields'], properties: {
+      name: TEXT,
+      entity: { type: 'string', enum: Object.keys(ENTITIES) },
+      header_row: { type: 'integer', minimum: 1 },
+      fields: { type: 'array', items: { type: 'object', required: ['canonical', 'header'], properties: {
+        canonical: { type: 'string', enum: [...new Set(Object.values(ENTITIES).flatMap(e => Object.keys(e.fields)))] },
+        header: TEXT,
+      } } },
+    } } },
+    status_map: { type: 'object', required: ['pending', 'done', 'excluded', 'blank'], properties: {
+      pending: TEXT_LIST, done: TEXT_LIST, excluded: TEXT_LIST, blank: { type: 'string', enum: ['pending', 'done', 'excluded'] },
+    } },
+    document_tables: { type: 'array', items: { type: 'object', required: ['name', 'rows'], properties: {
+      name: TEXT, rows: { type: 'array', items: { type: 'array', items: { type: ['string', 'null'] } } },
+    } } },
+    notes: TEXT_LIST,
+  },
+};
+
+// Names the fields Gemini returned (never their values) so a rejected reply can be diagnosed.
+function invalidProposal(parsed) {
+  const shape = parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+    ? Object.entries(parsed).slice(0, 6).map(([k, v]) => `${String(k).replace(/[^\w-]/g, '').slice(0, 30)}:${Array.isArray(v) ? 'list' : v === null ? 'null' : typeof v}`).join(', ')
+    : Array.isArray(parsed) ? 'a list' : typeof parsed;
+  return new Error(`Gemini returned an invalid proposal (received ${shape || 'nothing'}). Retry source preparation.`);
+}
+
+function normaliseProposal(parsed) {
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed) || !Array.isArray(parsed.selections)) throw invalidProposal(parsed);
+  const notes = Array.isArray(parsed.notes) ? parsed.notes : parsed.notes ? [parsed.notes] : [];
+  return { ...parsed, notes, document_tables: Array.isArray(parsed.document_tables) ? parsed.document_tables : [] };
+}
+
 export async function prepareProposal(request, sources, options) {
   if (request.aiDataMode !== 'paid' && request.profile?.synthetic !== true) throw new Error('For real private records, select a billing-enabled Gemini project in Business setup. Free mode accepts synthetic practice data only.');
   let input = request.input || { tables: [] };
@@ -22,8 +62,8 @@ export async function prepareProposal(request, sources, options) {
   validateInput(input);
   // Spreadsheet rows remain authoritative; AI receives only a small mapping sample.
   const sample = input.text ? { text: input.text } : { tables: input.tables.map(t => ({ name: t.name, rows: t.rows.slice(0, 15) })) };
-  const { parsed } = await generateJson({ ...options, system: instructions, prompt: JSON.stringify({ business: request.profile, supportedFields: ENTITIES, source: sample }) });
-  if (!parsed || !Array.isArray(parsed.selections) || !Array.isArray(parsed.notes)) throw new Error('Gemini returned an invalid proposal. Retry source preparation.');
+  const { parsed: raw } = await generateJson({ ...options, system: instructions, schema: MAPPING_SCHEMA, prompt: JSON.stringify({ business: request.profile, supportedFields: ENTITIES, source: sample }) });
+  const parsed = normaliseProposal(raw);
   if (input.text) {
     if (!Array.isArray(parsed.document_tables) || !parsed.document_tables.length) throw new Error('No supported records found in this document. Use a text-based table or a spreadsheet export.');
     input = validateInput({ tables: parsed.document_tables, text: input.text });

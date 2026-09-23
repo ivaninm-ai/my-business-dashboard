@@ -1,5 +1,15 @@
 # Release notes
 
+## 1.2.0-rc.2 — 23 September 2026
+
+- Fix: source preparation failed with *Gemini returned an invalid proposal* on the first
+  real Gemini call. The setup request now sends Gemini a strict answer template
+  (structured output), accepts a missing or single-sentence `notes` field, and — if a
+  reply is still unusable — names the fields Gemini returned (never their values).
+- Worker and prompt only; no workflow files changed. Existing 1.2.0-rc.1 installations
+  update with *5 · Update from template* → tag `v1.2.0-rc.2`, then *4 · Publish dashboard*.
+- 50 automated tests.
+
 ## 1.2.0-rc.1 — local candidate, 23 September 2026
 
 **Students no longer use Claude.** Setup happens inside the dashboard; background AI is
