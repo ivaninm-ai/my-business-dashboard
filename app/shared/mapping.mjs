@@ -5,6 +5,7 @@
 
 import { ENTITIES, STATUS_BUCKETS } from './model.mjs';
 import { parseDate, isIsoDate } from './dates.mjs';
+import { tr } from './i18n.mjs';
 
 export function issue(level, code, message, extra = {}) {
   return { level, code, message, ...extra };
@@ -84,12 +85,12 @@ export function applyTableMapping(table, rows, pkg) {
   const issues = [];
   const records = [];
   if (!entity) {
-    issues.push(issue('error', 'unknown_entity', `Table "${table.table_id}" maps to unknown entity "${table.entity}".`));
+    issues.push(issue('error', 'unknown_entity', tr('Table "{0}" maps to unknown entity "{1}".', table.table_id, table.entity)));
     return { records, issues };
   }
   const headerRowIndex = Math.max(1, table.header_row || 1) - 1;
   if (!Array.isArray(rows) || rows.length <= headerRowIndex) {
-    issues.push(issue('error', 'empty_table', `"${table.sheet_name || table.table_id}" has no header row at row ${headerRowIndex + 1}. Check the worksheet name and header row in the mapping.`, { table: table.table_id }));
+    issues.push(issue('error', 'empty_table', tr('"{0}" has no header row at row {1}. Check the worksheet name and header row in the mapping.', table.sheet_name || table.table_id, headerRowIndex + 1), { table: table.table_id }));
     return { records, issues };
   }
   const headers = rows[headerRowIndex].map(parseText);
@@ -102,10 +103,10 @@ export function applyTableMapping(table, rows, pkg) {
     else columnIndex[f.canonical] = idx;
   }
   if (missing.length) {
-    const found = headers.filter(Boolean).map(h => `"${h}"`).join(', ') || '(none)';
+    const found = headers.filter(Boolean).map(h => `"${h}"`).join(', ') || tr('(none)');
     for (const f of missing) {
       issues.push(issue('error', 'missing_header',
-        `Column "${f.header}" (used for ${table.entity}.${f.canonical}) was not found in "${table.sheet_name || table.table_id}". Headers found: ${found}. If the column was renamed, review this source in Settings > Business setup.`,
+        tr('Column "{0}" (used for {1}.{2}) was not found in "{3}". Headers found: {4}. If the column was renamed, review this source in Settings > Business setup.', f.header, table.entity, f.canonical, table.sheet_name || table.table_id, found),
         { table: table.table_id, field: f.canonical, header: f.header, headers_found: headers }));
     }
     return { records, issues };
@@ -121,7 +122,7 @@ export function applyTableMapping(table, rows, pkg) {
     for (const f of table.fields || []) {
       const spec = entity.fields[f.canonical];
       if (!spec) {
-        issues.push(issue('error', 'unknown_field', `Field "${f.canonical}" is not part of ${table.entity}.`, { table: table.table_id }));
+        issues.push(issue('error', 'unknown_field', tr('Field "{0}" is not part of {1}.', f.canonical, table.entity), { table: table.table_id }));
         rowFailed = true; continue;
       }
       const raw = f.constant !== undefined ? f.constant : row[columnIndex[f.canonical]];
@@ -131,7 +132,7 @@ export function applyTableMapping(table, rows, pkg) {
         case 'money': {
           value = parseMoneyCents(raw);
           if (value === null && raw !== '' && raw !== null && raw !== undefined) {
-            issues.push(issue('error', 'bad_money', `Row ${r + 1} of "${table.sheet_name}": "${parseText(raw)}" in column "${f.header}" is not an amount.`, { table: table.table_id, row: r + 1, field: f.canonical }));
+            issues.push(issue('error', 'bad_money', tr('Row {0} of "{1}": "{2}" in column "{3}" is not an amount.', r + 1, table.sheet_name, parseText(raw), f.header), { table: table.table_id, row: r + 1, field: f.canonical }));
             rowFailed = true;
           }
           break;
@@ -139,7 +140,7 @@ export function applyTableMapping(table, rows, pkg) {
         case 'integer': {
           value = parseInteger(raw);
           if (value === null && raw !== '' && raw !== null && raw !== undefined) {
-            issues.push(issue('error', 'bad_integer', `Row ${r + 1} of "${table.sheet_name}": "${parseText(raw)}" in column "${f.header}" is not a whole number.`, { table: table.table_id, row: r + 1, field: f.canonical }));
+            issues.push(issue('error', 'bad_integer', tr('Row {0} of "{1}": "{2}" in column "{3}" is not a whole number.', r + 1, table.sheet_name, parseText(raw), f.header), { table: table.table_id, row: r + 1, field: f.canonical }));
             rowFailed = true;
           }
           break;
@@ -147,7 +148,7 @@ export function applyTableMapping(table, rows, pkg) {
         case 'date': {
           value = parseDate(raw, { order: f.date_order || dateOrder });
           if (value === null && raw !== '' && raw !== null && raw !== undefined) {
-            issues.push(issue('error', 'bad_date', `Row ${r + 1} of "${table.sheet_name}": "${parseText(raw)}" in column "${f.header}" is not a date. Expected ISO (2026-08-30), a spreadsheet date, or ${(f.date_order || dateOrder).toUpperCase()} text.`, { table: table.table_id, row: r + 1, field: f.canonical }));
+            issues.push(issue('error', 'bad_date', tr('Row {0} of "{1}": "{2}" in column "{3}" is not a date. Expected ISO (2026-08-30), a spreadsheet date, or {4} text.', r + 1, table.sheet_name, parseText(raw), f.header, (f.date_order || dateOrder).toUpperCase()), { table: table.table_id, row: r + 1, field: f.canonical }));
             rowFailed = true;
           }
           break;
@@ -155,7 +156,7 @@ export function applyTableMapping(table, rows, pkg) {
         case 'enum': {
           value = matchEnum(raw, spec, f);
           if (value === undefined) {
-            issues.push(issue('error', 'unknown_value', `Row ${r + 1} of "${table.sheet_name}": value "${parseText(raw)}" in column "${f.header}" is not one of the confirmed meanings for ${table.entity}.${f.canonical}. Add it to the mapping before importing.`, { table: table.table_id, row: r + 1, field: f.canonical, value: parseText(raw) }));
+            issues.push(issue('error', 'unknown_value', tr('Row {0} of "{1}": value "{2}" in column "{3}" is not one of the confirmed meanings for {4}.{5}. Add it to the mapping before importing.', r + 1, table.sheet_name, parseText(raw), f.header, table.entity, f.canonical), { table: table.table_id, row: r + 1, field: f.canonical, value: parseText(raw) }));
             rowFailed = true;
           }
           break;
@@ -164,7 +165,7 @@ export function applyTableMapping(table, rows, pkg) {
           value = statusBucket(raw, statusMap);
           rec.status_text = parseText(raw);
           if (value === undefined) {
-            issues.push(issue('error', 'unknown_status', `Row ${r + 1} of "${table.sheet_name}": status "${parseText(raw)}" is not listed in status_map (pending/done/excluded). Confirm what it means before importing.`, { table: table.table_id, row: r + 1, value: parseText(raw) }));
+            issues.push(issue('error', 'unknown_status', tr('Row {0} of "{1}": status "{2}" is not listed in status_map (pending/done/excluded). Confirm what it means before importing.', r + 1, table.sheet_name, parseText(raw)), { table: table.table_id, row: r + 1, value: parseText(raw) }));
             rowFailed = true;
           }
           break;
@@ -181,7 +182,7 @@ export function applyTableMapping(table, rows, pkg) {
         else rec[name] = null;
       }
       if (spec.required && (rec[name] === null || rec[name] === '' || rec[name] === undefined)) {
-        issues.push(issue('error', 'missing_required', `Row ${r + 1} of "${table.sheet_name}": required field ${table.entity}.${name} is blank.`, { table: table.table_id, row: r + 1, field: name }));
+        issues.push(issue('error', 'missing_required', tr('Row {0} of "{1}": required field {2}.{3} is blank.', r + 1, table.sheet_name, table.entity, name), { table: table.table_id, row: r + 1, field: name }));
         rowFailed = true;
       }
     }
@@ -193,7 +194,7 @@ export function applyTableMapping(table, rows, pkg) {
     if (id === null) continue;
     rec.id = id;
     if (seenIds.has(id)) {
-      issues.push(issue('error', 'duplicate_id', `${table.entity} identifier "${id}" appears on rows ${seenIds.get(id)} and ${r + 1} of "${table.sheet_name}". Each record needs one row; remove or correct the duplicate.`, { table: table.table_id, row: r + 1, id }));
+      issues.push(issue('error', 'duplicate_id', tr('{0} identifier "{1}" appears on rows {2} and {3} of "{4}". Each record needs one row; remove or correct the duplicate.', table.entity, id, seenIds.get(id), r + 1, table.sheet_name), { table: table.table_id, row: r + 1, id }));
       continue;
     }
     seenIds.set(id, r + 1);
@@ -208,13 +209,13 @@ function deriveIdentity(table, rec, rowNumber, issues) {
   if (identity.mode === 'composite') {
     const parts = (identity.fields || []).map(f => rec[f] ?? '');
     if (parts.some(p => p === '' || p === null)) {
-      issues.push(issue('error', 'identity_incomplete', `Row ${rowNumber} of "${table.sheet_name}": composite identity fields (${(identity.fields || []).join(', ')}) are incomplete.`, { table: table.table_id, row: rowNumber }));
+      issues.push(issue('error', 'identity_incomplete', tr('Row {0} of "{1}": composite identity fields ({2}) are incomplete.', rowNumber, table.sheet_name, (identity.fields || []).join(', ')), { table: table.table_id, row: rowNumber }));
       return null;
     }
     return parts.join('|');
   }
   if (identity.mode === 'row_number') return `${table.table_id}#${rowNumber}`;
-  issues.push(issue('error', 'identity_mode', `Unknown identity mode "${identity.mode}" for table ${table.table_id}.`));
+  issues.push(issue('error', 'identity_mode', tr('Unknown identity mode "{0}" for table {1}.', identity.mode, table.table_id)));
   return null;
 }
 
@@ -226,33 +227,33 @@ export function relationalChecks(records) {
   const stock = new Set((records.stock || []).map(s => s.id));
   for (const s of records.sales || []) {
     if (s.customer_id && records.customers && !customers.has(s.customer_id)) {
-      issues.push(issue('warning', 'orphan_customer', `Sale ${s.id} refers to customer "${s.customer_id}" which is not in the customers table.`, { id: s.id }));
+      issues.push(issue('warning', 'orphan_customer', tr('Sale {0} refers to customer "{1}" which is not in the customers table.', s.id, s.customer_id), { id: s.id }));
     }
-    if (s.quantity !== null && s.quantity < 0) issues.push(issue('error', 'negative_quantity', `Sale ${s.id} has a negative quantity.`, { id: s.id }));
-    if (s.amount !== null && s.amount < 0) issues.push(issue('error', 'negative_amount', `Sale ${s.id} has a negative amount.`, { id: s.id }));
+    if (s.quantity !== null && s.quantity < 0) issues.push(issue('error', 'negative_quantity', tr('Sale {0} has a negative quantity.', s.id), { id: s.id }));
+    if (s.amount !== null && s.amount < 0) issues.push(issue('error', 'negative_amount', tr('Sale {0} has a negative amount.', s.id), { id: s.id }));
     if (s.status === 'done' && s.actual_completion_date === null && s.promised_completion_date !== null) {
       // informational only: completed without a date is acceptable in many businesses
     }
   }
   for (const p of records.payments || []) {
     if (!sales.has(p.sale_id)) {
-      issues.push(issue('error', 'orphan_payment', `Payment ${p.id} refers to sale "${p.sale_id}" which is not in the sales table. Money that cannot be matched to a sale would distort balances.`, { id: p.id }));
+      issues.push(issue('error', 'orphan_payment', tr('Payment {0} refers to sale "{1}" which is not in the sales table. Money that cannot be matched to a sale would distort balances.', p.id, p.sale_id), { id: p.id }));
     }
-    if (p.amount !== null && p.amount <= 0) issues.push(issue('error', 'nonpositive_payment', `Payment ${p.id} has a zero or negative amount.`, { id: p.id }));
+    if (p.amount !== null && p.amount <= 0) issues.push(issue('error', 'nonpositive_payment', tr('Payment {0} has a zero or negative amount.', p.id), { id: p.id }));
   }
   for (const st of records.stock || []) {
     if (st.reserved !== null && st.on_hand !== null && st.reserved > st.on_hand) {
-      issues.push(issue('warning', 'reserved_exceeds_on_hand', `Stock ${st.id}: reserved ${st.reserved} exceeds on hand ${st.on_hand}.`, { id: st.id }));
+      issues.push(issue('warning', 'reserved_exceeds_on_hand', tr('Stock {0}: reserved {1} exceeds on hand {2}.', st.id, st.reserved, st.on_hand), { id: st.id }));
     }
   }
   const snapshotDates = new Set((records.stock || []).map(s => s.snapshot_date).filter(Boolean));
   if (snapshotDates.size > 1) {
-    issues.push(issue('warning', 'mixed_snapshot_dates', `Stock rows carry ${snapshotDates.size} different snapshot dates (${[...snapshotDates].sort().join(', ')}). The dashboard labels the latest.`));
+    issues.push(issue('warning', 'mixed_snapshot_dates', tr('Stock rows carry {0} different snapshot dates ({1}). The dashboard labels the latest.', snapshotDates.size, [...snapshotDates].sort().join(', '))));
   }
   if (records.sales && stock.size) {
     for (const s of records.sales) {
       if (s.offering_type === 'product' && s.item_id && !stock.has(s.item_id)) {
-        issues.push(issue('warning', 'unknown_item', `Sale ${s.id} refers to product "${s.item_id}" which has no stock row.`, { id: s.id }));
+        issues.push(issue('warning', 'unknown_item', tr('Sale {0} refers to product "{1}" which has no stock row.', s.id, s.item_id), { id: s.id }));
       }
     }
   }
@@ -263,7 +264,7 @@ export function relationalChecks(records) {
 export function resolveReportingDate(pkg, records, today) {
   const policy = pkg.reporting_date || { mode: 'today' };
   if (policy.mode === 'fixed') {
-    if (!isIsoDate(policy.value)) throw new Error(`reporting_date.value "${policy.value}" is not a valid date.`);
+    if (!isIsoDate(policy.value)) throw new Error(tr('reporting_date.value "{0}" is not a valid date.', policy.value));
     return { date: policy.value, basis: 'fixed' };
   }
   if (policy.mode === 'latest_event_date') {
@@ -273,7 +274,7 @@ export function resolveReportingDate(pkg, records, today) {
     for (const p of records.payments || []) consider(p.date);
     for (const st of records.stock || []) consider(st.snapshot_date);
     for (const c of records.customers || []) consider(c.created_date);
-    if (!max) throw new Error('No dated records found to derive the reporting date.');
+    if (!max) throw new Error(tr('No dated records found to derive the reporting date.'));
     return { date: max, basis: 'latest_event_date' };
   }
   return { date: today, basis: 'today' };

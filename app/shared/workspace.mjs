@@ -6,6 +6,7 @@
 
 import { ENTITIES } from './model.mjs';
 import { quoteSheet } from './sheets.mjs';
+import { tr } from './i18n.mjs';
 
 export const WORKSPACE_ROLE = 'dashboard-workspace';
 export const WORKSPACE_SCHEMA_VERSION = 1;
@@ -85,7 +86,7 @@ export async function ensureWorkspace(client, id, { appVersion, actor }) {
     // Only a completely blank workbook (every sheet empty) may be initialised.
     const empty = await isBlank(client, id, info.sheets);
     if (!empty) {
-      throw new Error('This workbook is not a Dashboard Workspace. Create the workspace from the dashboard (Data connections > Create workspace); source workbooks are never initialised.');
+      throw new Error(tr('This workbook is not a Dashboard Workspace. Create the workspace from the dashboard (Data connections > Create workspace); source workbooks are never initialised.'));
     }
   }
   const requests = [];

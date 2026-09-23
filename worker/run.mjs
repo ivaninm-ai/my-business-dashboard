@@ -14,6 +14,7 @@ import { runOnboarding } from './onboarding.mjs';
 import { runAi, DEFAULT_MODEL } from './ai.mjs';
 import { runInstallCheck } from './install-check.mjs';
 import { validatePackage } from '../app/shared/package.mjs';
+import { tr, tl, useWorkerLocale } from '../app/shared/i18n.mjs';
 
 const [, , command = 'help', ...rest] = process.argv;
 const flag = name => { const i = rest.indexOf(name); return i === -1 ? null : (rest[i + 1] ?? true); };
@@ -30,6 +31,7 @@ function importOutput(status) {
 }
 
 async function main() {
+  useWorkerLocale(); // until a business profile is read, messages use the default (Chinese)
   if (command === 'help') {
     console.log('Commands: install-check | import [--scheduled] | ai [--mode after_import|manual|requests] | validate-package <file>');
     return;
@@ -50,25 +52,25 @@ async function main() {
   const scheduled = flag('--scheduled') || process.env.GITHUB_EVENT_NAME === 'schedule';
   if (scheduled && ['setup', 'import'].includes(command) && (!process.env.GOOGLE_SERVICE_ACCOUNT_JSON || !(process.env.DASHBOARD_WORKSPACE_ID || '').trim())) {
     if (command === 'import') importOutput('skipped');
-    console.log('Scheduled run skipped: installation not finished (GOOGLE_SERVICE_ACCOUNT_JSON or DASHBOARD_WORKSPACE_ID is not set yet).');
+    console.log(tr('Scheduled run skipped: installation not finished (GOOGLE_SERVICE_ACCOUNT_JSON or DASHBOARD_WORKSPACE_ID is not set yet).'));
     return;
   }
   const credentials = parseServiceAccount(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
   const workspaceId = (process.env.DASHBOARD_WORKSPACE_ID || '').trim();
   if (command === 'install-check') {
     const report = await runInstallCheck({ credentials, workspaceId, runId, aiKeyPresent: !!process.env.GEMINI_API_KEY });
-    const lines = ['## Install check', '', '| Check | Result | Detail |', '|---|---|---|'];
+    const lines = [`## ${tl('Install check')}`, '', tr('| Check | Result | Detail |'), '|---|---|---|'];
     for (const c of report.checks) { lines.push(`| ${c.name} | ${c.ok ? '✅' : '❌'} | ${c.detail.replace(/\|/g, '\\|')} |`); console.log(`${c.ok ? 'PASS' : 'FAIL'} ${c.name}${c.detail ? ' — ' + c.detail : ''}`); }
-    lines.push('', report.ok ? '**Install check passed.**' : '**Install check found problems.** Fix the ❌ rows and run again.');
+    lines.push('', report.ok ? tr('**Install check passed.**') : tr('**Install check found problems.** Fix the ❌ rows and run again.'));
     summary(lines);
-    console.log(report.ok ? 'Install check passed' : 'Install check found problems');
+    console.log(report.ok ? tr('Install check passed') : tr('Install check found problems'));
     process.exitCode = report.ok ? 0 : 1;
     return;
   }
-  if (!workspaceId) throw new Error('DASHBOARD_WORKSPACE_ID secret is not set.');
+  if (!workspaceId) throw new Error(tr('DASHBOARD_WORKSPACE_ID secret is not set.'));
   if (command === 'setup') {
     const result = await runOnboarding({ credentials, workspaceId, apiKey: process.env.GEMINI_API_KEY || '', model: process.env.AI_MODEL || DEFAULT_MODEL });
-    console.log('Source preparation: ' + result.status + '. Review Business setup in your private dashboard.');
+    console.log(tr('Source preparation: ') + tr(result.status) + tr('. Review Business setup in your private dashboard.'));
     return;
   }
   if (command === 'import') {
@@ -76,17 +78,17 @@ async function main() {
     if (flag('--scheduled')) {
       const hours = (process.env.REFRESH_HOURS_UTC || '23').split(',').map(s => s.trim()).filter(Boolean);
       const hour = String(new Date().getUTCHours());
-      if (hours[0] === 'off' || !hours.includes(hour)) { console.log(`Scheduled run skipped: current UTC hour ${hour} is not in REFRESH_HOURS_UTC (${hours.join(',')}).`); return; }
+      if (hours[0] === 'off' || !hours.includes(hour)) { console.log(tr('Scheduled run skipped: current UTC hour {0} is not in REFRESH_HOURS_UTC ({1}).', hour, hours.join(','))); return; }
     }
     try {
       const result = await runImport({ credentials, workspaceId, runId });
       const ok = ['success', 'unchanged', 'no_setup'].includes(result.status);
       importOutput(result.status);
-      console.log(`Import ${result.status}. Open Data connections in your private dashboard for details.`);
-      summary(['## Import', '', `**${result.status}** — Open Data connections in your dashboard for details. Business records are never printed in public workflow logs.`]);
+      console.log(tr('Import {0}. Open Data connections in your private dashboard for details.', tr(result.status)));
+      summary([`## ${tl('Import')}`, '', tr('**{0}** — Open Data connections in your dashboard for details. Business records are never printed in public workflow logs.', tr(result.status))]);
       process.exitCode = ok ? 0 : 1;
     } catch (e) {
-      if (e instanceof ImportError && e.code === 'busy') { importOutput('busy'); console.log('Another import is running. Try again when it finishes.'); return; }
+      if (e instanceof ImportError && e.code === 'busy') { importOutput('busy'); console.log(tr('Another import is running. Try again when it finishes.')); return; }
       throw e;
     }
     return;
@@ -95,7 +97,7 @@ async function main() {
     const mode = flag('--mode') || (process.env.AI_AUTO === 'off' ? 'requests' : 'after_import');
     const model = (process.env.AI_MODEL || DEFAULT_MODEL).trim();
     const result = await runAi({ credentials, workspaceId, apiKey: process.env.GEMINI_API_KEY || '', model, mode, runId, log: m => console.log(m) });
-    summary(['## AI brief', '', `**${result.status}** — Open AI insights in your dashboard for private results and error details.`]);
+    summary([`## ${tl('AI brief')}`, '', tr('**{0}** — Open AI insights in your dashboard for private results and error details.', tr(result.status))]);
     process.exitCode = result.status === 'failed' ? 1 : 0;
     return;
   }
@@ -103,8 +105,8 @@ async function main() {
 }
 
 main().catch(e => {
-  const message = process.env.GITHUB_STEP_SUMMARY ? 'Worker failed. Check the installation steps and the private dashboard status; business details are omitted from public logs.' : e.message;
+  const message = process.env.GITHUB_STEP_SUMMARY ? tr('Worker failed. Check the installation steps and the private dashboard status; business details are omitted from public logs.') : e.message;
   console.error(message);
-  summary(['## Worker failed', '', message]);
+  summary([`## ${tl('Worker failed')}`, '', message]);
   process.exitCode = 1;
 });

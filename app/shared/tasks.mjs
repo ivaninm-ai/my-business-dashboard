@@ -6,6 +6,7 @@
 import { TASK_RULES } from './model.mjs';
 import { addDays } from './dates.mjs';
 import { formatMoney } from './metrics.mjs';
+import { tr, sentences } from './i18n.mjs';
 
 export const TASKS_VERSION = '1.0';
 
@@ -52,8 +53,9 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           if (!suggested || suggested <= reportingDate) suggested = reportingDate;
           push({
             rule, record_type: 'sales', record_id: b.sale_id,
-            title: `Follow up payment for ${b.sale_id}${customer ? ' · ' + customer.name : ''}`,
-            reason: `${formatMoney(b.balance, symbol)} unpaid of ${formatMoney(b.amount, symbol)} (${formatMoney(b.paid, symbol)} received). ${due ? `Recorded due date ${due}${b.state === 'overdue' ? ' — overdue' : b.state === 'due_today' ? ' — due today' : ''}.` : 'No recorded due date.'}`,
+            title: customer ? tr('Follow up payment for {0} · {1}', b.sale_id, customer.name) : tr('Follow up payment for {0}', b.sale_id),
+            reason: sentences(tr('{0} unpaid of {1} ({2} received).', formatMoney(b.balance, symbol), formatMoney(b.amount, symbol), formatMoney(b.paid, symbol)),
+              !due ? tr('No recorded due date.') : b.state === 'overdue' ? tr('Recorded due date {0} — overdue.', due) : b.state === 'due_today' ? tr('Recorded due date {0} — due today.', due) : tr('Recorded due date {0}.', due)),
             evidence: { balance: b.balance, amount: b.amount, paid: b.paid, state: b.state, customer_id: b.customer_id, description: sale?.description || '' },
             recorded_deadline: due || '',
             suggested_date: suggested,
@@ -67,8 +69,9 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           const overdue = c.next_follow_up_date < reportingDate;
           push({
             rule, record_type: 'customers', record_id: c.id,
-            title: `Follow up ${c.name}`,
-            reason: `Recorded next follow-up ${c.next_follow_up_date}${overdue ? ' is before the reporting date (recorded action overdue; this does not prove no contact occurred)' : c.next_follow_up_date === reportingDate ? ' is today' : ''}. ${c.type === 'prospect' ? 'Prospect' : 'Customer'}${c.owner ? ' · owner ' + c.owner : ' · no owner recorded'}.`,
+            title: tr('Follow up {0}', c.name),
+            reason: sentences(overdue ? tr('Recorded next follow-up {0} is before the reporting date (recorded action overdue; this does not prove no contact occurred).', c.next_follow_up_date) : c.next_follow_up_date === reportingDate ? tr('Recorded next follow-up {0} is today.', c.next_follow_up_date) : tr('Recorded next follow-up {0}.', c.next_follow_up_date),
+              c.type === 'prospect' ? (c.owner ? tr('Prospect · owner {0}.', c.owner) : tr('Prospect · no owner recorded.')) : (c.owner ? tr('Customer · owner {0}.', c.owner) : tr('Customer · no owner recorded.'))),
             evidence: { next_follow_up_date: c.next_follow_up_date, type: c.type, owner: c.owner || '' },
             recorded_deadline: c.next_follow_up_date,
             suggested_date: overdue ? reportingDate : c.next_follow_up_date,
@@ -82,8 +85,8 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           if ((salesByCustomer.get(c.id) || []).length) continue;
           push({
             rule, record_type: 'customers', record_id: c.id,
-            title: `Review account information for ${c.name}`,
-            reason: 'Recorded as a customer but no sales rows exist for this account. Review only; the classification is not changed.',
+            title: tr('Review account information for {0}', c.name),
+            reason: tr('Recorded as a customer but no sales rows exist for this account. Review only; the classification is not changed.'),
             evidence: { type: c.type, created_date: c.created_date || '' },
             recorded_deadline: '',
             suggested_date: reportingDate,
@@ -96,8 +99,9 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           if (!st.low) continue;
           push({
             rule, record_type: 'stock', record_id: st.id,
-            title: `Review replenishment for ${st.name || st.id}`,
-            reason: `Available ${st.available} (on hand ${st.on_hand} − reserved ${st.reserved || 0}) is at or below the reorder threshold ${st.reorder_threshold || 0}.${st.unreserved_pending ? ` ${st.unreserved_pending} pending units are not covered by reservations.` : ''} Supplier lead times and purchase quantities are not in the records.`,
+            title: tr('Review replenishment for {0}', st.name || st.id),
+            reason: sentences(tr('Available {0} (on hand {1} − reserved {2}) is at or below the reorder threshold {3}.', st.available, st.on_hand, st.reserved || 0, st.reorder_threshold || 0),
+              st.unreserved_pending ? tr('{0} pending units are not covered by reservations.', st.unreserved_pending) : '', tr('Supplier lead times and purchase quantities are not in the records.')),
             evidence: { available: st.available, on_hand: st.on_hand, reserved: st.reserved || 0, reorder_threshold: st.reorder_threshold || 0, unreserved_pending: st.unreserved_pending, snapshot_date: st.snapshot_date || '' },
             recorded_deadline: '',
             suggested_date: reportingDate,
@@ -111,8 +115,8 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           const customer = customers.get(s.customer_id);
           push({
             rule, record_type: 'sales', record_id: id,
-            title: `Confirm delivery / completion of ${id}${customer ? ' · ' + customer.name : ''}`,
-            reason: `Status "${s.status_text || s.status}" with promised completion ${s.promised_completion_date}, which is before the reporting date. Confirm the actual status with the team; completing this task does not change the sale.`,
+            title: customer ? tr('Confirm delivery / completion of {0} · {1}', id, customer.name) : tr('Confirm delivery / completion of {0}', id),
+            reason: tr('Status "{0}" with promised completion {1}, which is before the reporting date. Confirm the actual status with the team; completing this task does not change the sale.', s.status_text || s.status, s.promised_completion_date),
             evidence: { promised_completion_date: s.promised_completion_date, status: s.status_text || s.status, description: s.description || '' },
             recorded_deadline: s.promised_completion_date,
             suggested_date: reportingDate,
@@ -128,8 +132,8 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           const customer = customers.get(s.customer_id);
           push({
             rule, record_type: 'sales', record_id: s.id,
-            title: `Prepare ${s.description || s.id}${customer ? ' for ' + customer.name : ''}`,
-            reason: `Promised completion ${s.promised_completion_date} is within ${params.within_days} day(s) of the reporting date.`,
+            title: customer ? tr('Prepare {0} for {1}', s.description || s.id, customer.name) : tr('Prepare {0}', s.description || s.id),
+            reason: tr('Promised completion {0} is within {1} day(s) of the reporting date.', s.promised_completion_date, params.within_days),
             evidence: { promised_completion_date: s.promised_completion_date, status: s.status_text || s.status },
             recorded_deadline: s.promised_completion_date,
             suggested_date: addDays(s.promised_completion_date, -1) >= reportingDate ? addDays(s.promised_completion_date, -1) : reportingDate,
@@ -143,8 +147,8 @@ export function generateSuggestions(records, metrics, reportingDate, policies, s
           const c = customers.get(id);
           push({
             rule, record_type: 'customers', record_id: id,
-            title: `Assign an owner to ${c.name}`,
-            reason: 'Prospect with no recorded owner. The owner stays unassigned until someone accepts this task.',
+            title: tr('Assign an owner to {0}', c.name),
+            reason: tr('Prospect with no recorded owner. The owner stays unassigned until someone accepts this task.'),
             evidence: { type: c.type, next_follow_up_date: c.next_follow_up_date || '' },
             recorded_deadline: c.next_follow_up_date || '',
             suggested_date: reportingDate,
@@ -198,10 +202,10 @@ export function mergeTasks(suggested, decisions) {
   for (const [key, d] of decisionByKey) {
     if (!key.startsWith('custom:')) {
       // Decision for a suggestion that no longer exists in Tasks_Suggested (e.g. rule disabled): keep history.
-      tasks.push({ task_key: key, rule: key.split(':')[0], record_type: '', record_id: key.split(':').slice(1).join(':'), title: d.title || key, reason: d.detail || 'Suggestion no longer generated by the current rules.', evidence: {}, recorded_deadline: '', suggested_date: '', suggested_owner: '', status: d.status, action_date: d.action_date || '', owner: d.owner || '', note: d.note || '', decided_at: d.updated_at || '', stale: false, resolved: true, custom: false });
+      tasks.push({ task_key: key, rule: key.split(':')[0], record_type: '', record_id: key.split(':').slice(1).join(':'), title: d.title || key, reason: d.detail || tr('Suggestion no longer generated by the current rules.'), evidence: {}, recorded_deadline: '', suggested_date: '', suggested_owner: '', status: d.status, action_date: d.action_date || '', owner: d.owner || '', note: d.note || '', decided_at: d.updated_at || '', stale: false, resolved: true, custom: false });
       continue;
     }
-    tasks.push({ task_key: key, rule: 'custom', record_type: '', record_id: '', title: d.title || 'Task', reason: d.detail || '', evidence: {}, recorded_deadline: '', suggested_date: '', suggested_owner: '', status: d.status || 'accepted', action_date: d.action_date || '', owner: d.owner || '', note: d.note || '', decided_at: d.updated_at || '', stale: false, resolved: false, custom: true });
+    tasks.push({ task_key: key, rule: 'custom', record_type: '', record_id: '', title: d.title || tr('Task'), reason: d.detail || '', evidence: {}, recorded_deadline: '', suggested_date: '', suggested_owner: '', status: d.status || 'accepted', action_date: d.action_date || '', owner: d.owner || '', note: d.note || '', decided_at: d.updated_at || '', stale: false, resolved: false, custom: true });
   }
   return tasks;
 }

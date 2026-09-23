@@ -27,3 +27,5 @@ Return one JSON object with exactly these fields: selections (list), status_map 
 document_tables (list; empty for spreadsheets) and notes (a list of short strings; empty
 list if there is nothing to add).
 Each selection has name, entity, header_row, fields. Return data only, no code.
+Write notes in the language of business.locale (zh-CN = Simplified Chinese, en = English,
+ms = Malay). Keep header names, IDs and status values exactly as they appear in the source.
