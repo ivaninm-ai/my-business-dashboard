@@ -23,9 +23,5 @@ text. Do not add inferred records, totals or guesses. If completeness is uncerta
 explain it in notes. The owner must compare the extracted records to the original.
 For existing spreadsheet tables, document_tables must be an empty array.
 
-Return one JSON object with exactly these fields: selections (list), status_map (object),
-document_tables (list; empty for spreadsheets) and notes (a list of short strings; empty
-list if there is nothing to add).
+Return a JSON object with selections, status_map, document_tables, and notes (strings).
 Each selection has name, entity, header_row, fields. Return data only, no code.
-Write notes in the language of business.locale (zh-CN = Simplified Chinese, en = English,
-ms = Malay). Keep header names, IDs and status values exactly as they appear in the source.

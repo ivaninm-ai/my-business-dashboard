@@ -13,7 +13,6 @@ import { mergeTasks } from '../app/shared/tasks.mjs';
 import { buildCalendarItems } from '../app/shared/calendar.mjs';
 import { addDays } from '../app/shared/dates.mjs';
 import { makeClients, loadSetup, APP_VERSION } from './importer.mjs';
-import { tr, useWorkerLocale } from '../app/shared/i18n.mjs';
 
 
 export const AI_RULES_VERSION = '1.0';
@@ -42,7 +41,7 @@ const OUTPUT_SCHEMA = {
 };
 
 export function buildPrompt({ pkg, metrics, tasks, reportingDate, symbol, coverage = {}, calendar = [], importStatus = '' }) {
-  const language = pkg.business.locale || 'zh-CN';
+  const language = pkg.business.locale || 'en';
   const open = tasks.filter(t => !t.resolved && ['suggested', 'accepted'].includes(t.status));
   const money = c => formatMoney(c, symbol);
   const lines = [];
@@ -106,10 +105,9 @@ export async function runAi({ credentials, workspaceId, apiKey, model = DEFAULT_
   const { workspace: ws } = makeClients(credentials, { fetchFn });
   const startedAt = new Date(now()).toISOString();
   const { values: meta } = await readKeyValues(ws, workspaceId, '_Workspace');
-  if (meta.role !== 'dashboard-workspace') throw new Error(tr('DASHBOARD_WORKSPACE_ID does not point at a Dashboard Workspace.'));
-  if (meta.last_import_status === 'writing' || meta.snapshot_incomplete === 'TRUE') throw new Error(tr('The snapshot write is incomplete. Rerun Import data before requesting AI analysis.'));
+  if (meta.role !== 'dashboard-workspace') throw new Error('DASHBOARD_WORKSPACE_ID does not point at a Dashboard Workspace.');
+  if (meta.last_import_status === 'writing' || meta.snapshot_incomplete === 'TRUE') throw new Error('The snapshot write is incomplete. Rerun Import data before requesting AI analysis.');
   const { pkg, settings } = await loadSetup(ws, workspaceId);
-  if (pkg) useWorkerLocale(pkg.business?.locale);
   const { values: metricsKv } = await readKeyValues(ws, workspaceId, 'Metrics');
   const requests = (await readTable(ws, workspaceId, 'AI_Requests')).rows;
   const results = (await readTable(ws, workspaceId, 'AI_Results')).rows;
@@ -119,11 +117,11 @@ export async function runAi({ credentials, workspaceId, apiKey, model = DEFAULT_
   const logRow = async (status, message, details = {}) => {
     await appendRows(ws, workspaceId, 'Sync_Log', [{ run_id: runId, job: 'ai', started_at: startedAt, finished_at: new Date(now()).toISOString(), status, message, snapshot_id: metricsKv.snapshot_id || '', details_json: details }]);
   };
-  if (!jobs.length) { await logRow('skipped', tr('No AI requests pending.')); log(tr('skipped: nothing to do')); return { status: 'skipped', results: [] }; }
-  if (!pkg) { await logRow('failed', tr('No setup package imported yet.')); throw new Error(tr('No setup package imported yet.')); }
-  if (pkg.modules?.ai === false) { await logRow('skipped', tr('AI module disabled in the setup package.')); return { status: 'skipped', results: [] }; }
+  if (!jobs.length) { await logRow('skipped', 'No AI requests pending.'); log('skipped: nothing to do'); return { status: 'skipped', results: [] }; }
+  if (!pkg) { await logRow('failed', 'No setup package imported yet.'); throw new Error('No setup package imported yet.'); }
+  if (pkg.modules?.ai === false) { await logRow('skipped', 'AI module disabled in the setup package.'); return { status: 'skipped', results: [] }; }
   const summary = parseJsonCell(metricsKv.summary);
-  if (!summary) { await logRow('failed', tr('No metrics available; run the import first.')); throw new Error(tr('No metrics available; run the import first.')); }
+  if (!summary) { await logRow('failed', 'No metrics available; run the import first.'); throw new Error('No metrics available; run the import first.'); }
   const suggested = (await readTable(ws, workspaceId, 'Tasks_Suggested')).rows.map(r => ({ ...r, active: String(r.active) === 'TRUE', evidence: parseJsonCell(r.evidence_json, {}) }));
   const decisions = (await readTable(ws, workspaceId, 'Task_Decisions')).rows;
   const tasks = mergeTasks(suggested, decisions);
@@ -142,27 +140,27 @@ export async function runAi({ credentials, workspaceId, apiKey, model = DEFAULT_
     const base = { result_id: resultId, request_id: job.request_id, generated_at: new Date(now()).toISOString(), snapshot_id: metricsKv.snapshot_id || '', model, rules_version: `${AI_RULES_VERSION}/${APP_VERSION}`, kind: job.kind };
     await appendRows(ws, workspaceId, 'AI_Results', [{ ...base, status: 'running', headline: '', content_json: '', error: '' }]);
     if (!apiKey || (settings.ai_data_mode !== 'paid' && pkg.business.synthetic !== true)) {
-      await appendRows(ws, workspaceId, 'AI_Results', [{ ...base, status: 'failed', headline: '', content_json: '', error: !apiKey ? tr('GEMINI_API_KEY secret is not set in this repository.') : tr('Choose the AI data setting in Business setup. Free-tier processing is for synthetic practice data; real private records require a billing-enabled Gemini project.') }]);
+      await appendRows(ws, workspaceId, 'AI_Results', [{ ...base, status: 'failed', headline: '', content_json: '', error: !apiKey ? 'GEMINI_API_KEY secret is not set in this repository.' : 'Choose the AI data setting in Business setup. Free-tier processing is for synthetic practice data; real private records require a billing-enabled Gemini project.' }]);
       failed++; out.push({ ...base, status: 'failed' }); continue;
     }
     try {
       const { parsed, usage, model: served } = await generateBrief({ apiKey, model, prompt, clientFactory });
       const brief = sanitiseBrief(parsed, tasks.filter(t => !t.resolved && ['suggested', 'accepted'].includes(t.status)).map(t => t.task_key));
       const mandatoryCaveats = (coverage.sources || []).filter(s => s.kind === 'manual_package').map(sourceFreshness);
-      if (!['success', 'unchanged'].includes(meta.last_import_status)) mandatoryCaveats.unshift(tr('Latest import was not successful; this brief uses the last saved snapshot.'));
+      if (!['success', 'unchanged'].includes(meta.last_import_status)) mandatoryCaveats.unshift('Latest import was not successful; this brief uses the last saved snapshot.');
       brief.data_caveats = [...new Set([...mandatoryCaveats, ...brief.data_caveats])];
       await appendRows(ws, workspaceId, 'AI_Results', [{ ...base, generated_at: new Date(now()).toISOString(), model: served || model, status: 'complete', headline: brief.headline, content_json: { ...brief, usage: { input_tokens: usage?.input_tokens, output_tokens: usage?.output_tokens } }, error: '' }]);
       out.push({ ...base, status: 'complete', brief });
-      log(tr('complete: Brief saved to the private Dashboard Workspace.'));
+      log('complete: Brief saved to the private Dashboard Workspace.');
     } catch (e) {
       const message = classifyProviderError(e);
       await appendRows(ws, workspaceId, 'AI_Results', [{ ...base, status: 'failed', headline: '', content_json: '', error: message }]);
       failed++; out.push({ ...base, status: 'failed', error: message });
-      log(tr('failed: Open AI insights in the dashboard for details.'));
+      log('failed: Open AI insights in the dashboard for details.');
     }
   }
   await trimTable(ws, workspaceId, 'AI_Results', LIMITS.ai_results_kept).catch(() => {});
-  await logRow(failed ? 'failed' : 'success', failed ? tr('{0} of {1} AI request(s) failed.', failed, jobs.length) : tr('{0} AI result(s) saved.', jobs.length));
+  await logRow(failed ? 'failed' : 'success', failed ? `${failed} of ${jobs.length} AI request(s) failed.` : `${jobs.length} AI result(s) saved.`);
   return { status: failed ? 'failed' : 'success', results: out };
 }
 

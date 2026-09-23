@@ -15,7 +15,6 @@ import { computeMetrics, METRICS_VERSION } from '../app/shared/metrics.mjs';
 import { generateSuggestions, reconcileSuggestions, TASKS_VERSION } from '../app/shared/tasks.mjs';
 import { todayIso, monthStart } from '../app/shared/dates.mjs';
 import { tokenProvider, apiBase } from './google-auth.mjs';
-import { tr, useWorkerLocale } from '../app/shared/i18n.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 export const SCHEMA = JSON.parse(readFileSync(path.join(here, '../app/shared/setup-package.schema.json'), 'utf8'));
@@ -40,7 +39,7 @@ export async function acquireLease(ws, id, holder, now = Date.now) {
   const { values } = await readKeyValues(ws, id, '_Workspace');
   const expires = Date.parse(values.lease_expires || '') || 0;
   if (values.lease_holder && expires > now()) {
-    throw new ImportError(tr('Another worker run ({0}) is still in progress until {1}. Wait for it to finish; runs are serialised to protect the workspace.', values.lease_holder, values.lease_expires), { code: 'busy' });
+    throw new ImportError(`Another worker run (${values.lease_holder}) is still in progress until ${values.lease_expires}. Wait for it to finish; runs are serialised to protect the workspace.`, { code: 'busy' });
   }
   await writeKeyValues(ws, id, '_Workspace', { lease_holder: holder, lease_expires: new Date(now() + LEASE_MS).toISOString() }, { timestamp: false });
 }
@@ -54,7 +53,7 @@ export async function loadSetup(ws, id) {
   const pkg = parseJsonCell(values.setup_package);
   if (!pkg) return { pkg: null, settings: values };
   const v = validatePackage(pkg, SCHEMA);
-  if (!v.ok) throw new ImportError(tr('The saved setup package is no longer valid: {0}. Re-import a valid package from Settings.', v.errors.slice(0, 3).join('; ')), { code: 'invalid_package' });
+  if (!v.ok) throw new ImportError(`The saved setup package is no longer valid: ${v.errors.slice(0, 3).join('; ')}. Re-import a valid package from Settings.`, { code: 'invalid_package' });
   return { pkg, settings: values, warnings: v.warnings };
 }
 
@@ -82,14 +81,14 @@ export async function readSources({ sourcesClient, ws, workspaceId, pkg, sources
     if (s.kind === 'manual_package') {
       for (const t of tables) {
         const rows = parseJsonCell(settings[`manual_rows.${t.table_id}`], null);
-        if (!rows) errors.push(tr('Table "{0}" belongs to manual source "{1}" but no reviewed rows were imported for it. Import the setup package that contains the records.', t.table_id, s.source_id));
+        if (!rows) errors.push(`Table "${t.table_id}" belongs to manual source "${s.source_id}" but no reviewed rows were imported for it. Import the setup package that contains the records.`);
         else sheets[t.table_id] = rows;
       }
       coverage.push({ source_id: s.source_id, label: s.label, kind: s.kind, ...parseJsonCell(settings[`source_meta.${s.source_id}`], {}), tables: tables.map(t => t.table_id) });
       continue;
     }
     if (!s.spreadsheet_id) {
-      errors.push(tr('Source "{0}" ({1}) is not connected to a Google Sheet yet. Open Data connections and paste the Sheet link.', s.label, s.source_id));
+      errors.push(`Source "${s.label}" (${s.source_id}) is not connected to a Google Sheet yet. Open Data connections and paste the Sheet link.`);
       continue;
     }
     const ranges = tables.map(t => quoteSheet(t.sheet_name));
@@ -98,10 +97,10 @@ export async function readSources({ sourcesClient, ws, workspaceId, pkg, sources
       tables.forEach((t, i) => { sheets[t.table_id] = vrs[i]?.values || []; });
       coverage.push({ source_id: s.source_id, label: s.label, kind: s.kind, read_at: new Date().toISOString(), tables: tables.map(t => t.table_id) });
     } catch (e) {
-      const why = e.status === 403 ? tr('The service account cannot read "{0}". Share that Sheet with the service-account email as Viewer.', s.label)
-        : e.status === 404 ? tr('"{0}" was not found. Check the Sheet link in Data connections.', s.label)
-        : e.status === 400 ? tr('A worksheet named in the mapping was not found in "{0}" (expected: {1}).', s.label, tables.map(t => t.sheet_name).join(', '))
-        : tr('Could not read "{0}": {1}', s.label, e.message);
+      const why = e.status === 403 ? `The service account cannot read "${s.label}". Share that Sheet with the service-account email as Viewer.`
+        : e.status === 404 ? `"${s.label}" was not found. Check the Sheet link in Data connections.`
+        : e.status === 400 ? `A worksheet named in the mapping was not found in "${s.label}" (expected: ${tables.map(t => t.sheet_name).join(', ')}).`
+        : `Could not read "${s.label}": ${e.message}`;
       errors.push(why);
     }
   }
@@ -118,7 +117,7 @@ export function mapSources(pkg, sheets) {
   }
   issues = issues.concat(relationalChecks(records));
   for (const [entity, rows] of Object.entries(records)) {
-    if (rows.length > LIMITS.records_per_table) issues.push({ level: 'error', code: 'too_many_rows', message: tr('{0} has {1} rows; this release supports up to {2} per table.', entity, rows.length, LIMITS.records_per_table) });
+    if (rows.length > LIMITS.records_per_table) issues.push({ level: 'error', code: 'too_many_rows', message: `${entity} has ${rows.length} rows; this release supports up to ${LIMITS.records_per_table} per table.` });
   }
   return { records, issues };
 }
@@ -126,8 +125,8 @@ export function mapSources(pkg, sheets) {
 export async function runImport({ credentials, workspaceId, fetchFn, now = Date.now, runId = `run_${Date.now()}`, log = () => {}, actor = 'worker', forceWrite = false }) {
   const { workspace: ws, sources: sourcesClient, email } = makeClients(credentials, { fetchFn });
   const startedAt = new Date(now()).toISOString();
-  const state = await inspectWorkspace(ws, workspaceId).catch(e => { throw new ImportError(tr('Cannot open the Dashboard Workspace: {0} (share it with {1} as Editor).', e.message, email), { code: 'workspace_unreadable' }); });
-  if (!state.isWorkspace) throw new ImportError(tr('DASHBOARD_WORKSPACE_ID does not point at a Dashboard Workspace created by the dashboard. Copy the ID shown in Data connections.'), { code: 'not_workspace' });
+  const state = await inspectWorkspace(ws, workspaceId).catch(e => { throw new ImportError(`Cannot open the Dashboard Workspace: ${e.message} (share it with ${email} as Editor).`, { code: 'workspace_unreadable' }); });
+  if (!state.isWorkspace) throw new ImportError('DASHBOARD_WORKSPACE_ID does not point at a Dashboard Workspace created by the dashboard. Copy the ID shown in Data connections.', { code: 'not_workspace' });
   if (state.missing.length) await ensureWorkspace(ws, workspaceId, { appVersion: APP_VERSION, actor });
   await acquireLease(ws, workspaceId, runId, now);
   const finish = async (status, message, extra = {}) => {
@@ -140,16 +139,15 @@ export async function runImport({ credentials, workspaceId, fetchFn, now = Date.
   };
   try {
     const { pkg, settings } = await loadSetup(ws, workspaceId);
-    if (pkg) useWorkerLocale(pkg.business?.locale);
-    if (!pkg) return finish('no_setup', tr('No business setup yet. Open Settings > Business setup, prepare and review a source, then activate it.'));
+    if (!pkg) return finish('no_setup', 'No business setup yet. Open Settings > Business setup, prepare and review a source, then activate it.');
     const sources = await loadBindings(ws, workspaceId, pkg);
     const read = await readSources({ sourcesClient, ws, workspaceId, pkg, sources, settings });
-    if (read.errors.length) return finish('failed', tr('Source read failed; the last good data is kept. {0}', read.errors.join(' ')), { details: { errors: read.errors } });
+    if (read.errors.length) return finish('failed', `Source read failed; the last good data is kept. ${read.errors.join(' ')}`, { details: { errors: read.errors } });
     const { records, issues } = mapSources(pkg, sheets(read));
     const errors = issues.filter(i => i.level === 'error');
     const warnings = issues.filter(i => i.level === 'warning');
     if (errors.length) {
-      return finish('failed', tr('Validation failed ({0} problem{1}); the last good data is kept. First: {2}', errors.length, errors.length === 1 ? '' : 's', errors[0].message), { details: { errors: errors.slice(0, 50).map(e => e.message), warnings: warnings.slice(0, 50).map(w => w.message) } });
+      return finish('failed', `Validation failed (${errors.length} problem${errors.length === 1 ? '' : 's'}); the last good data is kept. First: ${errors[0].message}`, { details: { errors: errors.slice(0, 50).map(e => e.message), warnings: warnings.slice(0, 50).map(w => w.message) } });
     }
     let reporting;
     try { reporting = resolveReportingDate(pkg, records, todayIso(pkg.business.timezone, new Date(now()))); }
@@ -162,13 +160,13 @@ export async function runImport({ credentials, workspaceId, fetchFn, now = Date.
     if (!forceWrite && wsMeta.current_content_hash === hash && wsMeta.current_snapshot_id && wsMeta.last_import_status !== 'writing' && wsMeta.snapshot_incomplete !== 'TRUE') {
       await writeKeyValues(ws, workspaceId, 'Metrics', { coverage }, { timestamp: false });
       await writeKeyValues(ws, workspaceId, '_Workspace', { last_successful_import_at: new Date(now()).toISOString(), last_read_at: new Date(now()).toISOString() }, { timestamp: false });
-      return finish('unchanged', tr('Source data unchanged since snapshot {0}; nothing rewritten.', wsMeta.current_snapshot_id), { snapshot_id: wsMeta.current_snapshot_id, details: { warnings: warnings.map(w => w.message) } });
+      return finish('unchanged', `Source data unchanged since snapshot ${wsMeta.current_snapshot_id}; nothing rewritten.`, { snapshot_id: wsMeta.current_snapshot_id, details: { warnings: warnings.map(w => w.message) } });
     }
     const metrics = computeMetrics(records, reporting.date, { periodStart: monthStart(reporting.date), periodEnd: reporting.date, historyStart: pkg.period?.history_start });
     const suggestions = generateSuggestions(records, metrics, reporting.date, pkg.policies, pkg.business.currency_symbol || pkg.business.currency);
     const previous = (await readTable(ws, workspaceId, 'Tasks_Suggested')).rows.map(r => ({ ...r, active: String(r.active) === 'TRUE' || r.active === true }));
     const reconciled = reconcileSuggestions(previous, suggestions, snapshotId);
-    if (reconciled.length > LIMITS.tasks) return finish('failed', tr('{0} task suggestions exceed the {1} limit. Disable a rule or reduce the source.', reconciled.length, LIMITS.tasks));
+    if (reconciled.length > LIMITS.tasks) return finish('failed', `${reconciled.length} task suggestions exceed the ${LIMITS.tasks} limit. Disable a rule or reduce the source.`);
     // --- write phase (all validation done) ---
     await writeKeyValues(ws, workspaceId, '_Workspace', { last_import_status: 'writing', snapshot_incomplete: 'TRUE' }, { timestamp: false });
     for (const entity of ['customers', 'sales', 'payments', 'stock']) {
@@ -177,15 +175,15 @@ export async function runImport({ credentials, workspaceId, fetchFn, now = Date.
     const summary = metricsSummary(metrics);
     await writeKeyValues(ws, workspaceId, 'Metrics', { snapshot_id: snapshotId, reporting_date: reporting.date, reporting_basis: reporting.basis, generated_at: new Date(now()).toISOString(), metrics_version: METRICS_VERSION, tasks_version: TASKS_VERSION, summary, coverage, warnings: warnings.map(w => w.message) }, { timestamp: false });
     await replaceTable(ws, workspaceId, 'Tasks_Suggested', reconciled.map(t => ({ ...t, evidence_json: t.evidence || {}, active: t.active ? 'TRUE' : 'FALSE' })));
-    await appendRows(ws, workspaceId, 'Snapshots', [{ snapshot_id: snapshotId, taken_at: new Date(now()).toISOString(), reporting_date: reporting.date, reporting_basis: reporting.basis, coverage_json: { ...coverage, sources: read.coverage }, row_counts_json: Object.fromEntries(Object.entries(records).map(([k, v]) => [k, v.length])), content_hash: hash, status: 'current', message: tr('{0} warning(s)', warnings.length) }]);
+    await appendRows(ws, workspaceId, 'Snapshots', [{ snapshot_id: snapshotId, taken_at: new Date(now()).toISOString(), reporting_date: reporting.date, reporting_basis: reporting.basis, coverage_json: { ...coverage, sources: read.coverage }, row_counts_json: Object.fromEntries(Object.entries(records).map(([k, v]) => [k, v.length])), content_hash: hash, status: 'current', message: `${warnings.length} warning(s)` }]);
     await trimTable(ws, workspaceId, 'Snapshots', LIMITS.snapshots_kept).catch(() => {});
     await writeKeyValues(ws, workspaceId, '_Workspace', { current_snapshot_id: snapshotId, current_content_hash: hash, current_reporting_date: reporting.date, last_successful_import_at: new Date(now()).toISOString(), last_read_at: new Date(now()).toISOString(), app_version: APP_VERSION, snapshot_incomplete: 'FALSE' }, { timestamp: false });
-    return finish('success', tr('Imported {0}; reporting date {1} ({2}); {3} suggestions ({4} warnings).', Object.entries(records).map(([k, v]) => `${v.length} ${k}`).join(', '), reporting.date, reporting.basis, suggestions.length, warnings.length), { snapshot_id: snapshotId, details: { warnings: warnings.slice(0, 50).map(w => w.message), counts: metrics.counts }, metrics: summary });
+    return finish('success', `Imported ${Object.entries(records).map(([k, v]) => `${v.length} ${k}`).join(', ')}; reporting date ${reporting.date} (${reporting.basis}); ${suggestions.length} suggestions (${warnings.length} warnings).`, { snapshot_id: snapshotId, details: { warnings: warnings.slice(0, 50).map(w => w.message), counts: metrics.counts }, metrics: summary });
   } catch (e) {
     if (e instanceof ImportError && e.code === 'busy') throw e;
     const { values: current } = await readKeyValues(ws, workspaceId, '_Workspace');
-    if (current.last_import_status === 'writing') return finish('writing', tr('The snapshot write was interrupted. Do not use these figures yet; rerun Import data to rebuild the snapshot.'));
-    return finish('failed', tr('Import failed before publishing new data. {0}', e.message));
+    if (current.last_import_status === 'writing') return finish('writing', 'The snapshot write was interrupted. Do not use these figures yet; rerun Import data to rebuild the snapshot.');
+    return finish('failed', `Import failed before publishing new data. ${e.message}`);
   }
 }
 

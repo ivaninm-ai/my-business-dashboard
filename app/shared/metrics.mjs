@@ -3,7 +3,6 @@
 // reporting date is a parameter: the current clock is never used here.
 
 import { monthStart, priorMonthSameDays, addDays, daysInMonth } from './dates.mjs';
-import { tr } from './i18n.mjs';
 
 export const METRICS_VERSION = '1.0';
 
@@ -108,7 +107,7 @@ export function computeMetrics(records, reportingDate, options = {}) {
   }
 
   const byChannel = {};
-  for (const s of inPeriod) { const k = s.channel || tr('(none)'); byChannel[k] = (byChannel[k] || 0) + s.amount; }
+  for (const s of inPeriod) { const k = s.channel || '(none)'; byChannel[k] = (byChannel[k] || 0) + s.amount; }
 
   return {
     version: METRICS_VERSION,

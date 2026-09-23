@@ -2,8 +2,6 @@
 // timezone can never shift a business date. Instants (timestamps) are ISO strings
 // with an explicit offset and are only used for "last read at" style labels.
 
-import { intlLocale } from './i18n.mjs';
-
 const SERIAL_EPOCH_MS = Date.UTC(1899, 11, 30); // spreadsheet serial 0
 const DAY_MS = 86400000;
 
@@ -118,7 +116,7 @@ export function todayIso(timeZone, now = new Date()) {
 
 export function nowIso() { return new Date().toISOString(); }
 
-export function formatDate(iso, locale = intlLocale()) {
+export function formatDate(iso, locale = 'en-MY') {
   if (!isIsoDate(iso)) return '';
   const [y, m, d] = iso.split('-').map(Number);
   try {

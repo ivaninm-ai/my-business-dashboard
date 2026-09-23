@@ -1,11 +1,9 @@
 # Student SOP — install your own business dashboard
 
-Release 1.2.0-rc.3 · no terminal, no code editing, no chat assistant. Every step is a web
+Release 1.2.0-rc.1 · no terminal, no code editing, no chat assistant. Every step is a web
 page, a form in the dashboard, or a value pasted into GitHub's Secrets/Variables screens.
 The interactive version of this SOP (with copy buttons and checkpoints) is the installation
 guide your instructor shares; this file is the same procedure in plain text.
-
-**Language:** the dashboard is in Chinese by default, with each menu item and button's English name in brackets — for example 准备来源（Prepare source）. This SOP uses the English names. Change the language in **Settings › Business setup › Language**.
 
 **What you will end up with:** a private dashboard at `https://<your-github-name>.github.io/<repo>/`
 that reads your own Google Sheets and files, stores its settings and tasks in a workbook in
@@ -94,7 +92,7 @@ Keep a private notepad for values you will paste. Never paste keys into chat, e-
 
 ## Step 7 — Describe your business and prepare a source (in the dashboard)
 
-1. Dashboard → **Settings → Business setup**. Fill in business name, type, what you sell, language (default 中文; it applies to the whole dashboard and the AI brief), currency, timezone and what the AI brief should focus on.
+1. Dashboard → **Settings → Business setup**. Fill in business name, type, what you sell, brief language, currency, timezone and what the AI brief should focus on.
 2. **AI data setting**: *Synthetic practice records · free tier* for the training pack; *Real business records · billing-enabled Gemini project* for real private data (enable billing in Google first — this choice does not enable it for you).
 3. **Report date**: *Today* for a live business; *Latest record date* for historical practice data. Click **Save business profile**.
 4. **Connect or update a source → Source: Add a new source**:

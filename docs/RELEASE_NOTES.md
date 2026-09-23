@@ -1,38 +1,5 @@
 # Release notes
 
-## 1.2.0-rc.3 — 23 September 2026
-
-- **Chinese interface.** The dashboard, the worker's messages, generated task titles and
-  reasons, install-check results and GitHub run summaries are in Simplified Chinese by
-  default. Menu items, buttons and the setup controls named in the guide read
-  `中文（English）`, so the guide, screenshots and search results still match.
-- One language setting: **Settings › Business setup › 语言（Language）** — 中文 (default),
-  English, or Bahasa Melayu (Malay brief, English screens). It controls the screens,
-  the task text written at the next import, and the AI brief. The previous "Brief
-  language" field is this setting; profiles saved with English stay English until changed.
-- Dates follow the language (2026年8月30日). Owners' own data (names, status words,
-  column names) is never translated. Gemini is asked to write setup notes in the same
-  language.
-- Implementation: `app/shared/i18n.mjs` (helpers) and `app/shared/i18n-zh.mjs` (≈800
-  strings). English stays as the fallback. `test/i18n.test.mjs` fails if any interface
-  text lacks a Chinese translation or its placeholders differ. The optional
-  `DASHBOARD_LANGUAGE` environment variable forces the worker's language (tests use it).
-- The installation guide names every dashboard button and message by its new label.
-- Worker, app and prompt changes; no workflow files changed. Update 1.2.0-rc.1/rc.2
-  installations with *5 · Update from template* → `v1.2.0-rc.3`, then *4 · Publish
-  dashboard* (required: the screens changed).
-- 54 automated tests.
-
-## 1.2.0-rc.2 — 23 September 2026
-
-- Fix: source preparation failed with *Gemini returned an invalid proposal* on the first
-  real Gemini call. The setup request now sends Gemini a strict answer template
-  (structured output), accepts a missing or single-sentence `notes` field, and — if a
-  reply is still unusable — names the fields Gemini returned (never their values).
-- Worker and prompt only; no workflow files changed. Existing 1.2.0-rc.1 installations
-  update with *5 · Update from template* → tag `v1.2.0-rc.2`, then *4 · Publish dashboard*.
-- 50 automated tests.
-
 ## 1.2.0-rc.1 — local candidate, 23 September 2026
 
 **Students no longer use Claude.** Setup happens inside the dashboard; background AI is

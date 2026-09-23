@@ -27,7 +27,6 @@
 | AI insights or Business setup: **GEMINI_API_KEY secret is not set** | No key | Google AI Studio › API keys › create a key; add it as the secret `GEMINI_API_KEY` |
 | **Gemini rejected the API key** | Wrong/revoked key | Create a new key in Google AI Studio and replace the secret |
 | **Gemini quota reached** (brief or setup) | Free-tier or project quota used up | Wait for the quota to reset. Imports and figures continue; for setup click **Retry preparation** later |
-| Business setup: **Gemini returned an invalid proposal (received …)** | Gemini answered in an unexpected shape | Click **Retry preparation** and run Import data again. If it repeats, send the whole message to your instructor — it lists field names only, no business data |
 | **Gemini model unavailable for this project** | `AI_MODEL` names a model your project cannot use | Delete the `AI_MODEL` variable to use the default, or pick a model listed in Google AI Studio |
 | **Choose the AI data setting in Business setup…** | No AI data setting saved | Settings › Business setup › AI data setting; *synthetic* only for practice data |
 | AI insights: **1 request(s) queued** for a long time | Worker has not run since the request | Run **3 · AI brief** (or wait for the next scheduled import) |
