@@ -1,0 +1,315 @@
+{
+  "package_version": "1.0",
+  "package_id": "demo-physio-studio-example",
+  "generated_at": "2026-09-22T12:00:00+08:00",
+  "generated_by": {
+    "tool": "business-dashboard-onboarding",
+    "version": "1.0.0"
+  },
+  "confirmation": {
+    "state": "confirmed",
+    "confirmed_by": "owner (synthetic example)",
+    "confirmed_at": "2026-09-22",
+    "open_questions": []
+  },
+  "business": {
+    "name": "Demo Physio Studio",
+    "model": "service",
+    "industry": "Physiotherapy and sports massage",
+    "description": "Small clinic with two therapists. Synthetic example of a service business without stock.",
+    "team": [
+      "Farah",
+      "Kumar"
+    ],
+    "locale": "en-MY",
+    "timezone": "Asia/Kuala_Lumpur",
+    "currency": "MYR",
+    "currency_symbol": "RM",
+    "questions": [
+      "Who has not paid for a booked package?",
+      "Which appointments are coming up or were missed?",
+      "Which clients are due a follow-up?"
+    ],
+    "synthetic": true
+  },
+  "reporting_date": {
+    "mode": "fixed",
+    "value": "2026-08-30",
+    "note": "Synthetic example; a live clinic would use today."
+  },
+  "period": {
+    "default": "month_to_date",
+    "history_start": "2026-06-01"
+  },
+  "modules": {
+    "overview": true,
+    "sales": true,
+    "customers": true,
+    "payments": true,
+    "stock": false,
+    "tasks": true,
+    "calendar": true,
+    "ai": true
+  },
+  "labels": {
+    "customers": "Clients",
+    "customer": "Client",
+    "sales": "Bookings",
+    "sale": "Booking",
+    "payments": "Receipts",
+    "payment": "Receipt",
+    "owner": "Therapist",
+    "channel": "Channel"
+  },
+  "sources": [
+    {
+      "source_id": "clinic",
+      "kind": "google_sheet",
+      "label": "Clinic workbook",
+      "spreadsheet_id": "",
+      "refresh": "scheduled"
+    }
+  ],
+  "tables": [
+    {
+      "table_id": "clients",
+      "entity": "customers",
+      "source_id": "clinic",
+      "sheet_name": "Clients",
+      "header_row": 1,
+      "row_meaning": "One row is one client",
+      "identity": {
+        "mode": "source_id",
+        "field": "Client ID"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "Client ID"
+        },
+        {
+          "canonical": "name",
+          "header": "Client"
+        },
+        {
+          "canonical": "contact",
+          "header": "Phone"
+        },
+        {
+          "canonical": "created_date",
+          "header": "Since",
+          "date_order": "dmy"
+        },
+        {
+          "canonical": "owner",
+          "header": "Therapist"
+        },
+        {
+          "canonical": "next_follow_up_date",
+          "header": "Next visit",
+          "date_order": "dmy",
+          "note": "Confirmed: the clinic records the next planned contact here"
+        },
+        {
+          "canonical": "notes",
+          "header": "Notes"
+        },
+        {
+          "canonical": "type",
+          "constant": "customer",
+          "note": "The clinic has no prospect concept"
+        }
+      ]
+    },
+    {
+      "table_id": "bookings",
+      "entity": "sales",
+      "source_id": "clinic",
+      "sheet_name": "Bookings",
+      "header_row": 1,
+      "row_meaning": "One row is one booking or package sale",
+      "identity": {
+        "mode": "source_id",
+        "field": "Booking Ref"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "Booking Ref"
+        },
+        {
+          "canonical": "customer_id",
+          "header": "Client ID"
+        },
+        {
+          "canonical": "date",
+          "header": "Session date",
+          "date_order": "dmy"
+        },
+        {
+          "canonical": "description",
+          "header": "Service"
+        },
+        {
+          "canonical": "amount",
+          "header": "Fee"
+        },
+        {
+          "canonical": "status",
+          "header": "Status"
+        },
+        {
+          "canonical": "payment_due_date",
+          "header": "Pay by",
+          "date_order": "dmy"
+        },
+        {
+          "canonical": "promised_completion_date",
+          "header": "Appointment date",
+          "date_order": "dmy",
+          "note": "Confirmed: the appointment date is the completion commitment"
+        },
+        {
+          "canonical": "offering_type",
+          "constant": "service"
+        }
+      ]
+    },
+    {
+      "table_id": "receipts",
+      "entity": "payments",
+      "source_id": "clinic",
+      "sheet_name": "Receipts",
+      "header_row": 1,
+      "row_meaning": "One row is one payment received",
+      "identity": {
+        "mode": "source_id",
+        "field": "Receipt No"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "Receipt No"
+        },
+        {
+          "canonical": "sale_id",
+          "header": "Booking Ref"
+        },
+        {
+          "canonical": "date",
+          "header": "Paid on",
+          "date_order": "dmy"
+        },
+        {
+          "canonical": "amount",
+          "header": "Amount"
+        },
+        {
+          "canonical": "method",
+          "header": "Method"
+        }
+      ]
+    }
+  ],
+  "status_map": {
+    "pending": [
+      "Booked"
+    ],
+    "done": [
+      "Done"
+    ],
+    "excluded": [
+      "No-show",
+      "Cancelled"
+    ]
+  },
+  "policies": {
+    "dates": {
+      "order": "dmy"
+    },
+    "money": {
+      "unit": "major"
+    },
+    "tasks": [
+      {
+        "rule": "payment_follow_up",
+        "enabled": true,
+        "params": {
+          "offset_days": 0
+        }
+      },
+      {
+        "rule": "follow_up_due",
+        "enabled": true
+      },
+      {
+        "rule": "completion_overdue",
+        "enabled": true,
+        "note": "A missed appointment date needs confirmation, not an automatic status change"
+      },
+      {
+        "rule": "completion_due_soon",
+        "enabled": true,
+        "params": {
+          "within_days": 2
+        }
+      },
+      {
+        "rule": "review_account",
+        "enabled": false
+      },
+      {
+        "rule": "review_replenishment",
+        "enabled": false
+      },
+      {
+        "rule": "unassigned_prospect",
+        "enabled": false
+      }
+    ]
+  },
+  "validation": {
+    "sample": {
+      "file": "Clinic workbook (synthetic)",
+      "row_counts": {
+        "customers": 5,
+        "sales": 8,
+        "payments": 5
+      },
+      "totals": {
+        "sales.amount": 2260,
+        "payments.amount": 1190
+      },
+      "reporting_date": "2026-08-30",
+      "note": "Raw column sums over all sample rows (no-shows included); dashboard totals exclude them."
+    }
+  },
+  "provenance": {
+    "samples": [
+      {
+        "file": "Clients.csv / Bookings.csv / Receipts.csv",
+        "type": "csv"
+      }
+    ],
+    "notes": [
+      "Synthetic example created for the template test-suite."
+    ]
+  },
+  "meanings": [
+    {
+      "field": "sales.status",
+      "meaning": "Booked = upcoming; Done = attended; No-show = excluded from value and balances (the clinic does not charge no-shows).",
+      "basis": "confirmed"
+    }
+  ],
+  "records": null
+}

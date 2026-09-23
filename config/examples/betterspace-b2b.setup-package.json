@@ -1,0 +1,437 @@
+{
+  "package_version": "1.0",
+  "package_id": "betterspace-b2b-example",
+  "generated_at": "2026-09-22T12:00:00+08:00",
+  "generated_by": {
+    "tool": "business-dashboard-onboarding",
+    "version": "1.0.0"
+  },
+  "confirmation": {
+    "state": "confirmed",
+    "confirmed_by": "owner (training pilot)",
+    "confirmed_at": "2026-09-22",
+    "open_questions": []
+  },
+  "business": {
+    "name": "BetterSpace Office Solutions",
+    "model": "b2b",
+    "industry": "Office furniture, layout consultation and installation",
+    "description": "B2B office solutions company selling furniture and services to company accounts through direct sales, referrals and the website. Synthetic training data.",
+    "team": [
+      "Sarah",
+      "Amir",
+      "Mei"
+    ],
+    "locale": "en-MY",
+    "timezone": "Asia/Kuala_Lumpur",
+    "currency": "MYR",
+    "currency_symbol": "RM",
+    "questions": [
+      "Which balances are overdue and who should chase them?",
+      "Which deliveries or jobs are late or due soon?",
+      "Which prospects need a follow-up and who owns them?",
+      "Which products are low on available stock?"
+    ],
+    "ai_guidance": "Speak to the owner and the three account managers. Prioritise money owed, then customer commitments, then stock. Never invent supplier lead times or quotations.",
+    "synthetic": true
+  },
+  "reporting_date": {
+    "mode": "latest_event_date",
+    "note": "Training pack: the reporting date is the latest sale/payment/stock-snapshot date in the records (30 Aug on Day 1, 31 Aug on Day 2). Live businesses usually choose 'today'."
+  },
+  "period": {
+    "default": "month_to_date",
+    "history_start": "2026-06-01"
+  },
+  "modules": {
+    "overview": true,
+    "sales": true,
+    "customers": true,
+    "payments": true,
+    "stock": true,
+    "tasks": true,
+    "calendar": true,
+    "ai": true
+  },
+  "labels": {
+    "customers": "Accounts",
+    "customer": "Account",
+    "sales": "Orders & jobs",
+    "sale": "Order",
+    "payments": "Receipts",
+    "payment": "Receipt",
+    "stock": "Stock",
+    "item": "Product",
+    "owner": "Account owner",
+    "channel": "Channel"
+  },
+  "sources": [
+    {
+      "source_id": "main",
+      "kind": "google_sheet",
+      "label": "BetterSpace B2B workbook (Customers, Sales, Payments, Stock)",
+      "spreadsheet_id": "",
+      "refresh": "scheduled"
+    }
+  ],
+  "tables": [
+    {
+      "table_id": "customers",
+      "entity": "customers",
+      "source_id": "main",
+      "sheet_name": "Customers",
+      "header_row": 1,
+      "row_meaning": "One row is one company account: a recorded Customer or Prospect",
+      "identity": {
+        "mode": "source_id",
+        "field": "customer_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "customer_id",
+          "confidence": "documented"
+        },
+        {
+          "canonical": "name",
+          "header": "customer_name",
+          "confidence": "documented"
+        },
+        {
+          "canonical": "type",
+          "header": "customer_type",
+          "values": {
+            "customer": [
+              "Customer"
+            ],
+            "prospect": [
+              "Prospect"
+            ]
+          },
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "contact",
+          "header": "contact_details"
+        },
+        {
+          "canonical": "created_date",
+          "header": "created_date",
+          "note": "Date the account was added, not first purchase",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "owner",
+          "header": "account_owner",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "next_follow_up_date",
+          "header": "next_follow_up_date",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "notes",
+          "header": "notes"
+        }
+      ]
+    },
+    {
+      "table_id": "sales",
+      "entity": "sales",
+      "source_id": "main",
+      "sheet_name": "Sales",
+      "header_row": 1,
+      "row_meaning": "One row is one order or job containing one offering",
+      "identity": {
+        "mode": "source_id",
+        "field": "sale_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "sale_id"
+        },
+        {
+          "canonical": "customer_id",
+          "header": "customer_id"
+        },
+        {
+          "canonical": "date",
+          "header": "sale_date"
+        },
+        {
+          "canonical": "item_id",
+          "header": "item_id"
+        },
+        {
+          "canonical": "description",
+          "header": "description"
+        },
+        {
+          "canonical": "offering_type",
+          "header": "offering_type",
+          "values": {
+            "product": [
+              "Product"
+            ],
+            "service": [
+              "Service"
+            ]
+          }
+        },
+        {
+          "canonical": "quantity",
+          "header": "quantity"
+        },
+        {
+          "canonical": "unit_price",
+          "header": "unit_price"
+        },
+        {
+          "canonical": "amount",
+          "header": "total_amount",
+          "note": "Booked order value excluding tax; not revenue or profit",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "channel",
+          "header": "sales_channel"
+        },
+        {
+          "canonical": "status",
+          "header": "status"
+        },
+        {
+          "canonical": "payment_due_date",
+          "header": "payment_due_date",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "promised_completion_date",
+          "header": "promised_completion_date",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "actual_completion_date",
+          "header": "actual_completion_date"
+        }
+      ]
+    },
+    {
+      "table_id": "payments",
+      "entity": "payments",
+      "source_id": "main",
+      "sheet_name": "Payments",
+      "header_row": 1,
+      "row_meaning": "One row is one bank receipt against one sale; a sale may have several",
+      "identity": {
+        "mode": "source_id",
+        "field": "payment_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "payment_id"
+        },
+        {
+          "canonical": "sale_id",
+          "header": "sale_id"
+        },
+        {
+          "canonical": "date",
+          "header": "payment_date"
+        },
+        {
+          "canonical": "amount",
+          "header": "amount"
+        },
+        {
+          "canonical": "method",
+          "header": "payment_method"
+        }
+      ]
+    },
+    {
+      "table_id": "stock",
+      "entity": "stock",
+      "source_id": "main",
+      "sheet_name": "Stock",
+      "header_row": 1,
+      "row_meaning": "One row is one product's snapshot on the reporting date, shared across channels",
+      "identity": {
+        "mode": "source_id",
+        "field": "item_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "item_id"
+        },
+        {
+          "canonical": "name",
+          "header": "item_name"
+        },
+        {
+          "canonical": "snapshot_date",
+          "header": "snapshot_date"
+        },
+        {
+          "canonical": "on_hand",
+          "header": "on_hand_quantity"
+        },
+        {
+          "canonical": "reserved",
+          "header": "reserved_quantity",
+          "note": "Product-level total, not allocated to specific orders",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "reorder_threshold",
+          "header": "reorder_threshold"
+        }
+      ]
+    }
+  ],
+  "status_map": {
+    "pending": [
+      "Confirmed",
+      "In Progress"
+    ],
+    "done": [
+      "Completed"
+    ],
+    "excluded": [
+      "Cancelled"
+    ]
+  },
+  "policies": {
+    "dates": {
+      "order": "dmy"
+    },
+    "money": {
+      "unit": "major"
+    },
+    "tasks": [
+      {
+        "rule": "payment_follow_up",
+        "enabled": true,
+        "params": {
+          "offset_days": 1
+        },
+        "note": "Owner = account owner; suggested one day after the recorded due date, or the reporting date if already overdue"
+      },
+      {
+        "rule": "follow_up_due",
+        "enabled": true
+      },
+      {
+        "rule": "review_account",
+        "enabled": true,
+        "note": "Review only; never contacts or reclassifies"
+      },
+      {
+        "rule": "review_replenishment",
+        "enabled": true,
+        "note": "No purchase quantities or arrival dates are invented"
+      },
+      {
+        "rule": "completion_overdue",
+        "enabled": true
+      },
+      {
+        "rule": "completion_due_soon",
+        "enabled": false
+      },
+      {
+        "rule": "unassigned_prospect",
+        "enabled": true
+      }
+    ]
+  },
+  "validation": {
+    "sample": {
+      "file": "BetterSpace_B2B.xlsx (Day 1)",
+      "row_counts": {
+        "customers": 45,
+        "sales": 90,
+        "payments": 146,
+        "stock": 8
+      },
+      "totals": {
+        "sales.amount": 626840,
+        "payments.amount": 532550
+      },
+      "reporting_date": "2026-08-30",
+      "note": "Raw column sums over all sample rows (cancelled rows included); dashboard totals exclude cancelled rows."
+    }
+  },
+  "provenance": {
+    "samples": [
+      {
+        "file": "BetterSpace_B2B.xlsx",
+        "type": "xlsx",
+        "sheets": [
+          "Customers",
+          "Sales",
+          "Payments",
+          "Stock"
+        ]
+      }
+    ],
+    "notes": [
+      "Synthetic training data from the BetterSpace pack; DATA_DICTIONARY.md and METRIC_RULES.md supplied the documented meanings."
+    ]
+  },
+  "meanings": [
+    {
+      "id": "M1",
+      "field": "customers.type",
+      "meaning": "Recorded classification. A Customer without orders is not misclassified or lapsed.",
+      "basis": "confirmed"
+    },
+    {
+      "id": "M2",
+      "field": "customers.created_date",
+      "meaning": "Date the account was added; not first purchase and not import date.",
+      "basis": "documented"
+    },
+    {
+      "id": "M4",
+      "field": "customers.next_follow_up_date",
+      "meaning": "One recorded next contact action. A past date is an overdue recorded action; it does not prove no contact occurred.",
+      "basis": "confirmed"
+    },
+    {
+      "id": "M8",
+      "field": "sales.amount",
+      "meaning": "Booked order value (quantity × unit price), tax not represented. Not revenue, profit or cash.",
+      "basis": "confirmed"
+    },
+    {
+      "id": "M10",
+      "field": "payments",
+      "meaning": "Observed pattern only: 50% first receipts on the sale date and 21-day due dates. Not a universal policy.",
+      "basis": "interpreted"
+    },
+    {
+      "id": "M13",
+      "field": "stock.reserved",
+      "meaning": "Product-level total; shortfalls are unreserved pending demand. No supplier information exists.",
+      "basis": "confirmed"
+    }
+  ],
+  "records": null
+}

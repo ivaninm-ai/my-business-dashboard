@@ -1,0 +1,26 @@
+name: 1 · Install check
+# Verifies your secrets and Google sharing without changing any data. Safe to run any time.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: workspace-write
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --omit=dev --no-audit --no-fund
+      - name: Check secrets, workspace and source sharing (prints no cell contents)
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          DASHBOARD_WORKSPACE_ID: ${{ secrets.DASHBOARD_WORKSPACE_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node worker/run.mjs install-check

@@ -1,0 +1,50 @@
+name: 2 · Import data
+# Reads your connected Google Sheets with the service account, validates them against
+# the saved mapping, and updates the Dashboard Workspace. Runs on a schedule and on demand.
+# GitHub may delay or skip scheduled runs; use "Run workflow" when you need a refresh now.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'   # every hour at :17; the job only imports during REFRESH_HOURS_UTC
+permissions:
+  contents: read
+concurrency:
+  group: workspace-write
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --omit=dev --no-audit --no-fund
+      - name: Prepare pending source (review required in dashboard)
+        continue-on-error: true
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          DASHBOARD_WORKSPACE_ID: ${{ secrets.DASHBOARD_WORKSPACE_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+        run: node worker/run.mjs setup
+      - name: Import (scheduled runs skip outside REFRESH_HOURS_UTC)
+        id: refresh
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          DASHBOARD_WORKSPACE_ID: ${{ secrets.DASHBOARD_WORKSPACE_ID }}
+          REFRESH_HOURS_UTC: ${{ vars.REFRESH_HOURS_UTC }}
+        run: node worker/run.mjs import ${{ github.event_name == 'schedule' && '--scheduled' || '' }}
+      - name: AI brief after a completed refresh
+        if: ${{ success() && (steps.refresh.outputs.import_status == 'success' || steps.refresh.outputs.import_status == 'unchanged') }}
+        continue-on-error: true
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          DASHBOARD_WORKSPACE_ID: ${{ secrets.DASHBOARD_WORKSPACE_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+          AI_AUTO: ${{ vars.AI_AUTO }}
+        # AI_AUTO=off processes explicitly requested briefs only.
+        run: node worker/run.mjs ai

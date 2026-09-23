@@ -1,0 +1,28 @@
+name: 3 · AI brief
+# Generates a business brief from the current snapshot using your own provider key,
+# and processes any "Request analysis" queued in the dashboard.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: workspace-write
+  cancel-in-progress: false
+jobs:
+  ai:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --omit=dev --no-audit --no-fund
+      - name: Generate brief and process queued requests
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          DASHBOARD_WORKSPACE_ID: ${{ secrets.DASHBOARD_WORKSPACE_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+        run: node worker/run.mjs ai --mode manual

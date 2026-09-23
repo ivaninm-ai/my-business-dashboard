@@ -1,0 +1,6 @@
+Client ID,Client,Phone,Since,Therapist,Next visit,Notes
+C-01,Aisha Rahman,012-0000001,01/06/2026,Farah,02/09/2026,
+C-02,Ben Tan,012-0000002,15/06/2026,Farah,,
+C-03,Chen Wei,012-0000003,20/06/2026,Kumar,25/08/2026,Prefers mornings
+C-04,Devi Nair,012-0000004,05/07/2026,,30/08/2026,Referred by C-01
+C-05,Emily Ong,012-0000005,10/08/2026,Kumar,,

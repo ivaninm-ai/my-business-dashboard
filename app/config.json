@@ -1,0 +1,8 @@
+{
+  "_comment": "Placeholder. The 'Publish dashboard' workflow regenerates this file from repository variables; do not put secrets here.",
+  "app_version": "1.0.0",
+  "auth": { "mode": "google", "client_id": "" },
+  "google_api_base": "https://sheets.googleapis.com",
+  "repo": { "owner": "", "name": "" },
+  "business_label": ""
+}

@@ -1,0 +1,408 @@
+{
+  "package_version": "1.0",
+  "package_id": "betterspace-b2c-example",
+  "generated_at": "2026-09-22T12:00:00+08:00",
+  "generated_by": {
+    "tool": "business-dashboard-onboarding",
+    "version": "1.0.0"
+  },
+  "confirmation": {
+    "state": "confirmed",
+    "confirmed_by": "owner (training pilot)",
+    "confirmed_at": "2026-09-22",
+    "open_questions": []
+  },
+  "business": {
+    "name": "BetterSpace Home & Desk",
+    "model": "b2c",
+    "industry": "Home and desk furniture sold on Shopee, Lazada and in a showroom",
+    "description": "B2C retailer selling chairs, desks, lamps and accessories through two marketplaces and a showroom. Synthetic training data.",
+    "team": [],
+    "locale": "en-MY",
+    "timezone": "Asia/Kuala_Lumpur",
+    "currency": "MYR",
+    "currency_symbol": "RM",
+    "questions": [
+      "Which channel is selling this month compared with last month?",
+      "Which orders are late for delivery?",
+      "Which products are low on available stock?",
+      "Who are the repeat buyers this month?"
+    ],
+    "ai_guidance": "Speak to the owner. Marketplace checkout amounts are buyer payments, not seller payouts. Do not fabricate platform health metrics.",
+    "synthetic": true
+  },
+  "reporting_date": {
+    "mode": "latest_event_date",
+    "note": "Training pack: the reporting date is the latest sale/payment/stock-snapshot date in the records (30 Aug on Day 1, 31 Aug on Day 2). Live businesses usually choose 'today'."
+  },
+  "period": {
+    "default": "month_to_date",
+    "history_start": "2026-06-01"
+  },
+  "modules": {
+    "overview": true,
+    "sales": true,
+    "customers": true,
+    "payments": true,
+    "stock": true,
+    "tasks": true,
+    "calendar": true,
+    "ai": true
+  },
+  "labels": {
+    "customers": "Customers",
+    "customer": "Customer",
+    "sales": "Orders",
+    "sale": "Order",
+    "payments": "Payments",
+    "payment": "Payment",
+    "stock": "Stock",
+    "item": "Product",
+    "owner": "Owner",
+    "channel": "Channel"
+  },
+  "sources": [
+    {
+      "source_id": "main",
+      "kind": "google_sheet",
+      "label": "BetterSpace B2C workbook (Customers, Sales, Payments, Stock)",
+      "spreadsheet_id": "",
+      "refresh": "scheduled"
+    }
+  ],
+  "tables": [
+    {
+      "table_id": "customers",
+      "entity": "customers",
+      "source_id": "main",
+      "sheet_name": "Customers",
+      "header_row": 1,
+      "row_meaning": "One row is one shopper account",
+      "identity": {
+        "mode": "source_id",
+        "field": "customer_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "customer_id",
+          "confidence": "documented"
+        },
+        {
+          "canonical": "name",
+          "header": "customer_name",
+          "confidence": "documented"
+        },
+        {
+          "canonical": "type",
+          "header": "customer_type",
+          "values": {
+            "customer": [
+              "Customer"
+            ],
+            "prospect": [
+              "Prospect"
+            ]
+          },
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "contact",
+          "header": "contact_details"
+        },
+        {
+          "canonical": "created_date",
+          "header": "created_date",
+          "note": "Date the account was added, not first purchase",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "notes",
+          "header": "notes"
+        }
+      ]
+    },
+    {
+      "table_id": "sales",
+      "entity": "sales",
+      "source_id": "main",
+      "sheet_name": "Sales",
+      "header_row": 1,
+      "row_meaning": "One row is one order or job containing one offering",
+      "identity": {
+        "mode": "source_id",
+        "field": "sale_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "sale_id"
+        },
+        {
+          "canonical": "customer_id",
+          "header": "customer_id"
+        },
+        {
+          "canonical": "date",
+          "header": "sale_date"
+        },
+        {
+          "canonical": "item_id",
+          "header": "item_id"
+        },
+        {
+          "canonical": "description",
+          "header": "description"
+        },
+        {
+          "canonical": "offering_type",
+          "header": "offering_type",
+          "values": {
+            "product": [
+              "Product"
+            ],
+            "service": [
+              "Service"
+            ]
+          }
+        },
+        {
+          "canonical": "quantity",
+          "header": "quantity"
+        },
+        {
+          "canonical": "unit_price",
+          "header": "unit_price"
+        },
+        {
+          "canonical": "amount",
+          "header": "total_amount",
+          "note": "Booked order value excluding tax; not revenue or profit",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "channel",
+          "header": "sales_channel"
+        },
+        {
+          "canonical": "status",
+          "header": "status"
+        },
+        {
+          "canonical": "payment_due_date",
+          "header": "payment_due_date",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "promised_completion_date",
+          "header": "promised_completion_date",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "actual_completion_date",
+          "header": "actual_completion_date"
+        }
+      ]
+    },
+    {
+      "table_id": "payments",
+      "entity": "payments",
+      "source_id": "main",
+      "sheet_name": "Payments",
+      "header_row": 1,
+      "row_meaning": "One row is one bank receipt against one sale; a sale may have several",
+      "identity": {
+        "mode": "source_id",
+        "field": "payment_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "payment_id"
+        },
+        {
+          "canonical": "sale_id",
+          "header": "sale_id"
+        },
+        {
+          "canonical": "date",
+          "header": "payment_date"
+        },
+        {
+          "canonical": "amount",
+          "header": "amount"
+        },
+        {
+          "canonical": "method",
+          "header": "payment_method"
+        }
+      ]
+    },
+    {
+      "table_id": "stock",
+      "entity": "stock",
+      "source_id": "main",
+      "sheet_name": "Stock",
+      "header_row": 1,
+      "row_meaning": "One row is one product's snapshot on the reporting date, shared across channels",
+      "identity": {
+        "mode": "source_id",
+        "field": "item_id"
+      },
+      "load": {
+        "mode": "replace"
+      },
+      "fields": [
+        {
+          "canonical": "id",
+          "header": "item_id"
+        },
+        {
+          "canonical": "name",
+          "header": "item_name"
+        },
+        {
+          "canonical": "snapshot_date",
+          "header": "snapshot_date"
+        },
+        {
+          "canonical": "on_hand",
+          "header": "on_hand_quantity"
+        },
+        {
+          "canonical": "reserved",
+          "header": "reserved_quantity",
+          "note": "Product-level total, not allocated to specific orders",
+          "confidence": "confirmed"
+        },
+        {
+          "canonical": "reorder_threshold",
+          "header": "reorder_threshold"
+        }
+      ]
+    }
+  ],
+  "status_map": {
+    "pending": [
+      "Confirmed",
+      "In Progress"
+    ],
+    "done": [
+      "Completed"
+    ],
+    "excluded": [
+      "Cancelled"
+    ]
+  },
+  "policies": {
+    "dates": {
+      "order": "dmy"
+    },
+    "money": {
+      "unit": "major"
+    },
+    "tasks": [
+      {
+        "rule": "payment_follow_up",
+        "enabled": true,
+        "params": {
+          "offset_days": 1
+        }
+      },
+      {
+        "rule": "follow_up_due",
+        "enabled": false,
+        "note": "B2C accounts have no follow-up field"
+      },
+      {
+        "rule": "review_account",
+        "enabled": false,
+        "note": "Shoppers without orders are not reviewed"
+      },
+      {
+        "rule": "review_replenishment",
+        "enabled": true
+      },
+      {
+        "rule": "completion_overdue",
+        "enabled": true,
+        "note": "Prepaid marketplace orders still need delivery confirmation"
+      },
+      {
+        "rule": "completion_due_soon",
+        "enabled": true,
+        "params": {
+          "within_days": 2
+        }
+      },
+      {
+        "rule": "unassigned_prospect",
+        "enabled": false
+      }
+    ]
+  },
+  "validation": {
+    "sample": {
+      "file": "BetterSpace_B2C.xlsx (Day 1)",
+      "row_counts": {
+        "customers": 120,
+        "sales": 320,
+        "payments": 300,
+        "stock": 12
+      },
+      "totals": {
+        "sales.amount": 89275,
+        "payments.amount": 82990
+      },
+      "reporting_date": "2026-08-30",
+      "note": "Raw column sums over all sample rows (cancelled rows included); dashboard totals exclude cancelled rows."
+    }
+  },
+  "provenance": {
+    "samples": [
+      {
+        "file": "BetterSpace_B2C.xlsx",
+        "type": "xlsx",
+        "sheets": [
+          "Customers",
+          "Sales",
+          "Payments",
+          "Stock"
+        ]
+      }
+    ],
+    "notes": [
+      "Synthetic training data from the BetterSpace pack; DATA_DICTIONARY.md and METRIC_RULES.md supplied the documented meanings."
+    ]
+  },
+  "meanings": [
+    {
+      "id": "M1",
+      "field": "customers.type",
+      "meaning": "All B2C accounts are recorded as Customer; there is no prospect concept.",
+      "basis": "documented"
+    },
+    {
+      "id": "M8",
+      "field": "sales.amount",
+      "meaning": "Booked order value excluding tax; marketplace checkout money is not the seller payout.",
+      "basis": "confirmed"
+    },
+    {
+      "id": "M13",
+      "field": "stock.reserved",
+      "meaning": "Product-level reservations shared across Shopee, Lazada and showroom.",
+      "basis": "confirmed"
+    }
+  ],
+  "records": null
+}

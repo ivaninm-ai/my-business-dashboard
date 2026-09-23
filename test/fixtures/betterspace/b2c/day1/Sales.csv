@@ -1,0 +1,321 @@
+﻿sale_id,customer_id,sale_date,item_id,description,offering_type,quantity,unit_price,total_amount,sales_channel,status,payment_due_date,promised_completion_date,actual_completion_date
+RS-001,RC-001,2026-08-27,R001,Ergonomic chair,Product,1,300,300,Shopee,In Progress,2026-08-27,2026-08-29,
+RS-002,RC-002,2026-08-29,R003,Monitor stand,Product,2,65,130,Lazada,Confirmed,2026-08-29,2026-08-30,
+RS-003,RC-005,2026-07-07,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-07-07,2026-07-09,2026-07-10
+RS-004,RC-038,2026-07-29,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-07-29,2026-08-01,2026-08-03
+RS-005,RC-064,2026-06-10,R008,Footrest,Product,3,75,225,Shopee,Completed,2026-06-10,2026-06-11,2026-06-10
+RS-006,RC-107,2026-08-27,R010,Storage trolley,Product,1,180,180,Shopee,In Progress,2026-08-27,2026-08-31,
+RS-007,RC-020,2026-08-27,R010,Storage trolley,Product,2,180,360,Showroom,Confirmed,2026-08-27,2026-08-29,
+RS-008,RC-082,2026-08-28,R005,Desk organiser,Product,2,45,90,Shopee,In Progress,2026-08-28,2026-08-31,
+RS-009,RC-075,2026-08-29,R004,Laptop riser,Product,2,95,190,Shopee,Confirmed,2026-08-29,2026-09-01,
+RS-010,RC-062,2026-08-29,R004,Laptop riser,Product,2,95,190,Shopee,In Progress,2026-08-29,2026-09-02,
+RS-011,RC-087,2026-08-30,R001,Ergonomic chair,Product,2,300,600,Showroom,Confirmed,2026-08-30,2026-09-03,
+RS-012,RC-100,2026-06-26,R006,Standing desk,Product,2,850,1700,Lazada,Completed,2026-06-26,2026-06-28,2026-06-27
+RS-013,RC-112,2026-06-23,R010,Storage trolley,Product,2,180,360,Lazada,Completed,2026-06-23,2026-06-25,2026-06-26
+RS-014,RC-116,2026-08-23,R003,Monitor stand,Product,1,65,65,Showroom,Completed,2026-08-23,2026-08-26,2026-08-28
+RS-015,RC-099,2026-06-23,R004,Laptop riser,Product,2,95,190,Showroom,Completed,2026-06-23,2026-06-26,2026-06-27
+RS-016,RC-046,2026-06-04,R003,Monitor stand,Product,3,65,195,Shopee,Completed,2026-06-04,2026-06-06,2026-06-06
+RS-017,RC-017,2026-07-13,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-07-13,2026-07-14,2026-07-15
+RS-018,RC-019,2026-07-23,R005,Desk organiser,Product,3,45,135,Showroom,Completed,2026-07-23,2026-07-25,2026-07-25
+RS-019,RC-041,2026-07-18,R006,Standing desk,Product,1,850,850,Showroom,Completed,2026-07-18,2026-07-19,2026-07-20
+RS-020,RC-119,2026-07-24,R012,Seat cushion,Product,2,55,110,Shopee,Completed,2026-07-24,2026-07-28,2026-07-28
+RS-021,RC-084,2026-06-09,R001,Ergonomic chair,Product,3,300,900,Lazada,Completed,2026-06-09,2026-06-12,2026-06-11
+RS-022,RC-064,2026-06-05,R006,Standing desk,Product,3,850,2550,Shopee,Completed,2026-06-05,2026-06-09,2026-06-11
+RS-023,RC-067,2026-08-02,R009,Mouse pad,Product,3,25,75,Showroom,Completed,2026-08-02,2026-08-05,2026-08-06
+RS-024,RC-081,2026-08-03,R012,Seat cushion,Product,1,55,55,Lazada,Completed,2026-08-03,2026-08-06,2026-08-07
+RS-025,RC-085,2026-07-12,R010,Storage trolley,Product,3,180,540,Lazada,Completed,2026-07-12,2026-07-16,2026-07-18
+RS-026,RC-108,2026-08-15,R003,Monitor stand,Product,3,65,195,Shopee,Completed,2026-08-15,2026-08-19,2026-08-20
+RS-027,RC-077,2026-06-03,R003,Monitor stand,Product,3,65,195,Shopee,Completed,2026-06-03,2026-06-06,2026-06-07
+RS-028,RC-066,2026-06-09,R003,Monitor stand,Product,2,65,130,Shopee,Completed,2026-06-09,2026-06-12,2026-06-11
+RS-029,RC-106,2026-06-28,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-06-28,2026-07-01,2026-07-03
+RS-030,RC-021,2026-07-02,R011,Desk shelf,Product,2,120,240,Shopee,Completed,2026-07-02,2026-07-05,2026-07-07
+RS-031,RC-037,2026-06-27,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-06-27,2026-07-01,2026-06-30
+RS-032,RC-097,2026-07-10,R010,Storage trolley,Product,1,180,180,Showroom,Completed,2026-07-10,2026-07-11,2026-07-12
+RS-033,RC-057,2026-08-20,R002,Desk lamp,Product,2,85,170,Shopee,Cancelled,2026-08-20,2026-08-22,
+RS-034,RC-040,2026-06-01,R003,Monitor stand,Product,3,65,195,Showroom,Completed,2026-06-01,2026-06-02,2026-06-04
+RS-035,RC-107,2026-08-02,R007,Cable tray,Product,1,35,35,Lazada,Completed,2026-08-02,2026-08-04,2026-08-04
+RS-036,RC-087,2026-07-02,R003,Monitor stand,Product,1,65,65,Shopee,Completed,2026-07-02,2026-07-04,2026-07-03
+RS-037,RC-042,2026-08-17,R004,Laptop riser,Product,2,95,190,Shopee,Completed,2026-08-17,2026-08-21,2026-08-20
+RS-038,RC-051,2026-06-16,R002,Desk lamp,Product,3,85,255,Showroom,Completed,2026-06-16,2026-06-20,2026-06-22
+RS-039,RC-031,2026-08-19,R005,Desk organiser,Product,1,45,45,Showroom,Completed,2026-08-19,2026-08-20,2026-08-20
+RS-040,RC-075,2026-07-10,R008,Footrest,Product,3,75,225,Lazada,Completed,2026-07-10,2026-07-13,2026-07-15
+RS-041,RC-111,2026-07-03,R003,Monitor stand,Product,3,65,195,Shopee,Completed,2026-07-03,2026-07-07,2026-07-09
+RS-042,RC-071,2026-06-13,R001,Ergonomic chair,Product,3,300,900,Shopee,Completed,2026-06-13,2026-06-14,2026-06-15
+RS-043,RC-106,2026-08-25,R005,Desk organiser,Product,1,45,45,Showroom,Completed,2026-08-25,2026-08-27,2026-08-29
+RS-044,RC-115,2026-06-18,R004,Laptop riser,Product,2,95,190,Showroom,Completed,2026-06-18,2026-06-21,2026-06-21
+RS-045,RC-026,2026-08-29,R001,Ergonomic chair,Product,2,300,600,Shopee,In Progress,2026-08-29,2026-09-02,
+RS-046,RC-082,2026-08-13,R001,Ergonomic chair,Product,2,300,600,Shopee,Completed,2026-08-13,2026-08-15,2026-08-15
+RS-047,RC-066,2026-07-11,R010,Storage trolley,Product,3,180,540,Shopee,Completed,2026-07-11,2026-07-12,2026-07-11
+RS-048,RC-114,2026-08-28,R003,Monitor stand,Product,2,65,130,Lazada,In Progress,2026-08-28,2026-08-29,
+RS-049,RC-013,2026-08-12,R012,Seat cushion,Product,1,55,55,Lazada,Completed,2026-08-12,2026-08-13,2026-08-13
+RS-050,RC-081,2026-06-08,R001,Ergonomic chair,Product,2,300,600,Shopee,Completed,2026-06-08,2026-06-09,2026-06-09
+RS-051,RC-089,2026-08-02,R008,Footrest,Product,1,75,75,Showroom,Completed,2026-08-02,2026-08-05,2026-08-06
+RS-052,RC-096,2026-08-27,R004,Laptop riser,Product,1,95,95,Showroom,In Progress,2026-08-27,2026-08-31,
+RS-053,RC-023,2026-07-08,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-07-08,2026-07-09,2026-07-08
+RS-054,RC-034,2026-08-04,R002,Desk lamp,Product,3,85,255,Lazada,Completed,2026-08-04,2026-08-06,2026-08-08
+RS-055,RC-059,2026-08-17,R005,Desk organiser,Product,3,45,135,Showroom,Completed,2026-08-17,2026-08-19,2026-08-19
+RS-056,RC-100,2026-06-16,R010,Storage trolley,Product,1,180,180,Shopee,Completed,2026-06-16,2026-06-17,2026-06-17
+RS-057,RC-048,2026-07-05,R004,Laptop riser,Product,2,95,190,Shopee,Completed,2026-07-05,2026-07-08,2026-07-07
+RS-058,RC-009,2026-07-09,R001,Ergonomic chair,Product,3,300,900,Lazada,Cancelled,2026-07-09,2026-07-10,
+RS-059,RC-083,2026-06-29,R002,Desk lamp,Product,1,85,85,Lazada,Completed,2026-06-29,2026-06-30,2026-07-01
+RS-060,RC-097,2026-06-12,R007,Cable tray,Product,1,35,35,Showroom,Completed,2026-06-12,2026-06-13,2026-06-14
+RS-061,RC-004,2026-08-25,R005,Desk organiser,Product,2,45,90,Lazada,Completed,2026-08-25,2026-08-28,2026-08-28
+RS-062,RC-114,2026-08-27,R009,Mouse pad,Product,3,25,75,Lazada,In Progress,2026-08-27,2026-08-28,
+RS-063,RC-030,2026-08-08,R007,Cable tray,Product,2,35,70,Lazada,Completed,2026-08-08,2026-08-11,2026-08-10
+RS-064,RC-072,2026-06-08,R003,Monitor stand,Product,1,65,65,Lazada,Completed,2026-06-08,2026-06-10,2026-06-09
+RS-065,RC-045,2026-07-01,R004,Laptop riser,Product,1,95,95,Shopee,Completed,2026-07-01,2026-07-02,2026-07-03
+RS-066,RC-026,2026-07-20,R006,Standing desk,Product,1,850,850,Showroom,Completed,2026-07-20,2026-07-23,2026-07-22
+RS-067,RC-025,2026-08-27,R001,Ergonomic chair,Product,1,300,300,Showroom,Confirmed,2026-08-27,2026-08-29,
+RS-068,RC-066,2026-07-28,R004,Laptop riser,Product,3,95,285,Lazada,Completed,2026-07-28,2026-07-29,2026-07-30
+RS-069,RC-003,2026-07-28,R003,Monitor stand,Product,2,65,130,Shopee,Completed,2026-07-28,2026-07-31,2026-08-01
+RS-070,RC-076,2026-08-20,R004,Laptop riser,Product,2,95,190,Showroom,Completed,2026-08-20,2026-08-22,2026-08-23
+RS-071,RC-084,2026-07-16,R004,Laptop riser,Product,3,95,285,Shopee,Cancelled,2026-07-16,2026-07-17,
+RS-072,RC-028,2026-07-10,R010,Storage trolley,Product,3,180,540,Shopee,Completed,2026-07-10,2026-07-11,2026-07-12
+RS-073,RC-053,2026-07-14,R006,Standing desk,Product,1,850,850,Showroom,Cancelled,2026-07-14,2026-07-17,
+RS-074,RC-040,2026-06-02,R001,Ergonomic chair,Product,3,300,900,Showroom,Completed,2026-06-02,2026-06-03,2026-06-05
+RS-075,RC-045,2026-06-14,R007,Cable tray,Product,3,35,105,Showroom,Completed,2026-06-14,2026-06-16,2026-06-16
+RS-076,RC-027,2026-07-16,R012,Seat cushion,Product,2,55,110,Shopee,Completed,2026-07-16,2026-07-19,2026-07-20
+RS-077,RC-059,2026-07-17,R003,Monitor stand,Product,2,65,130,Shopee,Completed,2026-07-17,2026-07-19,2026-07-19
+RS-078,RC-073,2026-07-06,R008,Footrest,Product,2,75,150,Shopee,Completed,2026-07-06,2026-07-09,2026-07-11
+RS-079,RC-085,2026-07-15,R010,Storage trolley,Product,3,180,540,Shopee,Completed,2026-07-15,2026-07-18,2026-07-20
+RS-080,RC-076,2026-07-08,R008,Footrest,Product,1,75,75,Shopee,Completed,2026-07-08,2026-07-09,2026-07-10
+RS-081,RC-111,2026-07-18,R008,Footrest,Product,3,75,225,Showroom,Completed,2026-07-18,2026-07-22,2026-07-22
+RS-082,RC-115,2026-06-12,R006,Standing desk,Product,1,850,850,Lazada,Completed,2026-06-12,2026-06-15,2026-06-14
+RS-083,RC-010,2026-06-13,R008,Footrest,Product,2,75,150,Showroom,Cancelled,2026-06-13,2026-06-16,
+RS-084,RC-100,2026-07-06,R006,Standing desk,Product,3,850,2550,Shopee,Completed,2026-07-06,2026-07-07,2026-07-06
+RS-085,RC-029,2026-07-12,R005,Desk organiser,Product,2,45,90,Showroom,Completed,2026-07-12,2026-07-14,2026-07-16
+RS-086,RC-018,2026-06-02,R007,Cable tray,Product,3,35,105,Showroom,Completed,2026-06-02,2026-06-04,2026-06-05
+RS-087,RC-076,2026-08-15,R007,Cable tray,Product,3,35,105,Shopee,Completed,2026-08-15,2026-08-19,2026-08-18
+RS-088,RC-058,2026-06-25,R002,Desk lamp,Product,3,85,255,Shopee,Completed,2026-06-25,2026-06-29,2026-06-30
+RS-089,RC-087,2026-07-04,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-07-04,2026-07-06,2026-07-06
+RS-090,RC-024,2026-07-14,R011,Desk shelf,Product,3,120,360,Showroom,Completed,2026-07-14,2026-07-15,2026-07-15
+RS-091,RC-032,2026-07-14,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-07-14,2026-07-18,2026-07-17
+RS-092,RC-058,2026-07-20,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-07-20,2026-07-23,2026-07-24
+RS-093,RC-048,2026-07-14,R005,Desk organiser,Product,1,45,45,Shopee,Completed,2026-07-14,2026-07-16,2026-07-15
+RS-094,RC-050,2026-07-22,R001,Ergonomic chair,Product,1,300,300,Shopee,Completed,2026-07-22,2026-07-25,2026-07-25
+RS-095,RC-079,2026-06-10,R009,Mouse pad,Product,1,25,25,Showroom,Completed,2026-06-10,2026-06-14,2026-06-15
+RS-096,RC-002,2026-07-03,R007,Cable tray,Product,2,35,70,Shopee,Completed,2026-07-03,2026-07-07,2026-07-07
+RS-097,RC-010,2026-06-13,R006,Standing desk,Product,1,850,850,Shopee,Completed,2026-06-13,2026-06-15,2026-06-16
+RS-098,RC-041,2026-08-30,R011,Desk shelf,Product,3,120,360,Showroom,Confirmed,2026-08-30,2026-09-03,
+RS-099,RC-040,2026-06-06,R003,Monitor stand,Product,1,65,65,Shopee,Completed,2026-06-06,2026-06-07,2026-06-09
+RS-100,RC-104,2026-07-09,R007,Cable tray,Product,3,35,105,Showroom,Completed,2026-07-09,2026-07-13,2026-07-13
+RS-101,RC-018,2026-07-05,R005,Desk organiser,Product,3,45,135,Shopee,Completed,2026-07-05,2026-07-08,2026-07-10
+RS-102,RC-024,2026-07-11,R010,Storage trolley,Product,2,180,360,Shopee,Completed,2026-07-11,2026-07-13,2026-07-15
+RS-103,RC-064,2026-08-02,R003,Monitor stand,Product,1,65,65,Shopee,Completed,2026-08-02,2026-08-04,2026-08-03
+RS-104,RC-042,2026-07-07,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-07-07,2026-07-11,2026-07-10
+RS-105,RC-049,2026-06-17,R007,Cable tray,Product,3,35,105,Showroom,Completed,2026-06-17,2026-06-21,2026-06-21
+RS-106,RC-099,2026-06-25,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-06-25,2026-06-26,2026-06-26
+RS-107,RC-069,2026-06-20,R007,Cable tray,Product,2,35,70,Showroom,Completed,2026-06-20,2026-06-21,2026-06-23
+RS-108,RC-109,2026-08-17,R007,Cable tray,Product,1,35,35,Shopee,Completed,2026-08-17,2026-08-20,2026-08-21
+RS-109,RC-061,2026-07-27,R009,Mouse pad,Product,1,25,25,Showroom,Completed,2026-07-27,2026-07-29,2026-07-28
+RS-110,RC-058,2026-06-12,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-06-12,2026-06-13,2026-06-12
+RS-111,RC-023,2026-06-08,R001,Ergonomic chair,Product,3,300,900,Showroom,Completed,2026-06-08,2026-06-09,2026-06-11
+RS-112,RC-100,2026-07-17,R003,Monitor stand,Product,2,65,130,Shopee,Completed,2026-07-17,2026-07-18,2026-07-19
+RS-113,RC-109,2026-06-30,R010,Storage trolley,Product,3,180,540,Lazada,Completed,2026-06-30,2026-07-02,2026-07-02
+RS-114,RC-054,2026-06-16,R009,Mouse pad,Product,3,25,75,Shopee,Completed,2026-06-16,2026-06-18,2026-06-19
+RS-115,RC-009,2026-07-22,R001,Ergonomic chair,Product,1,300,300,Showroom,Completed,2026-07-22,2026-07-26,2026-07-27
+RS-116,RC-103,2026-07-07,R005,Desk organiser,Product,2,45,90,Shopee,Completed,2026-07-07,2026-07-09,2026-07-09
+RS-117,RC-003,2026-08-05,R004,Laptop riser,Product,2,95,190,Lazada,Completed,2026-08-05,2026-08-08,2026-08-08
+RS-118,RC-052,2026-08-17,R011,Desk shelf,Product,3,120,360,Shopee,Completed,2026-08-17,2026-08-18,2026-08-20
+RS-119,RC-104,2026-08-10,R001,Ergonomic chair,Product,2,300,600,Shopee,Completed,2026-08-10,2026-08-13,2026-08-13
+RS-120,RC-022,2026-08-21,R008,Footrest,Product,1,75,75,Shopee,Completed,2026-08-21,2026-08-23,2026-08-22
+RS-121,RC-028,2026-06-07,R010,Storage trolley,Product,3,180,540,Lazada,Completed,2026-06-07,2026-06-09,2026-06-10
+RS-122,RC-072,2026-08-25,R009,Mouse pad,Product,2,25,50,Shopee,Completed,2026-08-25,2026-08-27,2026-08-29
+RS-123,RC-019,2026-07-28,R010,Storage trolley,Product,2,180,360,Shopee,Completed,2026-07-28,2026-07-31,2026-08-02
+RS-124,RC-054,2026-08-04,R001,Ergonomic chair,Product,1,300,300,Lazada,Completed,2026-08-04,2026-08-06,2026-08-05
+RS-125,RC-102,2026-07-13,R005,Desk organiser,Product,3,45,135,Showroom,Completed,2026-07-13,2026-07-15,2026-07-16
+RS-126,RC-070,2026-07-22,R008,Footrest,Product,2,75,150,Shopee,Completed,2026-07-22,2026-07-26,2026-07-27
+RS-127,RC-061,2026-08-22,R004,Laptop riser,Product,3,95,285,Shopee,Completed,2026-08-22,2026-08-26,2026-08-28
+RS-128,RC-091,2026-08-17,R001,Ergonomic chair,Product,1,300,300,Shopee,Completed,2026-08-17,2026-08-19,2026-08-18
+RS-129,RC-018,2026-08-17,R012,Seat cushion,Product,2,55,110,Shopee,Completed,2026-08-17,2026-08-20,2026-08-19
+RS-130,RC-054,2026-06-16,R003,Monitor stand,Product,2,65,130,Shopee,Completed,2026-06-16,2026-06-18,2026-06-20
+RS-131,RC-049,2026-06-16,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-06-16,2026-06-18,2026-06-20
+RS-132,RC-079,2026-08-03,R001,Ergonomic chair,Product,1,300,300,Shopee,Completed,2026-08-03,2026-08-06,2026-08-06
+RS-133,RC-043,2026-08-26,R003,Monitor stand,Product,1,65,65,Lazada,In Progress,2026-08-26,2026-08-28,
+RS-134,RC-082,2026-07-23,R009,Mouse pad,Product,2,25,50,Showroom,Completed,2026-07-23,2026-07-24,2026-07-25
+RS-135,RC-001,2026-07-12,R004,Laptop riser,Product,3,95,285,Showroom,Completed,2026-07-12,2026-07-15,2026-07-16
+RS-136,RC-017,2026-08-30,R002,Desk lamp,Product,1,85,85,Lazada,Confirmed,2026-08-30,2026-09-01,
+RS-137,RC-115,2026-07-31,R005,Desk organiser,Product,3,45,135,Showroom,Completed,2026-07-31,2026-08-02,2026-08-03
+RS-138,RC-075,2026-07-07,R002,Desk lamp,Product,2,85,170,Shopee,Completed,2026-07-07,2026-07-10,2026-07-09
+RS-139,RC-096,2026-07-29,R001,Ergonomic chair,Product,2,300,600,Showroom,Completed,2026-07-29,2026-07-30,2026-07-31
+RS-140,RC-056,2026-08-04,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-08-04,2026-08-05,2026-08-05
+RS-141,RC-060,2026-06-18,R012,Seat cushion,Product,3,55,165,Shopee,Completed,2026-06-18,2026-06-19,2026-06-18
+RS-142,RC-084,2026-08-23,R012,Seat cushion,Product,2,55,110,Shopee,Completed,2026-08-23,2026-08-27,2026-08-26
+RS-143,RC-014,2026-08-08,R005,Desk organiser,Product,1,45,45,Shopee,Completed,2026-08-08,2026-08-12,2026-08-14
+RS-144,RC-079,2026-06-23,R007,Cable tray,Product,2,35,70,Lazada,Completed,2026-06-23,2026-06-25,2026-06-26
+RS-145,RC-006,2026-06-05,R008,Footrest,Product,2,75,150,Shopee,Cancelled,2026-06-05,2026-06-07,
+RS-146,RC-013,2026-06-14,R003,Monitor stand,Product,3,65,195,Showroom,Completed,2026-06-14,2026-06-16,2026-06-18
+RS-147,RC-037,2026-08-25,R007,Cable tray,Product,3,35,105,Shopee,Completed,2026-08-25,2026-08-26,2026-08-27
+RS-148,RC-078,2026-06-10,R005,Desk organiser,Product,3,45,135,Shopee,Completed,2026-06-10,2026-06-12,2026-06-13
+RS-149,RC-103,2026-06-23,R004,Laptop riser,Product,1,95,95,Shopee,Completed,2026-06-23,2026-06-26,2026-06-26
+RS-150,RC-112,2026-07-11,R010,Storage trolley,Product,2,180,360,Shopee,Completed,2026-07-11,2026-07-12,2026-07-14
+RS-151,RC-110,2026-07-16,R006,Standing desk,Product,1,850,850,Lazada,Completed,2026-07-16,2026-07-20,2026-07-22
+RS-152,RC-007,2026-06-12,R005,Desk organiser,Product,3,45,135,Shopee,Completed,2026-06-12,2026-06-16,2026-06-17
+RS-153,RC-031,2026-08-13,R004,Laptop riser,Product,2,95,190,Lazada,Completed,2026-08-13,2026-08-15,2026-08-15
+RS-154,RC-099,2026-07-24,R006,Standing desk,Product,1,850,850,Shopee,Cancelled,2026-07-24,2026-07-26,
+RS-155,RC-065,2026-07-28,R006,Standing desk,Product,2,850,1700,Showroom,Completed,2026-07-28,2026-07-29,2026-07-30
+RS-156,RC-009,2026-07-22,R007,Cable tray,Product,1,35,35,Showroom,Completed,2026-07-22,2026-07-26,2026-07-25
+RS-157,RC-076,2026-07-30,R006,Standing desk,Product,1,850,850,Showroom,Completed,2026-07-30,2026-08-02,2026-08-03
+RS-158,RC-002,2026-08-16,R010,Storage trolley,Product,1,180,180,Lazada,Completed,2026-08-16,2026-08-17,2026-08-16
+RS-159,RC-107,2026-07-18,R003,Monitor stand,Product,3,65,195,Shopee,Completed,2026-07-18,2026-07-19,2026-07-21
+RS-160,RC-058,2026-06-14,R009,Mouse pad,Product,1,25,25,Showroom,Completed,2026-06-14,2026-06-16,2026-06-18
+RS-161,RC-058,2026-08-03,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-08-03,2026-08-07,2026-08-07
+RS-162,RC-038,2026-08-22,R006,Standing desk,Product,2,850,1700,Lazada,Completed,2026-08-22,2026-08-26,2026-08-28
+RS-163,RC-086,2026-06-27,R011,Desk shelf,Product,2,120,240,Shopee,Completed,2026-06-27,2026-07-01,2026-07-01
+RS-164,RC-074,2026-06-06,R008,Footrest,Product,2,75,150,Lazada,Completed,2026-06-06,2026-06-07,2026-06-06
+RS-165,RC-041,2026-08-12,R001,Ergonomic chair,Product,2,300,600,Shopee,Cancelled,2026-08-12,2026-08-13,
+RS-166,RC-014,2026-08-23,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-08-23,2026-08-25,2026-08-24
+RS-167,RC-105,2026-06-02,R010,Storage trolley,Product,3,180,540,Shopee,Completed,2026-06-02,2026-06-03,2026-06-04
+RS-168,RC-050,2026-08-24,R011,Desk shelf,Product,2,120,240,Showroom,Completed,2026-08-24,2026-08-27,2026-08-27
+RS-169,RC-104,2026-08-08,R011,Desk shelf,Product,2,120,240,Shopee,Completed,2026-08-08,2026-08-12,2026-08-13
+RS-170,RC-046,2026-07-17,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-07-17,2026-07-19,2026-07-21
+RS-171,RC-034,2026-08-06,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-08-06,2026-08-07,2026-08-07
+RS-172,RC-047,2026-08-16,R001,Ergonomic chair,Product,1,300,300,Showroom,Completed,2026-08-16,2026-08-18,2026-08-17
+RS-173,RC-091,2026-06-30,R009,Mouse pad,Product,2,25,50,Shopee,Completed,2026-06-30,2026-07-02,2026-07-01
+RS-174,RC-080,2026-08-05,R009,Mouse pad,Product,1,25,25,Showroom,Completed,2026-08-05,2026-08-07,2026-08-08
+RS-175,RC-113,2026-07-09,R005,Desk organiser,Product,1,45,45,Lazada,Cancelled,2026-07-09,2026-07-13,
+RS-176,RC-073,2026-06-30,R008,Footrest,Product,3,75,225,Lazada,Completed,2026-06-30,2026-07-01,2026-07-02
+RS-177,RC-097,2026-06-21,R004,Laptop riser,Product,2,95,190,Showroom,Completed,2026-06-21,2026-06-23,2026-06-23
+RS-178,RC-010,2026-06-07,R009,Mouse pad,Product,2,25,50,Shopee,Completed,2026-06-07,2026-06-10,2026-06-12
+RS-179,RC-113,2026-06-04,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-06-04,2026-06-07,2026-06-07
+RS-180,RC-090,2026-07-05,R009,Mouse pad,Product,2,25,50,Shopee,Completed,2026-07-05,2026-07-07,2026-07-07
+RS-181,RC-107,2026-06-11,R008,Footrest,Product,1,75,75,Shopee,Completed,2026-06-11,2026-06-14,2026-06-13
+RS-182,RC-041,2026-07-18,R001,Ergonomic chair,Product,1,300,300,Showroom,Completed,2026-07-18,2026-07-19,2026-07-19
+RS-183,RC-053,2026-07-12,R009,Mouse pad,Product,1,25,25,Lazada,Completed,2026-07-12,2026-07-13,2026-07-12
+RS-184,RC-005,2026-07-10,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-07-10,2026-07-12,2026-07-14
+RS-185,RC-115,2026-07-27,R004,Laptop riser,Product,1,95,95,Showroom,Completed,2026-07-27,2026-07-31,2026-07-31
+RS-186,RC-087,2026-07-16,R008,Footrest,Product,2,75,150,Shopee,Completed,2026-07-16,2026-07-18,2026-07-20
+RS-187,RC-080,2026-07-19,R012,Seat cushion,Product,3,55,165,Lazada,Completed,2026-07-19,2026-07-20,2026-07-22
+RS-188,RC-037,2026-07-07,R008,Footrest,Product,2,75,150,Shopee,Completed,2026-07-07,2026-07-08,2026-07-10
+RS-189,RC-003,2026-06-28,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-06-28,2026-06-30,2026-07-02
+RS-190,RC-009,2026-08-20,R003,Monitor stand,Product,1,65,65,Showroom,Completed,2026-08-20,2026-08-23,2026-08-24
+RS-191,RC-114,2026-06-06,R007,Cable tray,Product,2,35,70,Shopee,Completed,2026-06-06,2026-06-10,2026-06-12
+RS-192,RC-114,2026-07-27,R005,Desk organiser,Product,1,45,45,Shopee,Completed,2026-07-27,2026-07-28,2026-07-30
+RS-193,RC-024,2026-08-03,R004,Laptop riser,Product,1,95,95,Showroom,Cancelled,2026-08-03,2026-08-04,
+RS-194,RC-101,2026-08-29,R008,Footrest,Product,1,75,75,Showroom,Confirmed,2026-08-29,2026-08-31,
+RS-195,RC-015,2026-08-08,R008,Footrest,Product,2,75,150,Showroom,Completed,2026-08-08,2026-08-12,2026-08-11
+RS-196,RC-020,2026-08-21,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-08-21,2026-08-24,2026-08-26
+RS-197,RC-093,2026-07-23,R008,Footrest,Product,2,75,150,Lazada,Cancelled,2026-07-23,2026-07-26,
+RS-198,RC-013,2026-06-20,R001,Ergonomic chair,Product,1,300,300,Shopee,Completed,2026-06-20,2026-06-24,2026-06-23
+RS-199,RC-093,2026-06-10,R004,Laptop riser,Product,2,95,190,Shopee,Completed,2026-06-10,2026-06-11,2026-06-11
+RS-200,RC-066,2026-08-26,R010,Storage trolley,Product,3,180,540,Showroom,Confirmed,2026-08-26,2026-08-28,
+RS-201,RC-020,2026-08-01,R003,Monitor stand,Product,2,65,130,Lazada,Completed,2026-08-01,2026-08-05,2026-08-07
+RS-202,RC-068,2026-06-23,R005,Desk organiser,Product,1,45,45,Lazada,Completed,2026-06-23,2026-06-26,2026-06-27
+RS-203,RC-077,2026-07-05,R007,Cable tray,Product,1,35,35,Shopee,Completed,2026-07-05,2026-07-07,2026-07-06
+RS-204,RC-039,2026-08-08,R012,Seat cushion,Product,3,55,165,Showroom,Completed,2026-08-08,2026-08-09,2026-08-10
+RS-205,RC-064,2026-07-24,R010,Storage trolley,Product,1,180,180,Showroom,Cancelled,2026-07-24,2026-07-25,
+RS-206,RC-107,2026-07-30,R002,Desk lamp,Product,1,85,85,Lazada,Completed,2026-07-30,2026-08-02,2026-08-01
+RS-207,RC-016,2026-07-21,R006,Standing desk,Product,1,850,850,Shopee,Completed,2026-07-21,2026-07-23,2026-07-25
+RS-208,RC-051,2026-07-08,R007,Cable tray,Product,1,35,35,Shopee,Completed,2026-07-08,2026-07-09,2026-07-08
+RS-209,RC-048,2026-08-13,R011,Desk shelf,Product,1,120,120,Lazada,Completed,2026-08-13,2026-08-15,2026-08-14
+RS-210,RC-014,2026-08-30,R002,Desk lamp,Product,2,85,170,Lazada,In Progress,2026-08-30,2026-09-02,
+RS-211,RC-044,2026-08-07,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-08-07,2026-08-09,2026-08-08
+RS-212,RC-016,2026-08-27,R001,Ergonomic chair,Product,1,300,300,Showroom,In Progress,2026-08-27,2026-08-29,
+RS-213,RC-071,2026-08-08,R005,Desk organiser,Product,1,45,45,Lazada,Completed,2026-08-08,2026-08-12,2026-08-13
+RS-214,RC-043,2026-08-16,R001,Ergonomic chair,Product,3,300,900,Shopee,Completed,2026-08-16,2026-08-20,2026-08-19
+RS-215,RC-009,2026-06-22,R012,Seat cushion,Product,2,55,110,Shopee,Completed,2026-06-22,2026-06-25,2026-06-26
+RS-216,RC-074,2026-08-12,R010,Storage trolley,Product,3,180,540,Shopee,Completed,2026-08-12,2026-08-13,2026-08-12
+RS-217,RC-073,2026-08-12,R012,Seat cushion,Product,3,55,165,Shopee,Completed,2026-08-12,2026-08-15,2026-08-15
+RS-218,RC-008,2026-07-05,R006,Standing desk,Product,1,850,850,Lazada,Completed,2026-07-05,2026-07-08,2026-07-07
+RS-219,RC-049,2026-08-07,R011,Desk shelf,Product,3,120,360,Lazada,Completed,2026-08-07,2026-08-11,2026-08-12
+RS-220,RC-085,2026-06-17,R010,Storage trolley,Product,1,180,180,Showroom,Completed,2026-06-17,2026-06-19,2026-06-20
+RS-221,RC-039,2026-08-22,R005,Desk organiser,Product,1,45,45,Showroom,Completed,2026-08-22,2026-08-25,2026-08-27
+RS-222,RC-099,2026-08-06,R002,Desk lamp,Product,1,85,85,Showroom,Completed,2026-08-06,2026-08-08,2026-08-08
+RS-223,RC-022,2026-07-13,R010,Storage trolley,Product,3,180,540,Showroom,Completed,2026-07-13,2026-07-17,2026-07-19
+RS-224,RC-041,2026-06-25,R011,Desk shelf,Product,2,120,240,Showroom,Completed,2026-06-25,2026-06-27,2026-06-29
+RS-225,RC-008,2026-08-03,R011,Desk shelf,Product,2,120,240,Lazada,Completed,2026-08-03,2026-08-06,2026-08-08
+RS-226,RC-012,2026-07-26,R011,Desk shelf,Product,2,120,240,Lazada,Completed,2026-07-26,2026-07-28,2026-07-27
+RS-227,RC-077,2026-08-18,R001,Ergonomic chair,Product,3,300,900,Showroom,Completed,2026-08-18,2026-08-21,2026-08-20
+RS-228,RC-019,2026-08-20,R002,Desk lamp,Product,3,85,255,Shopee,Completed,2026-08-20,2026-08-23,2026-08-24
+RS-229,RC-057,2026-08-27,R004,Laptop riser,Product,1,95,95,Shopee,In Progress,2026-08-27,2026-08-30,
+RS-230,RC-109,2026-07-10,R002,Desk lamp,Product,2,85,170,Lazada,Completed,2026-07-10,2026-07-12,2026-07-14
+RS-231,RC-077,2026-07-10,R004,Laptop riser,Product,2,95,190,Lazada,Completed,2026-07-10,2026-07-13,2026-07-15
+RS-232,RC-017,2026-08-04,R008,Footrest,Product,3,75,225,Lazada,Completed,2026-08-04,2026-08-07,2026-08-08
+RS-233,RC-044,2026-06-03,R007,Cable tray,Product,2,35,70,Shopee,Completed,2026-06-03,2026-06-06,2026-06-08
+RS-234,RC-005,2026-08-09,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-08-09,2026-08-11,2026-08-10
+RS-235,RC-048,2026-07-24,R002,Desk lamp,Product,1,85,85,Shopee,Completed,2026-07-24,2026-07-28,2026-07-29
+RS-236,RC-111,2026-08-14,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-08-14,2026-08-16,2026-08-17
+RS-237,RC-031,2026-06-30,R007,Cable tray,Product,3,35,105,Shopee,Completed,2026-06-30,2026-07-04,2026-07-04
+RS-238,RC-004,2026-08-28,R001,Ergonomic chair,Product,2,300,600,Lazada,In Progress,2026-08-28,2026-08-30,
+RS-239,RC-090,2026-06-28,R011,Desk shelf,Product,2,120,240,Showroom,Completed,2026-06-28,2026-06-30,2026-07-01
+RS-240,RC-113,2026-07-02,R008,Footrest,Product,3,75,225,Showroom,Completed,2026-07-02,2026-07-03,2026-07-04
+RS-241,RC-098,2026-06-06,R011,Desk shelf,Product,3,120,360,Shopee,Completed,2026-06-06,2026-06-07,2026-06-06
+RS-242,RC-013,2026-07-16,R011,Desk shelf,Product,1,120,120,Lazada,Completed,2026-07-16,2026-07-19,2026-07-19
+RS-243,RC-027,2026-07-02,R003,Monitor stand,Product,1,65,65,Lazada,Completed,2026-07-02,2026-07-06,2026-07-06
+RS-244,RC-001,2026-08-02,R004,Laptop riser,Product,1,95,95,Shopee,Completed,2026-08-02,2026-08-04,2026-08-06
+RS-245,RC-019,2026-06-13,R008,Footrest,Product,1,75,75,Shopee,Cancelled,2026-06-13,2026-06-14,
+RS-246,RC-067,2026-06-21,R005,Desk organiser,Product,1,45,45,Lazada,Completed,2026-06-21,2026-06-23,2026-06-25
+RS-247,RC-052,2026-06-13,R007,Cable tray,Product,3,35,105,Shopee,Completed,2026-06-13,2026-06-16,2026-06-16
+RS-248,RC-026,2026-08-09,R011,Desk shelf,Product,2,120,240,Shopee,Completed,2026-08-09,2026-08-11,2026-08-12
+RS-249,RC-042,2026-06-04,R002,Desk lamp,Product,3,85,255,Showroom,Completed,2026-06-04,2026-06-06,2026-06-06
+RS-250,RC-098,2026-07-28,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-07-28,2026-07-30,2026-07-29
+RS-251,RC-060,2026-08-20,R006,Standing desk,Product,3,850,2550,Shopee,Completed,2026-08-20,2026-08-22,2026-08-23
+RS-252,RC-046,2026-06-15,R001,Ergonomic chair,Product,1,300,300,Shopee,Completed,2026-06-15,2026-06-19,2026-06-21
+RS-253,RC-065,2026-07-04,R005,Desk organiser,Product,1,45,45,Shopee,Completed,2026-07-04,2026-07-06,2026-07-08
+RS-254,RC-112,2026-08-27,R001,Ergonomic chair,Product,1,300,300,Shopee,In Progress,2026-08-27,2026-08-31,
+RS-255,RC-064,2026-08-07,R001,Ergonomic chair,Product,3,300,900,Shopee,Completed,2026-08-07,2026-08-10,2026-08-10
+RS-256,RC-049,2026-06-23,R004,Laptop riser,Product,2,95,190,Shopee,Completed,2026-06-23,2026-06-27,2026-06-28
+RS-257,RC-026,2026-07-12,R004,Laptop riser,Product,3,95,285,Shopee,Completed,2026-07-12,2026-07-16,2026-07-16
+RS-258,RC-075,2026-07-26,R011,Desk shelf,Product,3,120,360,Lazada,Completed,2026-07-26,2026-07-27,2026-07-29
+RS-259,RC-003,2026-07-13,R002,Desk lamp,Product,3,85,255,Shopee,Completed,2026-07-13,2026-07-17,2026-07-17
+RS-260,RC-045,2026-07-28,R008,Footrest,Product,1,75,75,Shopee,Completed,2026-07-28,2026-07-29,2026-07-29
+RS-261,RC-078,2026-08-19,R008,Footrest,Product,3,75,225,Lazada,Completed,2026-08-19,2026-08-21,2026-08-22
+RS-262,RC-096,2026-07-18,R009,Mouse pad,Product,3,25,75,Showroom,Completed,2026-07-18,2026-07-20,2026-07-20
+RS-263,RC-036,2026-08-28,R003,Monitor stand,Product,3,65,195,Shopee,In Progress,2026-08-28,2026-09-01,
+RS-264,RC-037,2026-06-15,R004,Laptop riser,Product,1,95,95,Shopee,Completed,2026-06-15,2026-06-18,2026-06-20
+RS-265,RC-068,2026-06-03,R003,Monitor stand,Product,1,65,65,Shopee,Completed,2026-06-03,2026-06-06,2026-06-07
+RS-266,RC-082,2026-06-16,R001,Ergonomic chair,Product,3,300,900,Showroom,Completed,2026-06-16,2026-06-18,2026-06-20
+RS-267,RC-008,2026-06-22,R004,Laptop riser,Product,3,95,285,Lazada,Cancelled,2026-06-22,2026-06-24,
+RS-268,RC-030,2026-07-11,R010,Storage trolley,Product,3,180,540,Showroom,Completed,2026-07-11,2026-07-13,2026-07-14
+RS-269,RC-114,2026-07-11,R006,Standing desk,Product,1,850,850,Lazada,Cancelled,2026-07-11,2026-07-12,
+RS-270,RC-046,2026-06-22,R002,Desk lamp,Product,3,85,255,Showroom,Completed,2026-06-22,2026-06-26,2026-06-28
+RS-271,RC-103,2026-08-04,R009,Mouse pad,Product,1,25,25,Shopee,Cancelled,2026-08-04,2026-08-05,
+RS-272,RC-094,2026-06-09,R001,Ergonomic chair,Product,3,300,900,Lazada,Completed,2026-06-09,2026-06-11,2026-06-13
+RS-273,RC-106,2026-06-25,R012,Seat cushion,Product,1,55,55,Shopee,Completed,2026-06-25,2026-06-29,2026-06-30
+RS-274,RC-095,2026-08-03,R011,Desk shelf,Product,3,120,360,Shopee,Completed,2026-08-03,2026-08-07,2026-08-09
+RS-275,RC-110,2026-07-09,R004,Laptop riser,Product,1,95,95,Showroom,Completed,2026-07-09,2026-07-10,2026-07-12
+RS-276,RC-080,2026-07-30,R006,Standing desk,Product,3,850,2550,Shopee,Completed,2026-07-30,2026-08-02,2026-08-01
+RS-277,RC-112,2026-06-30,R001,Ergonomic chair,Product,3,300,900,Showroom,Completed,2026-06-30,2026-07-01,2026-07-01
+RS-278,RC-113,2026-06-30,R011,Desk shelf,Product,3,120,360,Lazada,Completed,2026-06-30,2026-07-04,2026-07-05
+RS-279,RC-041,2026-08-06,R008,Footrest,Product,3,75,225,Shopee,Completed,2026-08-06,2026-08-09,2026-08-10
+RS-280,RC-085,2026-07-27,R011,Desk shelf,Product,1,120,120,Shopee,Completed,2026-07-27,2026-07-31,2026-07-30
+RS-281,RC-031,2026-08-22,R012,Seat cushion,Product,1,55,55,Showroom,Completed,2026-08-22,2026-08-24,2026-08-26
+RS-282,RC-114,2026-08-15,R010,Storage trolley,Product,2,180,360,Shopee,Completed,2026-08-15,2026-08-17,2026-08-18
+RS-283,RC-101,2026-07-05,R002,Desk lamp,Product,1,85,85,Lazada,Completed,2026-07-05,2026-07-07,2026-07-07
+RS-284,RC-099,2026-07-10,R007,Cable tray,Product,3,35,105,Showroom,Cancelled,2026-07-10,2026-07-11,
+RS-285,RC-071,2026-08-10,R010,Storage trolley,Product,3,180,540,Shopee,Completed,2026-08-10,2026-08-14,2026-08-14
+RS-286,RC-120,2026-08-20,R011,Desk shelf,Product,2,120,240,Shopee,Completed,2026-08-20,2026-08-21,2026-08-23
+RS-287,RC-082,2026-07-25,R002,Desk lamp,Product,2,85,170,Shopee,Completed,2026-07-25,2026-07-29,2026-07-28
+RS-288,RC-118,2026-07-15,R003,Monitor stand,Product,1,65,65,Shopee,Completed,2026-07-15,2026-07-19,2026-07-19
+RS-289,RC-029,2026-06-11,R010,Storage trolley,Product,3,180,540,Showroom,Completed,2026-06-11,2026-06-13,2026-06-13
+RS-290,RC-045,2026-06-12,R009,Mouse pad,Product,2,25,50,Showroom,Completed,2026-06-12,2026-06-14,2026-06-14
+RS-291,RC-085,2026-06-08,R012,Seat cushion,Product,2,55,110,Shopee,Completed,2026-06-08,2026-06-11,2026-06-12
+RS-292,RC-029,2026-06-14,R009,Mouse pad,Product,2,25,50,Lazada,Cancelled,2026-06-14,2026-06-15,
+RS-293,RC-012,2026-07-25,R009,Mouse pad,Product,1,25,25,Shopee,Completed,2026-07-25,2026-07-28,2026-07-28
+RS-294,RC-048,2026-06-12,R004,Laptop riser,Product,3,95,285,Shopee,Completed,2026-06-12,2026-06-16,2026-06-18
+RS-295,RC-043,2026-08-25,R009,Mouse pad,Product,3,25,75,Lazada,Completed,2026-08-25,2026-08-29,2026-08-30
+RS-296,RC-089,2026-08-04,R008,Footrest,Product,2,75,150,Showroom,Completed,2026-08-04,2026-08-06,2026-08-05
+RS-297,RC-076,2026-06-30,R006,Standing desk,Product,3,850,2550,Lazada,Completed,2026-06-30,2026-07-01,2026-07-03
+RS-298,RC-062,2026-07-08,R012,Seat cushion,Product,3,55,165,Lazada,Completed,2026-07-08,2026-07-12,2026-07-14
+RS-299,RC-076,2026-08-08,R005,Desk organiser,Product,1,45,45,Shopee,Completed,2026-08-08,2026-08-09,2026-08-10
+RS-300,RC-083,2026-07-10,R009,Mouse pad,Product,3,25,75,Showroom,Completed,2026-07-10,2026-07-13,2026-07-12
+RS-301,RC-107,2026-08-16,R010,Storage trolley,Product,1,180,180,Shopee,Completed,2026-08-16,2026-08-18,2026-08-20
+RS-302,RC-026,2026-07-14,R005,Desk organiser,Product,3,45,135,Lazada,Completed,2026-07-14,2026-07-15,2026-07-16
+RS-303,RC-014,2026-07-24,R012,Seat cushion,Product,2,55,110,Showroom,Completed,2026-07-24,2026-07-26,2026-07-25
+RS-304,RC-046,2026-07-20,R002,Desk lamp,Product,3,85,255,Shopee,Completed,2026-07-20,2026-07-22,2026-07-21
+RS-305,RC-058,2026-06-17,R004,Laptop riser,Product,3,95,285,Shopee,Completed,2026-06-17,2026-06-19,2026-06-20
+RS-306,RC-011,2026-08-09,R011,Desk shelf,Product,3,120,360,Lazada,Cancelled,2026-08-09,2026-08-12,
+RS-307,RC-116,2026-08-21,R002,Desk lamp,Product,2,85,170,Lazada,Completed,2026-08-21,2026-08-22,2026-08-21
+RS-308,RC-023,2026-06-19,R007,Cable tray,Product,1,35,35,Lazada,Completed,2026-06-19,2026-06-21,2026-06-22
+RS-309,RC-075,2026-08-13,R005,Desk organiser,Product,3,45,135,Lazada,Completed,2026-08-13,2026-08-15,2026-08-17
+RS-310,RC-095,2026-07-31,R011,Desk shelf,Product,3,120,360,Shopee,Completed,2026-07-31,2026-08-01,2026-08-02
+RS-311,RC-113,2026-07-30,R009,Mouse pad,Product,3,25,75,Showroom,Completed,2026-07-30,2026-08-01,2026-08-03
+RS-312,RC-067,2026-07-18,R010,Storage trolley,Product,2,180,360,Showroom,Completed,2026-07-18,2026-07-22,2026-07-21
+RS-313,RC-012,2026-07-28,R007,Cable tray,Product,2,35,70,Lazada,Completed,2026-07-28,2026-07-31,2026-07-31
+RS-314,RC-006,2026-07-17,R005,Desk organiser,Product,2,45,90,Lazada,Completed,2026-07-17,2026-07-18,2026-07-19
+RS-315,RC-041,2026-06-22,R003,Monitor stand,Product,3,65,195,Shopee,Completed,2026-06-22,2026-06-24,2026-06-23
+RS-316,RC-002,2026-07-23,R006,Standing desk,Product,1,850,850,Showroom,Completed,2026-07-23,2026-07-27,2026-07-28
+RS-317,RC-030,2026-06-03,R012,Seat cushion,Product,2,55,110,Shopee,Cancelled,2026-06-03,2026-06-04,
+RS-318,RC-083,2026-07-27,R008,Footrest,Product,1,75,75,Lazada,Completed,2026-07-27,2026-07-29,2026-07-28
+RS-319,RC-009,2026-07-16,R002,Desk lamp,Product,2,85,170,Showroom,Completed,2026-07-16,2026-07-17,2026-07-17
+RS-320,RC-019,2026-07-05,R003,Monitor stand,Product,1,65,65,Lazada,Completed,2026-07-05,2026-07-06,2026-07-08

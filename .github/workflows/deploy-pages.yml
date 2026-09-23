@@ -1,0 +1,61 @@
+name: 4 · Publish dashboard
+# Publishes the generic dashboard site to GitHub Pages. The site contains no business
+# data and no secrets; config.json is generated from repository VARIABLES only.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['app/**', 'scripts/**', 'package*.json', '.github/workflows/deploy-pages.yml']
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: Generate config.json from repository variables (no secrets)
+        env:
+          GOOGLE_OAUTH_CLIENT_ID: ${{ vars.GOOGLE_OAUTH_CLIENT_ID }}
+          BUSINESS_LABEL: ${{ vars.BUSINESS_LABEL }}
+        run: node scripts/write-config.mjs
+      - name: Refuse to publish anything that looks like a key or private record
+        run: |
+          if grep -rEl 'BEGIN (RSA )?PRIVATE KEY|sk-ant-|"private_key"' app/ ; then
+            echo "Secret-like content found in app/ - not publishing"
+            exit 1
+          fi
+          echo "No secret-like content in app/"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Show the site address
+        run: |
+          {
+            echo "## Dashboard published"
+            echo ""
+            echo "Open: ${{ steps.deployment.outputs.page_url }}"
+            echo ""
+            echo "If Google sign-in reports that the origin is not allowed, add the site origin (up to .github.io) as an Authorized JavaScript origin on your OAuth client."
+          } >> "$GITHUB_STEP_SUMMARY"

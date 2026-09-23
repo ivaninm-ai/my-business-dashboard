@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Business Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232a78d6'/%3E%3Cpath d='M8 22V12M14 22V8M20 22v-7M26 22v-3' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<noscript><p class="notice">This dashboard needs JavaScript enabled.</p></noscript>
+
+<!-- Sign-in / connection screen. No business data is rendered until Google authorises this browser. -->
+<section id="gate" class="gate" hidden>
+  <div class="gate-card">
+    <div class="brand"><span class="brand-mark" aria-hidden="true"></span><h1 id="gate-title">Business Dashboard</h1></div>
+    <p id="gate-status" class="muted">Loading…</p>
+    <div id="gate-actions"></div>
+    <p class="small muted" id="gate-foot">Your browser talks directly to Google Sheets with your own Google account. The dashboard site holds no business data and no keys; access is controlled by Google sharing.</p>
+  </div>
+</section>
+
+<div id="shell" class="shell" hidden>
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-btn" aria-label="Menu" aria-expanded="false">☰</button>
+    <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span id="business-name">Business Dashboard</span></div>
+    <div class="topbar-right">
+      <span id="data-badge" class="badge muted-badge" title="Data status">no data</span>
+      <span id="account" class="small muted"></span>
+      <button id="refresh-btn" class="btn ghost small" title="Re-read the workspace">Reload</button>
+      <button id="signout-btn" class="btn ghost small">Sign out</button>
+    </div>
+  </header>
+  <div class="layout">
+    <nav id="nav" class="sidenav" aria-label="Sections">
+      <a href="#overview" data-page="overview">Overview</a>
+      <a href="#sales" data-page="sales">Sales</a>
+      <a href="#customers" data-page="customers">Customers</a>
+      <a href="#payments" data-page="payments">Payments</a>
+      <a href="#stock" data-page="stock">Stock</a>
+      <a href="#tasks" data-page="tasks">Tasks <span class="count" id="nav-tasks-count"></span></a>
+      <a href="#calendar" data-page="calendar">Calendar</a>
+      <a href="#ai" data-page="ai">AI insights</a>
+      <a href="#connections" data-page="connections">Data connections</a>
+      <a href="#settings" data-page="settings">Settings</a>
+      <div class="sidenav-foot small muted" id="nav-foot"></div>
+    </nav>
+    <main id="main" class="main" tabindex="-1">
+      <div id="banner" class="banner" hidden></div>
+      <div id="page"></div>
+    </main>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="modal-root"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

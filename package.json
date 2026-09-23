@@ -1,0 +1,25 @@
+{
+  "name": "business-dashboard-template",
+  "version": "1.2.0-rc.1",
+  "private": true,
+  "type": "module",
+  "description": "Student-owned business dashboard: static frontend on GitHub Pages, GitHub Actions worker, Google Sheets storage. No database service.",
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "test:fixtures": "node --test test/fixtures.test.mjs",
+    "check:package": "node worker/run.mjs validate-package",
+    "fake-google": "node test/fake-google/server.mjs",
+    "sim": "node test/sim/run-path.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2",
+    "mammoth": "1.12.3",
+    "papaparse": "5.7.0",
+    "pdfjs-dist": "6.3.289",
+    "read-excel-file": "9.3.10"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

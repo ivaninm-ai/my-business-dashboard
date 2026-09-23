@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<!-- 安装 SOP 的独立 HTML 导出版（1.2.0-rc.1）。学生测试校对版，2026-09-23；已校对仓库与安装说明。不含任何钥匙，也不会向你要钥匙。 -->
+<style>[hidden]{display:none!important} img{max-width:100%}</style>
+</head>
+<body>
+<title>业务仪表盘 · 学生测试指南 · 2026-09-23</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --ground: #FAF0E4; --surface: #FFF8EF; --surface-2: #F3E7D3;
+  --ink: #5A1A2B; --ink-2: #5B4A40; --muted: #786656; --line: #E5D5C0;
+  --accent: #8F7229; --accent-ink: #5A1A2B; --accent-soft: #F5E9D2;
+  --gold: #B8963E; --wine: #5A1A2B;
+  --good: #8F7229; --good-soft: #F2E8D4; --warn: #8F7229; --warn-soft: #F5E9D2;
+  --danger: #8E2020; --danger-soft: #F6E8E6;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+  --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --display: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 15px/1.65 var(--sans); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 24px 64px; padding-inline: 16px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.2; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 16px; font-weight: 700; margin-top: 18px; }
+p { margin: 0 0 10px; max-width: 70ch; }
+a { color: var(--accent); }
+.eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.lede { color: var(--ink-2); font-size: 16px; max-width: 70ch; }
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 28px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 16px; } }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); display: flex; flex-direction: column; gap: 4px; }
+@media (max-width: 860px) { .rail { position: static; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+.rail a { display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: center; padding: 7px 8px; border-radius: 8px; text-decoration: none; color: var(--ink-2); font-size: 14px; }
+.rail a:hover { background: var(--surface-2); }
+.rail a .n { width: 24px; height: 24px; border-radius: 50%; background: var(--surface-2); color: var(--ink-2); display: grid; place-items: center; font: 600 12px var(--mono); }
+.rail a.done .n { background: var(--good); color: #fff; }
+.rail a.done { color: var(--ink); }
+.rail .progress { margin-top: 10px; font-size: 13px; color: var(--muted); grid-column: 1 / -1; }
+.main { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+.panel.details { border-color: var(--accent); }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; scroll-margin-top: 12px; }
+.step-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.step-head .num { font: 700 13px var(--mono); color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
+.step-head .where { font-size: 13px; color: var(--muted); margin-left: auto; }
+.step ol, .step ul { padding-left: 22px; margin: 8px 0 10px; }
+.step li { margin-bottom: 6px; max-width: 72ch; }
+.step li::marker { color: var(--muted); }
+.field { display: grid; gap: 4px; margin-bottom: 12px; }
+.field > span { font-size: 13px; color: var(--ink-2); font-weight: 500; }
+.field input, .field select { font: 14px var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 100%; }
+.field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.field .hint { font-size: 12px; color: var(--muted); }
+.field .hint.bad { color: var(--danger); }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 18px; }
+.chip { display: inline-grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; max-width: 100%; background: var(--surface-2); border-radius: 8px; padding: 6px 6px 6px 10px; font: 500 13px var(--mono); color: var(--ink); margin: 2px 0; }
+.chip code { font: inherit; overflow-wrap: anywhere; }
+.chip button, .btn { font: 600 12px var(--sans); border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 4px 10px; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+.chip button:hover, .btn:hover { background: var(--accent-soft); border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; padding: 8px 14px; font-size: 13px; text-decoration: none; display: inline-block; }
+.btn.primary:hover { background: var(--accent-ink); color: #fff; }
+.btn:focus-visible, .chip button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; align-items: center; font-size: 14px; }
+.kv .k { color: var(--ink-2); }
+@media (max-width: 560px) { .kv { grid-template-columns: 1fr; gap: 2px; } .kv .k { margin-top: 8px; } }
+table { border-collapse: collapse; width: 100%; font-size: 14px; margin: 8px 0 12px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; letter-spacing: 0.06em; color: var(--muted); }
+.table-wrap { overflow-x: auto; }
+.checkpoint { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; background: var(--good-soft); border-left: 4px solid var(--good); border-radius: 8px; padding: 12px 14px; margin-top: 14px; }
+.checkpoint .mark { font: 700 12px var(--mono); color: var(--good); letter-spacing: 0.06em; padding-top: 2px; }
+.checkpoint label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+.checkpoint input { margin-top: 4px; accent-color: var(--good); }
+.note { background: var(--warn-soft); border-left: 4px solid var(--warn); border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+.danger { background: var(--danger-soft); border-left: 4px solid var(--danger); border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+.metaphor { background: var(--accent-soft); border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 14px; color: var(--ink); }
+.stuck { font-size: 13px; color: var(--ink-2); margin-top: 10px; }
+.stuck b { color: var(--ink); }
+.example { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; font: 13px var(--mono); overflow-x: auto; white-space: pre; margin: 8px 0; color: var(--ink); }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); }
+.pill.secret { background: var(--danger-soft); color: var(--danger); }
+.pill.var { background: var(--accent-soft); color: var(--accent-ink); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+footer { margin-top: 28px; font-size: 13px; color: var(--muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* Cream, burgundy and gold theme based on the supplied SOP reference. */
+body { color: var(--ink-2); font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,b { color:var(--ink); }
+a { text-underline-offset:3px; }
+.wrap { max-width:1120px; padding:0 24px 64px; }
+.hero { background:var(--wine); color:#FAF0E4; text-align:center; padding:64px 24px 50px; border-bottom:4px solid var(--gold); }
+.hero-inner { max-width:760px; margin:auto; }
+.kicker { color:#E8C97B; font-size:12px; font-weight:700; letter-spacing:.28em; }
+.hero h1 { color:#FAF0E4; font-size:48px; line-height:1.4; letter-spacing:.04em; margin:18px 0 12px; font-weight:700; }
+.hero h1 span { font-size:.7em; font-weight:500; letter-spacing:.15em; }
+.hero-subtitle { margin:0 auto; color:#E5D5C0; font-size:17px; letter-spacing:.06em; }
+.hero-badge { display:inline-block; margin-top:22px; padding:6px 20px; border:1px solid #B8963E80; border-radius:999px; background:#B8963E20; color:#E8C97B; font-size:14px; font-weight:700; }
+.hero-meta { margin-top:18px; color:#D4BCB0; font-size:12px; letter-spacing:.06em; }
+.intro { max-width:760px; margin:0 auto; padding:46px 0 34px; text-align:center; }
+.eyebrow { color:var(--accent); font-size:12px; letter-spacing:.24em; font-weight:700; }
+.intro h2 { font-size:27px; margin:10px 0 18px; line-height:1.5; }
+.intro .lede { font-size:15px; margin:0 auto; line-height:1.9; }
+.layout { grid-template-columns:220px minmax(0,1fr); gap:32px; margin-top:8px; }
+.rail { gap:5px; padding-top:12px; }
+.rail::before { content:'安装步骤'; color:var(--accent); letter-spacing:.2em; font-size:12px; font-weight:700; padding:0 10px 12px; }
+.rail a { padding:9px 10px; border-radius:10px; font-size:13px; }
+.rail a:hover { background:#F0E1C9; color:var(--wine); }
+.rail a .n { background:#EEDFC5; color:var(--wine); }
+.rail a.done .n { background:var(--wine); color:#FFF8EF; }
+.rail .progress { border-top:1px solid var(--line); margin-top:16px; padding:16px 10px; color:var(--accent); }
+.main { gap:28px; }
+.panel,.step { padding:30px; border-radius:14px; background:var(--surface); border-color:var(--line); }
+.panel.details { border:2px solid var(--gold); }
+.panel h2 { font-size:25px; margin-bottom:16px; }
+.step-head { align-items:center; gap:12px; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid var(--line); }
+.step-head h2 { font-size:23px; line-height:1.5; flex:1 1 260px; }
+.step-head .num { display:grid; place-items:center; border-radius:50%; width:54px; height:54px; flex:0 0 54px; padding:0; color:#45121F; background:var(--gold); font-size:11px; letter-spacing:-.04em; }
+.step-head .where { padding:4px 12px; border-radius:999px; background:var(--surface-2); font-size:12px; }
+.step li { margin-bottom:12px; }
+.step li::marker { color:var(--accent); font-weight:700; }
+.field { margin-bottom:18px; gap:7px; }
+.field > span { font-weight:700; }
+.field input { padding:11px 12px; background:var(--surface-2); border-radius:9px; min-width:0; }
+.field .hint { font-weight:400; }
+.fields { margin-top:24px; }
+.chip { background:var(--surface-2); padding:7px 7px 7px 12px; border-radius:9px; }
+.chip button { background:var(--gold); border-color:var(--gold); color:#45121F; padding:6px 12px; }
+.chip button:hover { background:#E8C97B; }
+.btn { border-radius:8px; padding:8px 13px; }
+.btn.primary { background:var(--wine); border-color:var(--wine); padding:11px 18px; }
+.btn.primary:hover { background:#45121F; }
+.metaphor,.note,.danger,.checkpoint { border-radius:12px; padding:15px 18px; margin:18px 0; font-size:14px; }
+.checkpoint { margin-bottom:0; border-left-color:var(--gold); }
+.checkpoint input { width:17px; height:17px; flex:0 0 17px; }
+th,td { padding:11px 12px; }
+th { color:var(--accent); letter-spacing:.08em; }
+.example { padding:16px; border:1px solid var(--line); border-radius:12px; line-height:1.75; }
+.stuck { padding-top:14px; margin-bottom:0; line-height:1.9; }
+#smixed h2 { font-size:25px; line-height:1.5; margin-bottom:18px; }
+footer { border-top:1px solid var(--line); padding:24px 0 12px; text-align:center; font-size:12px; line-height:1.9; }
+@media(max-width:860px) {
+ .layout { grid-template-columns:1fr; gap:24px; }
+ .rail { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); border-block:1px solid var(--line); padding:20px 0 4px; }
+ .rail::before { grid-column:1/-1; padding-bottom:4px; }
+ .rail .progress { border-top:0; margin:0; padding:10px; }
+}
+@media(max-width:560px) {
+ .wrap { padding-inline:16px; }
+ .hero { padding:44px 20px 36px; }
+ .hero h1 { font-size:36px; }
+ .kicker { font-size:10px; letter-spacing:.17em; }
+ .hero-subtitle { font-size:14px; }
+ .intro { padding:32px 4px 24px; text-align:left; }
+ .intro h2 { font-size:23px; }
+ .panel,.step { padding:20px 16px; }
+ .step-head h2 { font-size:20px; flex-basis:calc(100% - 70px); }
+ .step-head .where { margin-left:66px; }
+ .fields,.two { grid-template-columns:minmax(0,1fr); }
+ .checkpoint { grid-template-columns:1fr; gap:6px; }
+ .chip { font-size:12px; }
+}
+@media print { .hero { print-color-adjust:exact; } .layout { display:block; } .rail { display:none; } .panel,.step { margin-bottom:20px; } }
+</style>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">INFINITESALES AI · INSTALLATION GUIDE</div>
+    <h1>业务仪表盘<br><span>安装 SOP</span></h1>
+    <p class="hero-subtitle">你的生意 · 你的数据 · 你的仪表盘</p>
+    <div class="hero-badge">零终端 · 不用打任何指令</div>
+    <div class="hero-meta">约 45 分钟 · 网页版 · 学生测试版 1.2.0-rc.1</div>
+  </div>
+</header>
+<div class="wrap">
+  <section class="intro" aria-label="指南简介">
+    <div class="eyebrow">YOUR BUSINESS, YOUR WORKSPACE</div>
+    <h2>一步一步，装好自己的仪表盘。</h2>
+    <p class="lede">装好之后你会有一个自己的仪表盘网页：读你自己的 Google Sheets，设置和待办存在你自己 Google Drive 里的一个工作簿，每天由你自己的 GitHub 仓库自动更新。数据不经过老师，也不经过任何第三方数据库。下面每一步都是网页操作或填表；金色检查框告诉你"怎么知道这一步做对了"。</p>
+  </section>
+  <div class="layout">
+    <nav class="rail" aria-label="步骤" id="rail">
+      <a href="#s0" data-step="0"><span class="n">0</span>准备账号</a>
+      <a href="#s1" data-step="1"><span class="n">1</span>复制模板</a>
+      <a href="#s2" data-step="2"><span class="n">2</span>Google Cloud</a>
+      <a href="#s3" data-step="3"><span class="n">3</span>填钥匙和名字</a>
+      <a href="#s4" data-step="4"><span class="n">4</span>开网页</a>
+      <a href="#s5" data-step="5"><span class="n">5</span>登录 · 建工作簿</a>
+      <a href="#s6" data-step="6"><span class="n">6</span>分享 · 安装检查</a>
+      <a href="#s7" data-step="7"><span class="n">7</span>告诉 AI 你的生意</a>
+      <a href="#s8" data-step="8"><span class="n">8</span>导入 · 连接</a>
+      <a href="#s9" data-step="9"><span class="n">9</span>验收</a>
+      <a href="#smixed" data-step="mixed"><span class="n">↻</span>更新文件来源</a>
+      <a href="#after" data-step="after"><span class="n">✓</span>装好之后</a>
+      <div class="progress" id="progress">已完成 0 / 10 个检查点</div>
+    </nav>
+
+    <div class="main">
+      <div class="note"><b>学生测试版 · 1.2.0-rc.1。</b>模板仓库已填好。每一步要填的资料就在那一步里；钥匙只进 GitHub Secrets；生意的介绍在仪表盘里填（第 7 步）。全程不用 Claude，也不用下载任何 ZIP。</div>
+
+      <section class="step" id="s0" aria-labelledby="h0">
+        <div class="step-head"><span class="num">第 0 步</span><h2 id="h0">准备账号（建议课前先建好）</h2><span class="where">开始前</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>账号</th><th>用途</th><th>费用</th></tr></thead>
+          <tbody>
+            <tr><td>GitHub</td><td>存你那份模板、每天自动运行、你的网页</td><td>免费。仓库要选 <b>Public</b>（免费版 Pages 的要求）；里面只有通用代码，永远没有你的业务记录。</td></tr>
+            <tr><td>Google 账号</td><td>你的数据 Sheet、仪表盘工作簿、登录</td><td>免费</td></tr>
+            <tr><td>Google Cloud 项目</td><td>开 Sheets API、建一个"机器账号"给后台用、建一个登录用的 Client</td><td>免费，不用绑卡</td></tr>
+            <tr><td>Google AI Studio</td><td>后台识别来源和每日简报</td><td>部分模型有免费额度，练习用虚构数据；真实私人业务数据使用开通结算的项目，按实际用量付费。</td></tr>
+          </tbody>
+        </table></div>
+        <div class="metaphor">比喻：GitHub 是电饭煲（按下去自己煮），Google Sheets 是米缸（数据都在你家），仪表盘网页只是锅盖上的显示屏——屏幕本身不存米。</div>
+        <div class="danger"><b>红线。</b>JSON 钥匙文件和 API 钥匙只进 GitHub Secrets；不要贴在聊天、邮件、这个页面或学员群。你的数据 Sheet 保持 <i>Restricted（受限）</i>，只分享给你自己的服务账号邮箱。</div>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="0"><span>GitHub、Google、Google AI Studio 都能登录；我开了一个私人记事本，准备记下面要收集的东西。</span></label></div>
+      </section>
+
+      <section class="step" id="s1" aria-labelledby="h1">
+        <div class="step-head"><span class="num">第 1 步</span><h2 id="h1">复制模板到你的账号</h2><span class="where">在 GitHub</span></div><div class="fields"><label class="field"><span>模板仓库（老师会发给你）</span><input id="f-template" placeholder="ivaninm-ai/analysis-dashboard-template" autocomplete="off"><span class="hint">格式：用户名/仓库名，GitHub 上显示的那样</span></label><label class="field"><span>你的 GitHub 用户名</span><input id="f-user" placeholder="例：mei-tan" autocomplete="off"><span class="hint" id="h-user">小写字母、数字、连字符</span></label><label class="field"><span>你要建的仓库名</span><input id="f-repo" value="my-business-dashboard" autocomplete="off"></label></div><div class="kv" style="margin-top:6px">
+          <span class="k">你的网站来源（给 Google 用）</span><span class="chip"><code id="v-origin">https://<i>用户名</i>.github.io</code><button type="button" data-copy="v-origin">复制</button></span>
+          <span class="k">你的仪表盘网址</span><span class="chip"><code id="v-site">https://<i>用户名</i>.github.io/<i>仓库名</i>/</code><button type="button" data-copy="v-site">复制</button></span>
+          <span class="k">你的仓库</span><span class="chip"><code id="v-repo">https://github.com/<i>用户名</i>/<i>仓库名</i></code><button type="button" data-copy="v-repo">复制</button></span>
+        </div><p><button class="btn" type="button" id="clear">清空本机资料和打勾</button></p>
+        <p><a class="btn primary" id="btn-template" href="#" target="_blank" rel="noopener">📦 一键复制模板到我的账号 ↗</a> <span class="hint" id="h-template" style="font-size:12px;color:var(--muted)">（先在对应步骤填"模板仓库"，这个按钮才会亮）</span></p>
+        <ol>
+          <li>打开后会跳到 GitHub 的「从模板建新仓库」页，没登录会先叫你登录。填 3 样：<b>Owner</b> 选你自己 · <b>Repository name</b> 填 <span class="chip"><code id="v-reponame">my-business-dashboard</code><button type="button" data-copy="v-reponame">复制</button></span> · 选 <b>Public</b> → 点 <b>Create repository</b>。</li>
+          <li>没用按钮也可以：打开老师给的模板链接，点 <b>Use this template → Create a new repository</b>。</li>
+        </ol>
+        <div class="metaphor">比喻：像复制一份 Notion 模板到自己账号——点一下，就有了自己的一份。</div>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="1"><span>我的仓库打开了，地址是 <span id="v-repo2" class="pill">github.com/…</span>，能看到 <code>app</code>、<code>worker</code>、<code>docs</code> 三个文件夹。</span></label></div>
+      </section>
+
+      <section class="step" id="s2" aria-labelledby="h2">
+        <div class="step-head"><span class="num">第 2 步</span><h2 id="h2">Google Cloud：一个项目、一个 API、一个登录 Client、一个机器账号</h2><span class="where">console.cloud.google.com</span></div>
+        <p>这一步代替了别的工具要你建的"数据库"。做完会拿到两样东西：一个 <b>Client ID</b>，让<i>你的浏览器</i>能登录；一个<b>服务账号</b>（机器账号），让<i>后台程序</i>能读你的 Sheet。两个身份是故意分开的：浏览器那个只能碰它自己建的文件，后台那个只能看你分享给它的文件。</p>
+        <h3>A · 建项目、开 API</h3>
+        <ol>
+          <li>顶部项目选择器 → <b>New project</b> → 名字 <span class="chip"><code>dashboard</code><button type="button" data-copy-text="dashboard">复制</button></span> → Create → 选中它。</li>
+          <li>左边菜单 → <b>APIs &amp; Services → Library</b> → 搜 <b>Google Sheets API</b> → <b>Enable</b>。</li>
+        </ol>
+        <h3>B · 同意屏幕（Google Auth Platform）</h3>
+        <ol>
+          <li><b>APIs &amp; Services → OAuth consent screen</b>（Google 也可能叫它 <i>Google Auth Platform → Branding</i>）。User type 选 <b>External</b>。App name 填 <span class="chip"><code>Business Dashboard</code><button type="button" data-copy-text="Business Dashboard">复制</button></span>，support email 和 developer contact 都填你自己的邮箱 → Save。</li>
+          <li><b>Audience</b>：保持 <b>Testing</b>，点 <b>Add users</b> → 加<b>你自己的 Google 邮箱</b>。Testing 状态下只有列表里的人能登录——个人仪表盘这样正好。</li>
+          <li>Scopes：什么都不用加。仪表盘只申请 <code>drive.file</code>——只能碰它自己建的文件。</li>
+        </ol>
+        <h3>C · 给浏览器的登录 Client</h3>
+        <ol>
+          <li><b>APIs &amp; Services → Credentials → Create credentials → OAuth client ID</b>。</li>
+          <li>Application type 选 <b>Web application</b>；名字 <span class="chip"><code>dashboard-browser</code><button type="button" data-copy-text="dashboard-browser">复制</button></span>。</li>
+          <li><b>Authorized JavaScript origins → Add URI</b>，贴 <span class="chip"><code id="v-origin2">https://<i>用户名</i>.github.io</code><button type="button" data-copy="v-origin2">复制</button></span>（一模一样——没有路径，结尾没有斜杠）。Redirect URIs 留空。</li>
+          <li><b>Create</b>。把弹窗里的 <b>Client ID</b> 复制到上面"你的资料"。<b>不需要</b> client secret，仪表盘用不到它。</li>
+        </ol>
+        <div class="note">⚠️ 最容易错的一步：origin 一定是 <code>https://用户名.github.io</code> 这种，<b>不要</b>带 <code>/仓库名/</code>，也不要复制浏览器地址栏的 console.cloud.google.com 网址。填错了登录会直接被拒。</div>
+        <label class="field"><span>OAuth Client ID（第 2 步拿到；不是私密）</span><input id="f-client" placeholder="1234…-abc….apps.googleusercontent.com" autocomplete="off"><span class="hint" id="h-client">结尾是 .apps.googleusercontent.com</span></label><h3>D · 给后台的机器账号（服务账号）</h3>
+        <ol>
+          <li><b>IAM &amp; Admin → Service Accounts → Create service account</b>。名字 <span class="chip"><code>dashboard-worker</code><button type="button" data-copy-text="dashboard-worker">复制</button></span> → Create and continue → 角色那页跳过 → Done。</li>
+          <li>点进它 → 分页 <b>Keys → Add key → Create new key → JSON → Create</b>。一个文件会下载下来。<b>私密</b>，第 3 步要把它整个贴进 GitHub Secret。</li>
+          <li>把这个服务账号的<b>邮箱</b>（…@…iam.gserviceaccount.com）复制到上面"你的资料"。</li>
+        </ol>
+        <div class="note">公司的 Google Workspace 管理员禁止建服务账号钥匙的话，停在这里告诉老师；不要为了练习去改公司政策。</div>
+        <label class="field"><span>服务账号邮箱（第 2 步拿到；不是私密）</span><input id="f-sa" placeholder="dashboard-worker@….iam.gserviceaccount.com" autocomplete="off"><span class="hint" id="h-sa">结尾是 .iam.gserviceaccount.com</span></label><div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="2"><span>我有：一个结尾 <code>.apps.googleusercontent.com</code> 的 Client ID，一个结尾 <code>.iam.gserviceaccount.com</code> 的服务账号邮箱，一个下载好的 JSON 钥匙文件。</span></label></div>
+      </section>
+
+      <section class="step" id="s3" aria-labelledby="h3">
+        <div class="step-head"><span class="num">第 3 步</span><h2 id="h3">填钥匙和名字</h2><span class="where">在 GitHub · 你的仓库</span></div><label class="field"><span>登录页标题（可不填，真实业务简介在第 7 步）</span><input id="f-label" placeholder="例：Mei Furniture" autocomplete="off"></label><p>打开 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio → API keys ↗</a>，在自己的项目创建 API key，只贴到下面的 GitHub Secret。</p>
+        <p>打开 <a id="lnk-secrets" href="#" target="_blank" rel="noopener">你的仓库 → Settings → Secrets and variables → Actions ↗</a>。每一个都是：复制名字 → 贴进 Name → 贴内容 → Add。</p>
+        <h3><span class="pill secret">① Secrets 分页</span> → New repository secret</h3>
+        <div class="table-wrap"><table>
+          <thead><tr><th>名字</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip"><code>GOOGLE_SERVICE_ACCOUNT_JSON</code><button type="button" data-copy-text="GOOGLE_SERVICE_ACCOUNT_JSON">复制名字</button></span></td><td>下载的 JSON 钥匙文件的<b>全部内容</b>：用记事本打开，Ctrl + A 全选，Ctrl + C 复制，贴进来。开头是 <code>{</code>，结尾是 <code>}</code>。</td></tr>
+            <tr><td><span class="chip"><code>GEMINI_API_KEY</code><button type="button" data-copy-text="GEMINI_API_KEY">复制名字</button></span> <span class="pill">需要</span></td><td>你的 Google AI Studio API key，第 7 步准备来源和生成 AI 简报都需要。</td></tr>
+          </tbody>
+        </table></div>
+        <h3><span class="pill var">② Variables 分页</span> → New repository variable</h3>
+        <div class="table-wrap"><table>
+          <thead><tr><th>名字</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip"><code>GOOGLE_OAUTH_CLIENT_ID</code><button type="button" data-copy-text="GOOGLE_OAUTH_CLIENT_ID">复制名字</button></span></td><td><span class="chip"><code id="v-client">（先在上面贴 Client ID）</code><button type="button" data-copy="v-client">复制内容</button></span></td></tr>
+            <tr><td><span class="chip"><code>BUSINESS_LABEL</code><button type="button" data-copy-text="BUSINESS_LABEL">复制名字</button></span> <span class="pill">可选</span></td><td><span class="chip"><code id="v-label">（先在对应步骤填生意名字）</code><button type="button" data-copy="v-label">复制内容</button></span></td></tr>
+            <tr><td><span class="chip"><code>REFRESH_HOURS_UTC</code><button type="button" data-copy-text="REFRESH_HOURS_UTC">复制名字</button></span> <span class="pill">可选</span></td><td>每天在哪些 UTC 小时自动更新，例：<code>23</code> = 马来西亚早上约 07:17；<code>1,7</code> = 约 09:17 和 15:17。GitHub 排队可能延迟。不填就是 23。填 <code>off</code> 关掉自动更新。</td></tr>
+            <tr><td><span class="chip"><code>AI_MODEL</code><button type="button" data-copy-text="AI_MODEL">复制名字</button></span> <span class="pill">可选</span></td><td>不填就用 <code>gemini-3.5-flash-lite</code>，一般保持默认。实际可用额度以自己的 AI Studio 项目为准。</td></tr>
+            <tr><td><span class="chip"><code>AI_AUTO</code><button type="button" data-copy-text="AI_AUTO">复制名字</button></span> <span class="pill">可选</span></td><td>填 <code>off</code> = 每次更新后不自动生成 AI 简报。</td></tr>
+          </tbody>
+        </table></div>
+        <div class="note">⚠️ 注意：名字要一模一样（大写、下划线）。Secret 和 Variable 是两个分页，别放错：<b>钥匙进 Secrets，其他进 Variables</b>。放心贴——网页输入框不会像终端那样贴烂。</div>
+        <p class="hint" style="font-size:13px;color:var(--muted)">还有一个 Secret <code>DASHBOARD_WORKSPACE_ID</code>，要等第 6 步仪表盘建好工作簿之后才有。</p>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="3"><span>Secrets 分页里有 <code>GOOGLE_SERVICE_ACCOUNT_JSON</code> 和 <code>GEMINI_API_KEY</code>；Variables 分页里有 <code>GOOGLE_OAUTH_CLIENT_ID</code>，内容结尾是 <code>.apps.googleusercontent.com</code>。</span></label></div>
+      </section>
+
+      <section class="step" id="s4" aria-labelledby="h4">
+        <div class="step-head"><span class="num">第 4 步</span><h2 id="h4">开网页（Pages）</h2><span class="where">在 GitHub · 你的仓库</span></div>
+        <ol>
+          <li><a id="lnk-pages" href="#" target="_blank" rel="noopener">Settings → Pages ↗</a> → <b>Build and deployment → Source</b> 选 <b>GitHub Actions</b>。</li>
+          <li><a id="lnk-actions" href="#" target="_blank" rel="noopener">Actions 分页 ↗</a> → 若有提示，点 <b>I understand my workflows, go ahead and enable them</b>。</li>
+          <li>左边点 <b>4 · Publish dashboard</b> → 右边 <b>Run workflow</b> → 绿色 <b>Run workflow</b>。等绿色 ✓（约一分钟）。</li>
+          <li>点进这次运行，最下面的摘要写着 <b>Open: …</b>——那就是你的仪表盘。<b>加书签</b>，以后每天开它。</li>
+        </ol>
+        <div class="example">Dashboard published
+Open: https://<i>用户名</i>.github.io/<i>仓库名</i>/</div>
+        <div class="metaphor">比喻：电饭煲按下去就走开——网页好了自然在，不用盯着。</div>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="4"><span>打开 <span id="v-site2" class="pill">…github.io/…</span>，看到 <b>Connect Google</b> 按钮（不是 <i>Not configured yet</i>）。</span></label></div>
+        <p class="stuck"><b>显示 Not configured yet？</b>第 3 步的 Variable 没填或名字打错了，补上再跑一次 Publish dashboard。<b>网页 404？</b>Pages 的 Source 没选 GitHub Actions，或者还没跑完。</p>
+      </section>
+
+      <section class="step" id="s5" aria-labelledby="h5">
+        <div class="step-head"><span class="num">第 5 步</span><h2 id="h5">登录，建你的仪表盘工作簿</h2><span class="where">在你的仪表盘网页</span></div>
+        <ol>
+          <li>打开仪表盘 → <b>Connect Google</b> → 选你在第 2 步加成 test user 的那个邮箱 → <b>Continue</b> → 允许。Google 会告诉你它能碰什么：<i>"查看、编辑、创建和删除您通过此应用使用的特定 Google 云端硬盘文件"</i>——只有它自己建的文件。</li>
+          <li>点 <b>Create a new Dashboard Workspace</b>。仪表盘会在你的 Google Drive 里新建一个叫 <i>Dashboard Workspace</i> 的 Google Sheet，然后自动打开 <b>Data connections</b> 页。</li>
+        </ol>
+        <div class="metaphor">比喻：这个工作簿是仪表盘的"抽屉"——设置、每天读进来的快照、待办、日历备注、AI 简报都放在里面。你的原始数据 Sheet 是另外的文件，永远不会被改。</div>
+        <div class="note">Google 登录大约一小时会过期。仪表盘提示时点 <b>Reconnect</b> 就好，什么都不会丢。<b>Sign out</b> 会把页面上的所有数字清掉——公用电脑记得点。</div>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="5"><span><b>Data connections</b> 页显示了 <b>Workspace ID</b>（带 Copy 按钮）和 <b>Open workspace</b> 链接。</span></label></div>
+        <p class="stuck"><b>"Access blocked: … has not completed the Google verification process"</b> —— 你的邮箱没加成 test user（第 2 步 B）。<b>"origin_mismatch / redirect_uri_mismatch"</b> —— 第 2 步 C 的 Authorized JavaScript origin 不是一模一样的 <span class="pill" id="v-origin3">https://…github.io</span>。</p>
+      </section>
+
+      <section class="step" id="s6" aria-labelledby="h6">
+        <div class="step-head"><span class="num">第 6 步</span><h2 id="h6">把工作簿分享给机器账号，跑安装检查</h2><span class="where">仪表盘 · Google Sheets · GitHub</span></div>
+        <ol>
+          <li>在 <b>Data connections</b> 页，把服务账号邮箱 <span class="chip"><code id="v-sa">（先在上面贴服务账号邮箱）</code><button type="button" data-copy="v-sa">复制</button></span> 贴进输入框 → <b>Save</b>。以后要分享 Sheet 时仪表盘会把它显示出来给你复制。</li>
+          <li>点 Workspace ID 旁边的 <b>Copy</b> → <a id="lnk-secrets2" href="#" target="_blank" rel="noopener">GitHub Secrets ↗</a> → <b>New repository secret</b>：名字 <span class="chip"><code>DASHBOARD_WORKSPACE_ID</code><button type="button" data-copy-text="DASHBOARD_WORKSPACE_ID">复制名字</button></span>，内容 = 刚复制的 ID。</li>
+          <li>点 <b>Open workspace ↗</b> → 在 Google Sheets 点右上角 <b>Share（共享）</b> → 加服务账号邮箱，权限选 <b>Editor（编辑者）</b> → Send（有"通知"选项就取消勾）。<b>General access 保持 Restricted</b>。</li>
+          <li><a id="lnk-actions2" href="#" target="_blank" rel="noopener">Actions ↗</a> → 左边 <b>1 · Install check</b> → <b>Run workflow</b>。跑完点进去看摘要。</li>
+        </ol>
+        <div class="example">| Check                                  | Result | Detail                       |
+| Service-account key parsed             | ✅     | dashboard-worker@…           |
+| Workbook is a Dashboard Workspace      | ✅     | schema v1, 15 tabs           |
+| Worker can write to the workspace      | ✅     | Sync_Log row appended        |
+| Setup package                          | ❌     | not configured yet — complete Business setup …
+Install check found problems</div>
+        <p>现在 <b>Setup package ❌</b> 是正常的——第 7、8 步就会补上。其他每一行都必须是 ✅。</p>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="6"><span>安装检查里，钥匙、工作簿、"Worker can write to the workspace" 三项都是 ✅。</span></label></div>
+        <p class="stuck"><b>"Workspace reachable with Editor access ❌"</b> —— 工作簿要分享给服务账号邮箱，而且是 <b>Editor</b>，不是 Viewer。<b>"GOOGLE_SERVICE_ACCOUNT_JSON is missing or is not the complete JSON key"</b> —— 钥匙文件没贴全，整个文件重新贴一次。</p>
+      </section>
+
+      <section class="step" id="s7" aria-labelledby="h7"><div class="step-head"><span class="num">第 7 步</span><h2 id="h7">描述业务，准备数据来源</h2><span class="where">仪表盘 · GitHub</span></div><ol>
+<li>仪表盘 → <b>Settings → Business setup</b>，填写业务名称、类型、简介、语言、货币、时区，以及 AI 该优先关注什么。</li>
+<li><b>AI data setting</b>：BetterSpace 练习选择 <b>Synthetic practice records · free tier</b>；真实私人资料选择 <b>Real business records · billing-enabled Gemini project</b>，并先在 Google 项目开通结算。此选项不会替你开通结算。</li>
+<li><b>Report date</b>：真实业务选 <b>Today</b>；历史练习选 <b>Latest record date</b>。点 <b>Save business profile</b>。</li>
+<li><b>Source → Add a new source</b>。Google Sheet：填原始数据表链接，分享给服务账号邮箱 <span class="chip"><code id="v-sa2">（第 2 步填写）</code><button type="button" data-copy="v-sa2">复制</button></span>，权限 <b>Viewer</b>。须为原生 Google Sheet，上传的 Excel 先用 <b>File → Save as Google Sheets</b> 转换。</li>
+<li>本地文件：选 <b>Local file</b>，选 XLSX、CSV、文字版 PDF 或 DOCX，并填写记录截至哪天。不要重复加入同一批订单的 Excel 和 PDF。</li>
+<li>点 <b>Prepare source</b> → 下方 <b>Open Import data → Run workflow</b> → 在 GitHub 点 <b>Run workflow</b>。运行结束后回仪表盘点 <b>Reload</b>。</li></ol>
+<div class="note">准备工作在后台执行。未手动运行会等下一次每小时后台机会，GitHub 可能延迟；一次先准备一个来源，审核后再加入下一个。</div><div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="7"><span>Business setup 显示 Ready for review，并出现 Review detected records。</span></label></div></section>
+
+      <section class="step" id="s8" aria-labelledby="h8"><div class="step-head"><span class="num">第 8 步</span><h2 id="h8">审核列含义与记录，启用来源</h2><span class="where">仪表盘 · GitHub</span></div><ol>
+<li>点 <b>Review detected records</b>。确认日期格式、每行代表什么（客户、订单、收到的付款或库存）；无关表选 <b>Ignore</b>。</li>
+<li>核对带 * 的必要字段，尤其稳定编号、订单日期、金额、收款日期和付款期限。下拉选项是你自己的列名。金额须明确是订单额还是已收到的款项；不相关字段选 <b>Not provided</b>。</li>
+<li>订单状态分别填到 <b>pending / done / excluded</b>（未完成 / 完成 / 不计入），多个值用逗号分开。展开记录核对，PDF/DOCX 特别注意漏行、编号、日期和金额。</li>
+<li>勾选已检查 → <b>Validate and preview totals</b> → 核对行数和金额 → <b>Activate source</b>。</li>
+<li><a id="lnk-import" href="#" target="_blank" rel="noopener">Actions → 2 · Import data ↗</a> → <b>Run workflow</b>。完成后回仪表盘 <b>Reload</b>，新数字和待办才会更新。</li>
+<li>其余来源重复第 7、8 步。每类记录目前只支持一张主要表；付款表需要对应订单表。</li></ol>
+<p>BetterSpace B2C 初始练习（2026-08-30），所有必要表连接后：8 月订单额 <b>RM 25,650</b>、<b>104</b> 张订单、未收款 <b>RM 0</b>、<b>3</b> 个低库存、<b>8</b> 个逾期未完成。</p>
+<p>详细运行信息在仪表盘 <b>Data connections → Recent runs → Message</b>；GitHub 日志只显示简短状态。</p>
+<div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="8"><span>顶部显示 data as of 日期，Overview 数字与原记录相符。</span></label></div>
+<p class="stuck">列名或含义不对：在 Business setup 选择已有来源，重新准备和审核。准备失败或验证错误会保留旧数据；按提示修正对应列。</p></section>
+
+      <section class="step" id="s9" aria-labelledby="h9">
+        <div class="step-head"><span class="num">第 9 步</span><h2 id="h9">五分钟验收</h2><span class="where">仪表盘 · 你的 Sheet · GitHub</span></div>
+        <ol>
+          <li><b>Tasks</b> 页：接受（Accept）一条建议、完成（Complete）一条、忽略（Dismiss）一条、编辑（Edit）一条的日期/负责人/备注。每次保存都会提示 <i>Saved to your workspace</i>。</li>
+          <li>关掉浏览器。重新打开仪表盘、重新登录。刚才的决定都还在。</li>
+          <li>在你的数据 Sheet 里改一个数（BetterSpace 练习：Stock 表，R003 的 on_hand 从 <b>8 改成 33</b>）。跑 <b>2 · Import data</b> → Reload。低库存 <b>3 → 2</b>，对应建议显示 <i>resolved by data</i>，你的待办决定和备注还在，没有重复的待办冒出来。</li>
+          <li>把 on_hand 改回 <b>8</b>，再跑一次。低库存 <b>2 → 3</b>，低库存条件再次成立；你写的备注还在。已完成或已忽略的待办保留你的决定，需要你自己重新打开（Reopen）。如果只有手动文件来源，按下方「混合来源」导入修改后的记录，再运行同样的验收。</li>
+        </ol>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="9"><span>数据改动进来了；我的待办决定经过一次关浏览器、两次更新都还在；没有任何重复。</span></label></div>
+      </section>
+
+      <section class="step" id="smixed" aria-labelledby="hmixed"><h2 id="hmixed">混合来源：只替换改变的文件</h2><p>Google Sheet 自动读取；本地文件保留上次确认记录。原文件留在电脑，提取的文字、表格与审核记录保存到自己的 Workspace。</p><ol><li>Data connections → 对应来源 → <b>Update this file in Business setup</b>。</li><li>在 Source 选择 <b>Update / remap: 该来源名称</b>，不要 Add a new source。选新版文件，填写资料截至日期。</li><li><b>Prepare source</b> → 运行 Import data → Reload → 审核 → <b>Activate source</b>。</li><li>再运行 Import data 更新仪表盘。只替换该来源，其余来源和待办决定保留。</li></ol><div class="note">默认整份替换：新版应包含该来源要保留的完整记录和原有全部表。缺少的旧记录会移除。不要把只有当天新增记录的小文件当成完整替换。</div></section>
+
+      <section class="panel" id="after" aria-labelledby="hafter">
+        <h2 id="hafter">装好之后 · 每天只做这几件事</h2>
+        <div class="two">
+          <div>
+            <h3>每天</h3>
+            <ul>
+              <li>更新在 <code>REFRESH_HOURS_UTC</code> 设的时间自动跑（默认 UTC 23:17 ≈ 马来西亚早 7:17）。GitHub 的定时任务偶尔会晚到或跳过；公开仓库若 60 天没有活动，定时任务会停用，请到 Actions 检查并重新启用。改 Google Sheet 不算仓库活动；急着要就去 <b>Data connections → Run "Import data" now</b>。</li>
+              <li>设了 <code>GEMINI_API_KEY</code> 的话，每次成功导入或确认数据未变后生成 AI 简报（跳过/失败的导入不会触发）；也可以在 <b>AI insights → Request analysis</b> 排队，下次后台跑的时候处理，或者马上跑 <b>3 · AI brief</b>。</li>
+              <li>Google 登录一小时过期，点 Reconnect；公用电脑记得 Sign out。</li>
+            </ul>
+          </div>
+          <div>
+            <h3>偶尔</h3>
+            <ul>
+              <li><b>备份</b>：Settings → Export backup（设置、链接、待办决定、备注及保存的文件记录；不含重建快照和钥匙，请私下保管）。恢复用 <b>Restore from backup</b>。</li>
+              <li><b>升级</b>：老师发布新版本时，Actions → <b>5 · Update from template</b> 填版本号 → 再跑 <b>4 · Publish dashboard</b> 和 <b>1 · Install check</b>。你的工作簿不会被动。</li>
+              <li><b>表格改了样子</b>（改了列名、多了新状态）：在 Business setup 选择已有来源，重新准备、审核并启用。待办决定不会丢——每条待办的编号 = 规则 + 记录编号。</li>
+            </ul>
+          </div>
+        </div>
+        <h3>老实说，它做不到的</h3>
+        <ul>
+          <li>Google Sheet 自动更新。本地 XLSX/CSV/PDF/DOCX 在仪表盘选择、审核后保存；文件改变时只替换对应来源。最大 10 MB、每表 5,000 行；PDF 最多 50 页，文字最多 80,000 字符，不支持扫描 PDF。</li>
+          <li>Gemini 读取业务简介、算好的数字、待办/备注、近期日历和来源日期。免费额度有限，不应提交私人或机密业务记录；真实私人数据使用开通结算的项目。额度不足时保留旧简报，数据导入继续。</li>
+          <li>同一时间假设只有一个人在改待办；每张表最多 5,000 行。不会写进外部日历，也不会帮你发消息。</li>
+        </ul>
+        <h3>卡住了 / 红线 速查</h3>
+        <div class="table-wrap"><table>
+          <thead><tr><th>现象</th><th>怎么办</th></tr></thead>
+          <tbody>
+            <tr><td>网页显示 <i>Not configured yet</i></td><td>补 Variable <code>GOOGLE_OAUTH_CLIENT_ID</code>，重跑 4 · Publish dashboard</td></tr>
+            <tr><td>Google：<i>Access blocked</i></td><td>把你的邮箱加成 test user（Google Auth Platform → Audience）</td></tr>
+            <tr><td>Google：<i>origin_mismatch</i></td><td>Authorized JavaScript origin 必须是 <span class="pill" id="v-origin4">https://…github.io</span></td></tr>
+            <tr><td>安装检查：<i>Workspace reachable … ❌</i></td><td>工作簿分享给服务账号邮箱，权限 <b>Editor</b></td></tr>
+            <tr><td>导入：<i>share that Sheet … as Viewer</i></td><td>数据 Sheet 分享给服务账号邮箱，权限 <b>Viewer</b></td></tr>
+            <tr><td>导入：<i>Column "X" was not found</i></td><td>列名改回去，或在 Business setup 选 <b>Update / remap</b> 该来源，重新准备、审核、启用</td></tr>
+            <tr><td>安装检查：<i>GEMINI_API_KEY secret present</i> ❌</td><td>在 Google AI Studio 建 API key，加进 Secrets，名字 GEMINI_API_KEY</td></tr>
+            <tr><td>Business setup 一直显示 <i>Waiting for the worker</i></td><td>点 Open Import data → Run workflow，跑完回仪表盘点 Reload</td></tr>
+            <tr><td>Business setup：<i>Gemini quota reached</i></td><td>免费额度用完了。等额度恢复后点 Retry preparation；数据导入照常，旧数字不受影响</td></tr>
+            <tr><td><i>PDF page … has no readable text</i></td><td>这是扫描版 PDF，不支持。改用原始 Excel/CSV 或文字版 PDF</td></tr>
+            <tr><td>标签：<i>stale — last import failed</i></td><td>Data connections → Message 写了原因；页面显示的还是上一次的好数据</td></tr>
+            <tr><td>AI：<i>GEMINI_API_KEY secret is not set</i></td><td>加这个 Secret，或者不用 AI 这一页</td></tr>
+            <tr><td>AI：<i>1 request(s) queued</i> 等了很久</td><td>跑 3 · AI brief，或等下一次自动更新</td></tr>
+          </tbody>
+        </table></div>
+        <div class="danger"><b>红线 1</b>：JSON 钥匙和 API 钥匙只进 Secrets，不要贴别处、不要发群。<b>红线 2</b>：仓库是 Public，但里面只有通用代码——你的记录、设置、待办都在你 Drive 的工作簿里，不在仓库里；不要把数据文件传进仓库。<b>红线 3</b>：数据 Sheet 和工作簿的 General access 保持 Restricted，只分享给你自己的服务账号邮箱。</div>
+        <p class="hint" style="font-size:13px;color:var(--muted)">都对不上？Data connections → Recent runs → 把那一行的 <i>message</i> 文字发给老师。不要发钥匙文件，不要发工作簿。</p>
+        <p class="hint" style="font-size:13px;color:var(--muted)">费用：Gemini 有免费额度，练习使用虚构数据；真实私人资料使用开通结算的项目。<a href="https://ai.google.dev/gemini-api/docs/pricing">Gemini 价格</a> · <a href="https://ai.google.dev/gemini-api/terms">数据条款</a>。</p>
+      </section>
+
+      <footer>InfiniteSales AI · 业务仪表盘网页版安装 SOP · 1.2.0-rc.1 学生测试校对版 · 2026-09-23 · 上面填的资料只存在你这台设备的浏览器里，不会上传到任何地方。这份指南不含任何钥匙，也不会向你要钥匙。有问题把截图（不含钥匙）发到学员群。</footer>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'bd-guide-student-test-v1';
+  var state = { template: 'ivaninm-ai/analysis-dashboard-template', user: '', repo: 'my-business-dashboard', client: '', sa: '', label: '', checks: {} };
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && typeof saved === 'object') { for (var k in saved) state[k] = saved[k]; } } catch (e) {}
+  if (!state.template) state.template = 'ivaninm-ai/analysis-dashboard-template';
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var $ = function (id) { return document.getElementById(id); };
+  var fields = { template: 'f-template', user: 'f-user', repo: 'f-repo', client: 'f-client', sa: 'f-sa', label: 'f-label' };
+  function setText(id, text) { var el = $(id); if (el) el.textContent = text; }
+  function setHref(id, href) { var el = $(id); if (!el) return; if (href) { el.setAttribute('href', href); el.removeAttribute('aria-disabled'); } else { el.setAttribute('href', '#'); el.setAttribute('aria-disabled', 'true'); } }
+  function render() {
+    var user = (state.user || '').trim().toLowerCase();
+    var repo = (state.repo || '').trim();
+    var okUser = /^[a-z0-9](?:[a-z0-9-]{0,37}[a-z0-9])?$/.test(user);
+    var okRepo = /^[A-Za-z0-9_.-]{1,100}$/.test(repo);
+    var origin = okUser ? 'https://' + user + '.github.io' : 'https://<用户名>.github.io';
+    var site = (okUser && okRepo) ? origin + '/' + repo + '/' : 'https://<用户名>.github.io/<仓库名>/';
+    var repoUrl = (okUser && okRepo) ? 'https://github.com/' + user + '/' + repo : 'https://github.com/<用户名>/<仓库名>';
+    ['v-origin', 'v-origin2', 'v-origin3', 'v-origin4'].forEach(function (id) { setText(id, origin); });
+    ['v-site', 'v-site2'].forEach(function (id) { setText(id, site); });
+    setText('v-repo', repoUrl); setText('v-repo2', repoUrl.replace('https://', '')); setText('v-reponame', repo || 'my-business-dashboard');
+    var client = (state.client || '').trim();
+    var okClient = /^[0-9]+-[a-z0-9]+\.apps\.googleusercontent\.com$/.test(client);
+    setText('v-client', client || '（先在上面贴 Client ID）');
+    $('h-client').textContent = client && !okClient ? '这不像 Client ID（应该以 .apps.googleusercontent.com 结尾）。检查是不是复制成了 client secret。' : '结尾是 .apps.googleusercontent.com';
+    $('h-client').className = 'hint' + (client && !okClient ? ' bad' : '');
+    var sa = (state.sa || '').trim();
+    var okSa = /^[a-z0-9-]+@[a-z0-9-]+\.iam\.gserviceaccount\.com$/.test(sa);
+    ['v-sa', 'v-sa2'].forEach(function (id) { setText(id, sa || '（先在上面贴服务账号邮箱）'); });
+    $('h-sa').textContent = sa && !okSa ? '服务账号邮箱以 .iam.gserviceaccount.com 结尾——这个看起来不是。' : '结尾是 .iam.gserviceaccount.com';
+    $('h-sa').className = 'hint' + (sa && !okSa ? ' bad' : '');
+    $('h-user').textContent = user && !okUser ? 'GitHub 用户名只能有字母、数字和连字符。' : '小写字母、数字、连字符';
+    $('h-user').className = 'hint' + (user && !okUser ? ' bad' : '');
+    setText('v-label', (state.label || '').trim() || '（先在对应步骤填生意名字）');
+    var tpl = (state.template || '').trim().replace(/^https?:\/\/github\.com\//, '').replace(/\/+$/, '');
+    var okTpl = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(tpl);
+    var btn = $('btn-template'); btn.setAttribute('href', okTpl ? 'https://github.com/' + tpl + '/generate' : '#'); btn.style.opacity = okTpl ? '1' : '0.55';
+    $('h-template').hidden = okTpl;
+    var base = (okUser && okRepo) ? repoUrl : '';
+    setHref('lnk-secrets', base && base + '/settings/secrets/actions'); setHref('lnk-secrets2', base && base + '/settings/secrets/actions');
+    setHref('lnk-pages', base && base + '/settings/pages'); setHref('lnk-actions', base && base + '/actions'); setHref('lnk-actions2', base && base + '/actions');
+    setHref('lnk-import', base && base + '/actions/workflows/import.yml');
+    var done = 0; var total = 10;
+    document.querySelectorAll('input[data-check]').forEach(function (cb) { var n = cb.getAttribute('data-check'); cb.checked = !!state.checks[n]; if (cb.checked) done++; var a = document.querySelector('#rail a[data-step="' + n + '"]'); if (a) a.classList.toggle('done', cb.checked); });
+    $('progress').textContent = '已完成 ' + done + ' / ' + total + ' 个检查点';
+  }
+  Object.keys(fields).forEach(function (k) { var el = $(fields[k]); el.value = state[k] || ''; el.addEventListener('input', function () { state[k] = el.value; save(); render(); }); });
+  document.querySelectorAll('input[data-check]').forEach(function (cb) { cb.addEventListener('change', function () { state.checks[cb.getAttribute('data-check')] = cb.checked; save(); render(); }); });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-copy], button[data-copy-text]'); if (!b) return;
+    var text = b.hasAttribute('data-copy-text') ? b.getAttribute('data-copy-text') : ($(b.getAttribute('data-copy')) || {}).textContent || '';
+    if (!b.getAttribute('data-label')) b.setAttribute('data-label', b.textContent);
+    if (/^[(（]|<|…/.test(text)) { b.textContent = '先填上面'; setTimeout(function () { b.textContent = b.getAttribute('data-label'); }, 1200); return; }
+    var ok = function () { b.textContent = '已复制'; setTimeout(function () { b.textContent = b.getAttribute('data-label'); }, 1200); };
+    var fail = function () { b.textContent = '请手动选中复制'; setTimeout(function () { b.textContent = b.getAttribute('data-label'); }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fail); else fail();
+  });
+  document.querySelectorAll('a[aria-disabled="true"], #btn-template').forEach(function (a) { a.addEventListener('click', function (e) { if (a.getAttribute('href') === '#') { e.preventDefault(); a.blur(); } }); });
+  $('clear').addEventListener('click', function () { state = { template: 'ivaninm-ai/analysis-dashboard-template', user: '', repo: 'my-business-dashboard', client: '', sa: '', label: '', checks: {} }; save(); Object.keys(fields).forEach(function (k) { $(fields[k]).value = state[k] || ''; }); render(); });
+  render();
+})();
+</script>
+
+</body>
+</html>

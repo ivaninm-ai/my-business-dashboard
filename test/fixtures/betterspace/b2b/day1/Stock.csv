@@ -1,0 +1,9 @@
+﻿item_id,item_name,snapshot_date,on_hand_quantity,reserved_quantity,reorder_threshold
+T001,Ergonomic office chair,2026-08-30,22,22,10
+T002,Office desk,2026-08-30,52,29,10
+T003,Meeting table,2026-08-30,0,0,10
+T004,Storage cabinet,2026-08-30,29,0,10
+T005,Visitor chair,2026-08-30,22,17,5
+T006,Monitor arm,2026-08-30,35,0,10
+T007,Office partition,2026-08-30,53,15,10
+T008,Reception desk,2026-08-30,56,15,10

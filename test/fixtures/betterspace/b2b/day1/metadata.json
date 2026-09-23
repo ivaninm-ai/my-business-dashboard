@@ -1,0 +1,11 @@
+{
+  "business_name": "BetterSpace Office Solutions",
+  "business_model": "b2b",
+  "currency": "MYR",
+  "timezone": "Asia/Kuala_Lumpur",
+  "as_of_date": "2026-08-30",
+  "history_start": "2026-06-01",
+  "snapshot_mode": "full_replacement",
+  "synthetic": true,
+  "default_period_start": "2026-08-01"
+}

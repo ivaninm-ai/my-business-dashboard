@@ -1,0 +1,36 @@
+{
+  "as_of_date": "2026-08-30",
+  "row_counts": {
+    "Customers": 120,
+    "Sales": 320,
+    "Payments": 300,
+    "Stock": 12
+  },
+  "all_time_order_value": 82990,
+  "all_time_cash_collected": 82990,
+  "outstanding_balance": 0,
+  "overdue_balance": 0,
+  "august_order_value": 25650,
+  "august_order_count": 104,
+  "august_cash_collected": 25650,
+  "prior_comparable_order_value": 29145,
+  "overdue_sale_ids": [],
+  "overdue_completion_ids": [
+    "RS-001",
+    "RS-007",
+    "RS-048",
+    "RS-062",
+    "RS-067",
+    "RS-133",
+    "RS-200",
+    "RS-212"
+  ],
+  "low_stock_ids": [
+    "R001",
+    "R003",
+    "R005"
+  ],
+  "overdue_follow_up_ids": [],
+  "unassigned_prospect_ids": [],
+  "story_sale_balance": 0
+}

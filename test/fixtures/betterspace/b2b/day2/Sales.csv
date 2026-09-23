@@ -1,0 +1,91 @@
+﻿sale_id,customer_id,sale_date,item_id,description,offering_type,quantity,unit_price,total_amount,sales_channel,status,payment_due_date,promised_completion_date,actual_completion_date
+BS-001,BC-001,2026-08-20,T001,Ergonomic office chair,Product,30,300,9000,Direct B2B,Completed,2026-08-29,2026-08-28,2026-08-28
+BS-002,BC-002,2026-08-28,T001,Ergonomic office chair,Product,30,300,9000,Direct B2B,In Progress,2026-09-18,2026-09-03,
+BS-003,BC-003,2026-08-25,T002,Office desk,Product,4,650,2600,Direct B2B,In Progress,2026-09-15,2026-08-30,
+BS-004,BC-004,2026-08-30,T008,Reception desk,Product,15,2200,33000,Referral,Confirmed,2026-09-20,2026-09-11,
+BS-005,BC-027,2026-08-06,T004,Storage cabinet,Product,5,480,2400,Direct B2B,Completed,2026-08-27,2026-08-18,2026-08-18
+BS-006,BC-019,2026-06-20,SV002,Furniture installation,Service,1,500,500,Website,Completed,2026-07-11,2026-06-30,2026-06-30
+BS-007,BC-020,2026-08-30,SV002,Furniture installation,Service,1,500,500,Referral,In Progress,2026-09-20,2026-09-07,
+BS-008,BC-023,2026-08-27,SV002,Furniture installation,Service,1,500,500,Website,Confirmed,2026-09-17,2026-09-06,
+BS-009,BC-029,2026-08-17,T002,Office desk,Product,9,650,5850,Direct B2B,Completed,2026-09-07,2026-08-26,2026-08-26
+BS-010,BC-016,2026-08-27,T002,Office desk,Product,17,650,11050,Direct B2B,In Progress,2026-09-17,2026-09-03,
+BS-011,BC-023,2026-08-26,T005,Visitor chair,Product,9,180,1620,Referral,Confirmed,2026-09-16,2026-09-02,
+BS-012,BC-035,2026-07-05,T001,Ergonomic office chair,Product,8,300,2400,Referral,Completed,2026-07-26,2026-07-11,2026-07-12
+BS-013,BC-005,2026-08-02,T005,Visitor chair,Product,15,180,2700,Website,Completed,2026-08-23,2026-08-10,2026-08-12
+BS-014,BC-029,2026-06-21,T006,Monitor arm,Product,12,150,1800,Direct B2B,Completed,2026-07-12,2026-06-29,2026-06-29
+BS-015,BC-030,2026-07-10,SV001,Office layout consultation,Service,1,800,800,Referral,Completed,2026-07-31,2026-07-20,2026-07-21
+BS-016,BC-034,2026-06-13,SV002,Furniture installation,Service,1,500,500,Website,Completed,2026-07-04,2026-06-22,2026-06-24
+BS-017,BC-004,2026-07-26,T002,Office desk,Product,2,650,1300,Website,Completed,2026-08-16,2026-08-04,2026-08-04
+BS-018,BC-009,2026-08-29,T005,Visitor chair,Product,8,180,1440,Website,Confirmed,2026-09-19,2026-09-04,
+BS-019,BC-008,2026-08-12,T003,Meeting table,Product,17,1800,30600,Direct B2B,Completed,2026-09-02,2026-08-17,2026-08-19
+BS-020,BC-019,2026-08-14,SV001,Office layout consultation,Service,1,800,800,Website,Completed,2026-09-04,2026-08-20,2026-08-21
+BS-021,BC-028,2026-08-21,SV001,Office layout consultation,Service,1,800,800,Direct B2B,Completed,2026-09-11,2026-08-29,2026-08-28
+BS-022,BC-008,2026-07-21,T003,Meeting table,Product,6,1800,10800,Referral,Completed,2026-08-11,2026-07-30,2026-07-29
+BS-023,BC-034,2026-07-15,T001,Ergonomic office chair,Product,13,300,3900,Referral,Completed,2026-08-05,2026-07-23,2026-07-24
+BS-024,BC-024,2026-08-20,T004,Storage cabinet,Product,3,480,1440,Referral,Completed,2026-09-10,2026-08-31,2026-08-30
+BS-025,BC-007,2026-06-13,SV002,Furniture installation,Service,1,500,500,Website,Completed,2026-07-04,2026-06-25,2026-06-25
+BS-026,BC-016,2026-07-11,T006,Monitor arm,Product,18,150,2700,Website,Completed,2026-08-01,2026-07-17,2026-07-18
+BS-027,BC-012,2026-06-14,T005,Visitor chair,Product,14,180,2520,Website,Completed,2026-07-05,2026-06-20,2026-06-20
+BS-028,BC-021,2026-06-12,SV001,Office layout consultation,Service,1,800,800,Referral,Completed,2026-07-03,2026-06-24,2026-06-24
+BS-029,BC-031,2026-08-17,T001,Ergonomic office chair,Product,7,300,2100,Direct B2B,Completed,2026-09-07,2026-08-25,2026-08-27
+BS-030,BC-011,2026-08-18,T002,Office desk,Product,14,650,9100,Referral,Completed,2026-09-08,2026-08-28,2026-08-27
+BS-031,BC-001,2026-07-20,T004,Storage cabinet,Product,14,480,6720,Referral,Completed,2026-08-10,2026-07-26,2026-07-28
+BS-032,BC-026,2026-08-14,T005,Visitor chair,Product,3,180,540,Referral,Completed,2026-09-04,2026-08-26,2026-08-25
+BS-033,BC-015,2026-06-29,T008,Reception desk,Product,17,2200,37400,Website,Completed,2026-07-20,2026-07-04,2026-07-06
+BS-034,BC-011,2026-06-28,T001,Ergonomic office chair,Product,9,300,2700,Referral,Cancelled,2026-07-19,2026-07-09,
+BS-035,BC-009,2026-07-02,T002,Office desk,Product,2,650,1300,Website,Completed,2026-07-23,2026-07-07,2026-07-08
+BS-036,BC-022,2026-07-02,T004,Storage cabinet,Product,8,480,3840,Website,Completed,2026-07-23,2026-07-12,2026-07-11
+BS-037,BC-025,2026-07-21,T003,Meeting table,Product,14,1800,25200,Website,Completed,2026-08-11,2026-07-27,2026-07-28
+BS-038,BC-027,2026-08-26,T002,Office desk,Product,8,650,5200,Website,In Progress,2026-09-16,2026-09-07,
+BS-039,BC-016,2026-06-15,SV001,Office layout consultation,Service,1,800,800,Direct B2B,Completed,2026-07-06,2026-06-21,2026-06-20
+BS-040,BC-031,2026-07-02,T007,Office partition,Product,9,400,3600,Website,Completed,2026-07-23,2026-07-10,2026-07-11
+BS-041,BC-010,2026-07-04,T008,Reception desk,Product,6,2200,13200,Direct B2B,Completed,2026-07-25,2026-07-16,2026-07-18
+BS-042,BC-022,2026-06-11,T006,Monitor arm,Product,3,150,450,Direct B2B,Completed,2026-07-02,2026-06-20,2026-06-22
+BS-043,BC-027,2026-07-22,T001,Ergonomic office chair,Product,2,300,600,Direct B2B,Completed,2026-08-12,2026-07-28,2026-07-29
+BS-044,BC-005,2026-08-17,T003,Meeting table,Product,9,1800,16200,Website,Completed,2026-09-07,2026-08-28,2026-08-28
+BS-045,BC-026,2026-07-10,T002,Office desk,Product,15,650,9750,Direct B2B,Completed,2026-07-31,2026-07-18,2026-07-17
+BS-046,BC-030,2026-08-02,T001,Ergonomic office chair,Product,2,300,600,Website,Completed,2026-08-23,2026-08-10,2026-08-10
+BS-047,BC-011,2026-06-21,T005,Visitor chair,Product,16,180,2880,Referral,Completed,2026-07-12,2026-07-02,2026-07-01
+BS-048,BC-013,2026-08-01,T004,Storage cabinet,Product,11,480,5280,Referral,Completed,2026-08-22,2026-08-13,2026-08-13
+BS-049,BC-028,2026-06-13,T004,Storage cabinet,Product,10,480,4800,Referral,Completed,2026-07-04,2026-06-21,2026-06-21
+BS-050,BC-018,2026-07-06,T005,Visitor chair,Product,4,180,720,Referral,Completed,2026-07-27,2026-07-17,2026-07-19
+BS-051,BC-011,2026-06-10,T002,Office desk,Product,9,650,5850,Referral,Completed,2026-07-01,2026-06-16,2026-06-15
+BS-052,BC-034,2026-06-26,T003,Meeting table,Product,3,1800,5400,Referral,Completed,2026-07-17,2026-07-03,2026-07-03
+BS-053,BC-029,2026-06-03,T003,Meeting table,Product,14,1800,25200,Referral,Completed,2026-06-24,2026-06-09,2026-06-08
+BS-054,BC-008,2026-06-27,SV002,Furniture installation,Service,1,500,500,Direct B2B,Completed,2026-07-18,2026-07-03,2026-07-04
+BS-055,BC-023,2026-06-16,SV002,Furniture installation,Service,1,500,500,Referral,Completed,2026-07-07,2026-06-28,2026-06-29
+BS-056,BC-011,2026-08-18,T002,Office desk,Product,8,650,5200,Referral,Completed,2026-09-08,2026-08-27,2026-08-28
+BS-057,BC-021,2026-06-28,T002,Office desk,Product,15,650,9750,Direct B2B,Completed,2026-07-19,2026-07-10,2026-07-09
+BS-058,BC-028,2026-08-14,T005,Visitor chair,Product,10,180,1800,Website,Completed,2026-09-04,2026-08-19,2026-08-19
+BS-059,BC-017,2026-07-25,T002,Office desk,Product,16,650,10400,Referral,Completed,2026-08-15,2026-08-02,2026-08-02
+BS-060,BC-030,2026-06-16,T006,Monitor arm,Product,17,150,2550,Direct B2B,Completed,2026-07-07,2026-06-22,2026-06-21
+BS-061,BC-025,2026-06-08,T007,Office partition,Product,5,400,2000,Referral,Completed,2026-06-29,2026-06-20,2026-06-20
+BS-062,BC-021,2026-08-18,SV001,Office layout consultation,Service,1,800,800,Direct B2B,Completed,2026-09-08,2026-08-27,2026-08-28
+BS-063,BC-007,2026-07-16,T005,Visitor chair,Product,18,180,3240,Referral,Completed,2026-08-06,2026-07-22,2026-07-22
+BS-064,BC-017,2026-06-18,T008,Reception desk,Product,15,2200,33000,Website,Completed,2026-07-09,2026-06-23,2026-06-24
+BS-065,BC-004,2026-07-04,T008,Reception desk,Product,7,2200,15400,Referral,Completed,2026-07-25,2026-07-15,2026-07-17
+BS-066,BC-016,2026-06-23,T005,Visitor chair,Product,14,180,2520,Referral,Completed,2026-07-14,2026-07-04,2026-07-06
+BS-067,BC-016,2026-07-22,T001,Ergonomic office chair,Product,9,300,2700,Referral,Completed,2026-08-12,2026-08-01,2026-08-01
+BS-068,BC-016,2026-07-05,SV002,Furniture installation,Service,1,500,500,Direct B2B,Completed,2026-07-26,2026-07-17,2026-07-19
+BS-069,BC-002,2026-07-19,T003,Meeting table,Product,7,1800,12600,Referral,Completed,2026-08-09,2026-07-28,2026-07-30
+BS-070,BC-007,2026-08-06,T004,Storage cabinet,Product,3,480,1440,Referral,Completed,2026-08-27,2026-08-18,2026-08-18
+BS-071,BC-016,2026-08-21,T003,Meeting table,Product,11,1800,19800,Direct B2B,Completed,2026-09-11,2026-08-29,2026-08-30
+BS-072,BC-010,2026-06-26,SV001,Office layout consultation,Service,1,800,800,Website,Completed,2026-07-17,2026-07-06,2026-07-07
+BS-073,BC-034,2026-08-27,T007,Office partition,Product,15,400,6000,Website,Confirmed,2026-09-17,2026-09-01,
+BS-074,BC-010,2026-06-04,T008,Reception desk,Product,6,2200,13200,Website,Completed,2026-06-25,2026-06-15,2026-06-14
+BS-075,BC-007,2026-06-16,T002,Office desk,Product,13,650,8450,Direct B2B,Completed,2026-07-07,2026-06-22,2026-06-23
+BS-076,BC-033,2026-07-03,T003,Meeting table,Product,12,1800,21600,Direct B2B,Completed,2026-07-24,2026-07-08,2026-07-07
+BS-077,BC-035,2026-07-21,T004,Storage cabinet,Product,4,480,1920,Direct B2B,Completed,2026-08-11,2026-07-30,2026-07-29
+BS-078,BC-023,2026-08-11,T002,Office desk,Product,6,650,3900,Website,Completed,2026-09-01,2026-08-16,2026-08-15
+BS-079,BC-013,2026-06-04,T007,Office partition,Product,5,400,2000,Referral,Completed,2026-06-25,2026-06-13,2026-06-12
+BS-080,BC-022,2026-07-03,T004,Storage cabinet,Product,13,480,6240,Website,Completed,2026-07-24,2026-07-12,2026-07-12
+BS-081,BC-024,2026-08-19,T008,Reception desk,Product,17,2200,37400,Direct B2B,Completed,2026-09-09,2026-08-24,2026-08-23
+BS-082,BC-032,2026-07-02,T007,Office partition,Product,11,400,4400,Direct B2B,Completed,2026-07-23,2026-07-09,2026-07-11
+BS-083,BC-020,2026-06-10,T004,Storage cabinet,Product,11,480,5280,Direct B2B,Completed,2026-07-01,2026-06-20,2026-06-22
+BS-084,BC-025,2026-07-03,T003,Meeting table,Product,5,1800,9000,Direct B2B,Completed,2026-07-24,2026-07-14,2026-07-13
+BS-085,BC-002,2026-06-09,T007,Office partition,Product,7,400,2800,Direct B2B,Completed,2026-06-30,2026-06-19,2026-06-20
+BS-086,BC-017,2026-07-09,SV002,Furniture installation,Service,1,500,500,Website,Cancelled,2026-07-30,2026-07-16,
+BS-087,BC-011,2026-07-26,T007,Office partition,Product,9,400,3600,Referral,Completed,2026-08-16,2026-08-04,2026-08-05
+BS-088,BC-018,2026-06-09,T001,Ergonomic office chair,Product,6,300,1800,Referral,Completed,2026-06-30,2026-06-19,2026-06-21
+BS-089,BC-026,2026-07-23,T008,Reception desk,Product,18,2200,39600,Website,Completed,2026-08-13,2026-08-02,2026-08-02
+BS-090,BC-025,2026-08-21,T006,Monitor arm,Product,16,150,2400,Direct B2B,Completed,2026-09-11,2026-08-27,2026-08-28

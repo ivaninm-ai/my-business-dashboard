@@ -1,0 +1,56 @@
+name: 5 · Update from template
+# Brings in a newer release of the instructor's template WITHOUT touching your
+# workspace, secrets or variables. Application files (app/, worker/, config/, docs/,
+# scripts/, package files) are replaced; your Dashboard Workspace holds all your data
+# and is not part of the repository. Workflow files cannot be changed by this job
+# (GitHub forbids it); if they differ, the summary names the files to re-copy.
+on:
+  workflow_dispatch:
+    inputs:
+      template_repo:
+        description: 'Template repository (owner/name)'
+        required: true
+        default: 'ivaninm-ai/analysis-dashboard-template'
+      release_tag:
+        description: 'Release tag to apply (for example v1.2.0-rc.1)'
+        required: true
+        default: 'v1.2.0-rc.1'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch the template release
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.template_repo }}
+          ref: ${{ inputs.release_tag }}
+          path: .template
+      - name: Apply application files only
+        run: |
+          set -e
+          for d in app worker config docs scripts prompts; do rm -rf "$d"; cp -r ".template/$d" "$d"; done
+          cp .template/package.json .template/package-lock.json .template/README.md .
+          if ! diff -rq .template/.github/workflows .github/workflows > /dev/null; then
+            {
+              echo "## Workflow files differ"
+              echo "GitHub does not allow this job to change workflow files. Copy these from the template release into .github/workflows with the GitHub web editor:"
+              diff -rq .template/.github/workflows .github/workflows | sed 's/^/- /'
+            } >> "$GITHUB_STEP_SUMMARY" || true
+          fi
+          rm -rf .template
+      - name: Commit
+        run: |
+          git config user.name "template-update"
+          git config user.email "template-update@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Already up to date"; exit 0; fi
+          git commit -m "Update application from template ${{ inputs.release_tag }}"
+          git push
+          {
+            echo "## Updated to ${{ inputs.release_tag }}"
+            echo "Run '4 - Publish dashboard' to publish the new version, then '1 - Install check'."
+          } >> "$GITHUB_STEP_SUMMARY"

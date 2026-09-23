@@ -1,0 +1,302 @@
+﻿payment_id,sale_id,payment_date,amount,payment_method
+RP-001,RS-001,2026-08-27,300,Marketplace checkout
+RP-002,RS-002,2026-08-29,130,Marketplace checkout
+RP-003,RS-003,2026-07-07,85,Marketplace checkout
+RP-004,RS-004,2026-07-29,55,Marketplace checkout
+RP-005,RS-005,2026-06-10,225,Marketplace checkout
+RP-006,RS-006,2026-08-27,180,Marketplace checkout
+RP-007,RS-007,2026-08-27,360,Card
+RP-008,RS-008,2026-08-28,90,Marketplace checkout
+RP-009,RS-009,2026-08-29,190,Marketplace checkout
+RP-010,RS-010,2026-08-29,190,Marketplace checkout
+RP-011,RS-011,2026-08-30,600,Card
+RP-012,RS-012,2026-06-26,1700,Marketplace checkout
+RP-013,RS-013,2026-06-23,360,Marketplace checkout
+RP-014,RS-014,2026-08-23,65,Card
+RP-015,RS-015,2026-06-23,190,Card
+RP-016,RS-016,2026-06-04,195,Marketplace checkout
+RP-017,RS-017,2026-07-13,120,Marketplace checkout
+RP-018,RS-018,2026-07-23,135,Card
+RP-019,RS-019,2026-07-18,850,Card
+RP-020,RS-020,2026-07-24,110,Marketplace checkout
+RP-021,RS-021,2026-06-09,900,Marketplace checkout
+RP-022,RS-022,2026-06-05,2550,Marketplace checkout
+RP-023,RS-023,2026-08-02,75,Card
+RP-024,RS-024,2026-08-03,55,Marketplace checkout
+RP-025,RS-025,2026-07-12,540,Marketplace checkout
+RP-026,RS-026,2026-08-15,195,Marketplace checkout
+RP-027,RS-027,2026-06-03,195,Marketplace checkout
+RP-028,RS-028,2026-06-09,130,Marketplace checkout
+RP-029,RS-029,2026-06-28,25,Marketplace checkout
+RP-030,RS-030,2026-07-02,240,Marketplace checkout
+RP-031,RS-031,2026-06-27,85,Marketplace checkout
+RP-032,RS-032,2026-07-10,180,Card
+RP-033,RS-034,2026-06-01,195,Card
+RP-034,RS-035,2026-08-02,35,Marketplace checkout
+RP-035,RS-036,2026-07-02,65,Marketplace checkout
+RP-036,RS-037,2026-08-17,190,Marketplace checkout
+RP-037,RS-038,2026-06-16,255,Card
+RP-038,RS-039,2026-08-19,45,Card
+RP-039,RS-040,2026-07-10,225,Marketplace checkout
+RP-040,RS-041,2026-07-03,195,Marketplace checkout
+RP-041,RS-042,2026-06-13,900,Marketplace checkout
+RP-042,RS-043,2026-08-25,45,Card
+RP-043,RS-044,2026-06-18,190,Card
+RP-044,RS-045,2026-08-29,600,Marketplace checkout
+RP-045,RS-046,2026-08-13,600,Marketplace checkout
+RP-046,RS-047,2026-07-11,540,Marketplace checkout
+RP-047,RS-048,2026-08-28,130,Marketplace checkout
+RP-048,RS-049,2026-08-12,55,Marketplace checkout
+RP-049,RS-050,2026-06-08,600,Marketplace checkout
+RP-050,RS-051,2026-08-02,75,Card
+RP-051,RS-052,2026-08-27,95,Card
+RP-052,RS-053,2026-07-08,55,Marketplace checkout
+RP-053,RS-054,2026-08-04,255,Marketplace checkout
+RP-054,RS-055,2026-08-17,135,Card
+RP-055,RS-056,2026-06-16,180,Marketplace checkout
+RP-056,RS-057,2026-07-05,190,Marketplace checkout
+RP-057,RS-059,2026-06-29,85,Marketplace checkout
+RP-058,RS-060,2026-06-12,35,Card
+RP-059,RS-061,2026-08-25,90,Marketplace checkout
+RP-060,RS-062,2026-08-27,75,Marketplace checkout
+RP-061,RS-063,2026-08-08,70,Marketplace checkout
+RP-062,RS-064,2026-06-08,65,Marketplace checkout
+RP-063,RS-065,2026-07-01,95,Marketplace checkout
+RP-064,RS-066,2026-07-20,850,Card
+RP-065,RS-067,2026-08-27,300,Card
+RP-066,RS-068,2026-07-28,285,Marketplace checkout
+RP-067,RS-069,2026-07-28,130,Marketplace checkout
+RP-068,RS-070,2026-08-20,190,Card
+RP-069,RS-072,2026-07-10,540,Marketplace checkout
+RP-070,RS-074,2026-06-02,900,Card
+RP-071,RS-075,2026-06-14,105,Card
+RP-072,RS-076,2026-07-16,110,Marketplace checkout
+RP-073,RS-077,2026-07-17,130,Marketplace checkout
+RP-074,RS-078,2026-07-06,150,Marketplace checkout
+RP-075,RS-079,2026-07-15,540,Marketplace checkout
+RP-076,RS-080,2026-07-08,75,Marketplace checkout
+RP-077,RS-081,2026-07-18,225,Card
+RP-078,RS-082,2026-06-12,850,Marketplace checkout
+RP-079,RS-084,2026-07-06,2550,Marketplace checkout
+RP-080,RS-085,2026-07-12,90,Card
+RP-081,RS-086,2026-06-02,105,Card
+RP-082,RS-087,2026-08-15,105,Marketplace checkout
+RP-083,RS-088,2026-06-25,255,Marketplace checkout
+RP-084,RS-089,2026-07-04,85,Marketplace checkout
+RP-085,RS-090,2026-07-14,360,Card
+RP-086,RS-091,2026-07-14,120,Marketplace checkout
+RP-087,RS-092,2026-07-20,25,Marketplace checkout
+RP-088,RS-093,2026-07-14,45,Marketplace checkout
+RP-089,RS-094,2026-07-22,300,Marketplace checkout
+RP-090,RS-095,2026-06-10,25,Card
+RP-091,RS-096,2026-07-03,70,Marketplace checkout
+RP-092,RS-097,2026-06-13,850,Marketplace checkout
+RP-093,RS-098,2026-08-30,360,Card
+RP-094,RS-099,2026-06-06,65,Marketplace checkout
+RP-095,RS-100,2026-07-09,105,Card
+RP-096,RS-101,2026-07-05,135,Marketplace checkout
+RP-097,RS-102,2026-07-11,360,Marketplace checkout
+RP-098,RS-103,2026-08-02,65,Marketplace checkout
+RP-099,RS-104,2026-07-07,25,Marketplace checkout
+RP-100,RS-105,2026-06-17,105,Card
+RP-101,RS-106,2026-06-25,120,Marketplace checkout
+RP-102,RS-107,2026-06-20,70,Card
+RP-103,RS-108,2026-08-17,35,Marketplace checkout
+RP-104,RS-109,2026-07-27,25,Card
+RP-105,RS-110,2026-06-12,55,Marketplace checkout
+RP-106,RS-111,2026-06-08,900,Card
+RP-107,RS-112,2026-07-17,130,Marketplace checkout
+RP-108,RS-113,2026-06-30,540,Marketplace checkout
+RP-109,RS-114,2026-06-16,75,Marketplace checkout
+RP-110,RS-115,2026-07-22,300,Card
+RP-111,RS-116,2026-07-07,90,Marketplace checkout
+RP-112,RS-117,2026-08-05,190,Marketplace checkout
+RP-113,RS-118,2026-08-17,360,Marketplace checkout
+RP-114,RS-119,2026-08-10,600,Marketplace checkout
+RP-115,RS-120,2026-08-21,75,Marketplace checkout
+RP-116,RS-121,2026-06-07,540,Marketplace checkout
+RP-117,RS-122,2026-08-25,50,Marketplace checkout
+RP-118,RS-123,2026-07-28,360,Marketplace checkout
+RP-119,RS-124,2026-08-04,300,Marketplace checkout
+RP-120,RS-125,2026-07-13,135,Card
+RP-121,RS-126,2026-07-22,150,Marketplace checkout
+RP-122,RS-127,2026-08-22,285,Marketplace checkout
+RP-123,RS-128,2026-08-17,300,Marketplace checkout
+RP-124,RS-129,2026-08-17,110,Marketplace checkout
+RP-125,RS-130,2026-06-16,130,Marketplace checkout
+RP-126,RS-131,2026-06-16,85,Marketplace checkout
+RP-127,RS-132,2026-08-03,300,Marketplace checkout
+RP-128,RS-133,2026-08-26,65,Marketplace checkout
+RP-129,RS-134,2026-07-23,50,Card
+RP-130,RS-135,2026-07-12,285,Card
+RP-131,RS-136,2026-08-30,85,Marketplace checkout
+RP-132,RS-137,2026-07-31,135,Card
+RP-133,RS-138,2026-07-07,170,Marketplace checkout
+RP-134,RS-139,2026-07-29,600,Card
+RP-135,RS-140,2026-08-04,120,Marketplace checkout
+RP-136,RS-141,2026-06-18,165,Marketplace checkout
+RP-137,RS-142,2026-08-23,110,Marketplace checkout
+RP-138,RS-143,2026-08-08,45,Marketplace checkout
+RP-139,RS-144,2026-06-23,70,Marketplace checkout
+RP-140,RS-146,2026-06-14,195,Card
+RP-141,RS-147,2026-08-25,105,Marketplace checkout
+RP-142,RS-148,2026-06-10,135,Marketplace checkout
+RP-143,RS-149,2026-06-23,95,Marketplace checkout
+RP-144,RS-150,2026-07-11,360,Marketplace checkout
+RP-145,RS-151,2026-07-16,850,Marketplace checkout
+RP-146,RS-152,2026-06-12,135,Marketplace checkout
+RP-147,RS-153,2026-08-13,190,Marketplace checkout
+RP-148,RS-155,2026-07-28,1700,Card
+RP-149,RS-156,2026-07-22,35,Card
+RP-150,RS-157,2026-07-30,850,Card
+RP-151,RS-158,2026-08-16,180,Marketplace checkout
+RP-152,RS-159,2026-07-18,195,Marketplace checkout
+RP-153,RS-160,2026-06-14,25,Card
+RP-154,RS-161,2026-08-03,120,Marketplace checkout
+RP-155,RS-162,2026-08-22,1700,Marketplace checkout
+RP-156,RS-163,2026-06-27,240,Marketplace checkout
+RP-157,RS-164,2026-06-06,150,Marketplace checkout
+RP-158,RS-166,2026-08-23,25,Marketplace checkout
+RP-159,RS-167,2026-06-02,540,Marketplace checkout
+RP-160,RS-168,2026-08-24,240,Card
+RP-161,RS-169,2026-08-08,240,Marketplace checkout
+RP-162,RS-170,2026-07-17,85,Marketplace checkout
+RP-163,RS-171,2026-08-06,120,Marketplace checkout
+RP-164,RS-172,2026-08-16,300,Card
+RP-165,RS-173,2026-06-30,50,Marketplace checkout
+RP-166,RS-174,2026-08-05,25,Card
+RP-167,RS-176,2026-06-30,225,Marketplace checkout
+RP-168,RS-177,2026-06-21,190,Card
+RP-169,RS-178,2026-06-07,50,Marketplace checkout
+RP-170,RS-179,2026-06-04,55,Marketplace checkout
+RP-171,RS-180,2026-07-05,50,Marketplace checkout
+RP-172,RS-181,2026-06-11,75,Marketplace checkout
+RP-173,RS-182,2026-07-18,300,Card
+RP-174,RS-183,2026-07-12,25,Marketplace checkout
+RP-175,RS-184,2026-07-10,25,Marketplace checkout
+RP-176,RS-185,2026-07-27,95,Card
+RP-177,RS-186,2026-07-16,150,Marketplace checkout
+RP-178,RS-187,2026-07-19,165,Marketplace checkout
+RP-179,RS-188,2026-07-07,150,Marketplace checkout
+RP-180,RS-189,2026-06-28,85,Marketplace checkout
+RP-181,RS-190,2026-08-20,65,Card
+RP-182,RS-191,2026-06-06,70,Marketplace checkout
+RP-183,RS-192,2026-07-27,45,Marketplace checkout
+RP-184,RS-194,2026-08-29,75,Card
+RP-185,RS-195,2026-08-08,150,Card
+RP-186,RS-196,2026-08-21,55,Marketplace checkout
+RP-187,RS-198,2026-06-20,300,Marketplace checkout
+RP-188,RS-199,2026-06-10,190,Marketplace checkout
+RP-189,RS-200,2026-08-26,540,Card
+RP-190,RS-201,2026-08-01,130,Marketplace checkout
+RP-191,RS-202,2026-06-23,45,Marketplace checkout
+RP-192,RS-203,2026-07-05,35,Marketplace checkout
+RP-193,RS-204,2026-08-08,165,Card
+RP-194,RS-206,2026-07-30,85,Marketplace checkout
+RP-195,RS-207,2026-07-21,850,Marketplace checkout
+RP-196,RS-208,2026-07-08,35,Marketplace checkout
+RP-197,RS-209,2026-08-13,120,Marketplace checkout
+RP-198,RS-210,2026-08-30,170,Marketplace checkout
+RP-199,RS-211,2026-08-07,25,Marketplace checkout
+RP-200,RS-212,2026-08-27,300,Card
+RP-201,RS-213,2026-08-08,45,Marketplace checkout
+RP-202,RS-214,2026-08-16,900,Marketplace checkout
+RP-203,RS-215,2026-06-22,110,Marketplace checkout
+RP-204,RS-216,2026-08-12,540,Marketplace checkout
+RP-205,RS-217,2026-08-12,165,Marketplace checkout
+RP-206,RS-218,2026-07-05,850,Marketplace checkout
+RP-207,RS-219,2026-08-07,360,Marketplace checkout
+RP-208,RS-220,2026-06-17,180,Card
+RP-209,RS-221,2026-08-22,45,Card
+RP-210,RS-222,2026-08-06,85,Card
+RP-211,RS-223,2026-07-13,540,Card
+RP-212,RS-224,2026-06-25,240,Card
+RP-213,RS-225,2026-08-03,240,Marketplace checkout
+RP-214,RS-226,2026-07-26,240,Marketplace checkout
+RP-215,RS-227,2026-08-18,900,Card
+RP-216,RS-228,2026-08-20,255,Marketplace checkout
+RP-217,RS-229,2026-08-27,95,Marketplace checkout
+RP-218,RS-230,2026-07-10,170,Marketplace checkout
+RP-219,RS-231,2026-07-10,190,Marketplace checkout
+RP-220,RS-232,2026-08-04,225,Marketplace checkout
+RP-221,RS-233,2026-06-03,70,Marketplace checkout
+RP-222,RS-234,2026-08-09,85,Marketplace checkout
+RP-223,RS-235,2026-07-24,85,Marketplace checkout
+RP-224,RS-236,2026-08-14,55,Marketplace checkout
+RP-225,RS-237,2026-06-30,105,Marketplace checkout
+RP-226,RS-238,2026-08-28,600,Marketplace checkout
+RP-227,RS-239,2026-06-28,240,Card
+RP-228,RS-240,2026-07-02,225,Card
+RP-229,RS-241,2026-06-06,360,Marketplace checkout
+RP-230,RS-242,2026-07-16,120,Marketplace checkout
+RP-231,RS-243,2026-07-02,65,Marketplace checkout
+RP-232,RS-244,2026-08-02,95,Marketplace checkout
+RP-233,RS-246,2026-06-21,45,Marketplace checkout
+RP-234,RS-247,2026-06-13,105,Marketplace checkout
+RP-235,RS-248,2026-08-09,240,Marketplace checkout
+RP-236,RS-249,2026-06-04,255,Card
+RP-237,RS-250,2026-07-28,55,Marketplace checkout
+RP-238,RS-251,2026-08-20,2550,Marketplace checkout
+RP-239,RS-252,2026-06-15,300,Marketplace checkout
+RP-240,RS-253,2026-07-04,45,Marketplace checkout
+RP-241,RS-254,2026-08-27,300,Marketplace checkout
+RP-242,RS-255,2026-08-07,900,Marketplace checkout
+RP-243,RS-256,2026-06-23,190,Marketplace checkout
+RP-244,RS-257,2026-07-12,285,Marketplace checkout
+RP-245,RS-258,2026-07-26,360,Marketplace checkout
+RP-246,RS-259,2026-07-13,255,Marketplace checkout
+RP-247,RS-260,2026-07-28,75,Marketplace checkout
+RP-248,RS-261,2026-08-19,225,Marketplace checkout
+RP-249,RS-262,2026-07-18,75,Card
+RP-250,RS-263,2026-08-28,195,Marketplace checkout
+RP-251,RS-264,2026-06-15,95,Marketplace checkout
+RP-252,RS-265,2026-06-03,65,Marketplace checkout
+RP-253,RS-266,2026-06-16,900,Card
+RP-254,RS-268,2026-07-11,540,Card
+RP-255,RS-270,2026-06-22,255,Card
+RP-256,RS-272,2026-06-09,900,Marketplace checkout
+RP-257,RS-273,2026-06-25,55,Marketplace checkout
+RP-258,RS-274,2026-08-03,360,Marketplace checkout
+RP-259,RS-275,2026-07-09,95,Card
+RP-260,RS-276,2026-07-30,2550,Marketplace checkout
+RP-261,RS-277,2026-06-30,900,Card
+RP-262,RS-278,2026-06-30,360,Marketplace checkout
+RP-263,RS-279,2026-08-06,225,Marketplace checkout
+RP-264,RS-280,2026-07-27,120,Marketplace checkout
+RP-265,RS-281,2026-08-22,55,Card
+RP-266,RS-282,2026-08-15,360,Marketplace checkout
+RP-267,RS-283,2026-07-05,85,Marketplace checkout
+RP-268,RS-285,2026-08-10,540,Marketplace checkout
+RP-269,RS-286,2026-08-20,240,Marketplace checkout
+RP-270,RS-287,2026-07-25,170,Marketplace checkout
+RP-271,RS-288,2026-07-15,65,Marketplace checkout
+RP-272,RS-289,2026-06-11,540,Card
+RP-273,RS-290,2026-06-12,50,Card
+RP-274,RS-291,2026-06-08,110,Marketplace checkout
+RP-275,RS-293,2026-07-25,25,Marketplace checkout
+RP-276,RS-294,2026-06-12,285,Marketplace checkout
+RP-277,RS-295,2026-08-25,75,Marketplace checkout
+RP-278,RS-296,2026-08-04,150,Card
+RP-279,RS-297,2026-06-30,2550,Marketplace checkout
+RP-280,RS-298,2026-07-08,165,Marketplace checkout
+RP-281,RS-299,2026-08-08,45,Marketplace checkout
+RP-282,RS-300,2026-07-10,75,Card
+RP-283,RS-301,2026-08-16,180,Marketplace checkout
+RP-284,RS-302,2026-07-14,135,Marketplace checkout
+RP-285,RS-303,2026-07-24,110,Card
+RP-286,RS-304,2026-07-20,255,Marketplace checkout
+RP-287,RS-305,2026-06-17,285,Marketplace checkout
+RP-288,RS-307,2026-08-21,170,Marketplace checkout
+RP-289,RS-308,2026-06-19,35,Marketplace checkout
+RP-290,RS-309,2026-08-13,135,Marketplace checkout
+RP-291,RS-310,2026-07-31,360,Marketplace checkout
+RP-292,RS-311,2026-07-30,75,Card
+RP-293,RS-312,2026-07-18,360,Card
+RP-294,RS-313,2026-07-28,70,Marketplace checkout
+RP-295,RS-314,2026-07-17,90,Marketplace checkout
+RP-296,RS-315,2026-06-22,195,Marketplace checkout
+RP-297,RS-316,2026-07-23,850,Card
+RP-298,RS-318,2026-07-27,75,Marketplace checkout
+RP-299,RS-319,2026-07-16,170,Card
+RP-300,RS-320,2026-07-05,65,Marketplace checkout
+RP-UPDATE,RS-321,2026-08-31,85,Card

@@ -1,0 +1,13 @@
+﻿item_id,item_name,snapshot_date,on_hand_quantity,reserved_quantity,reorder_threshold
+R001,Ergonomic chair,2026-08-31,11,9,10
+R002,Desk lamp,2026-08-31,25,3,10
+R003,Monitor stand,2026-08-31,33,8,10
+R004,Laptop riser,2026-08-31,35,6,10
+R005,Desk organiser,2026-08-31,7,2,5
+R006,Standing desk,2026-08-31,35,0,10
+R007,Cable tray,2026-08-31,38,0,10
+R008,Footrest,2026-08-31,42,1,10
+R009,Mouse pad,2026-08-31,47,3,10
+R010,Storage trolley,2026-08-31,53,6,10
+R011,Desk shelf,2026-08-31,53,3,10
+R012,Seat cushion,2026-08-31,53,0,10

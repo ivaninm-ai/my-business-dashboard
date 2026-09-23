@@ -1,0 +1,11 @@
+# Never commit credentials, keys or private records.
+.env*
+*credentials*.json
+*service-account*.json
+*.pem
+node_modules/
+test/.state/
+test/sim/output/
+app/config.local.json
+
+app/vendor/
