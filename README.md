@@ -38,17 +38,19 @@ installation guide your instructor shared. Problems: [`docs/TROUBLESHOOTING.md`]
 | `config/` | Setup-package contract and examples |
 | `docs/` | Student SOP, troubleshooting, instructor test script, release notes, limitations, source matrix, backup/update guide |
 | `scripts/` | `write-config.mjs` (publish-time config from Variables), `build.mjs` (browser file readers) |
-| `test/` | Simulated Google API, fixtures (BetterSpace B2C/B2B copies, alternative service layout) and 48 tests |
+| `test/` | Simulated Google API, fixtures (BetterSpace B2C/B2B copies, alternative service layout) and 54 tests |
 
 ## Maintainers
 
 ```bash
 npm ci
 npm run build         # bundle the browser file readers into app/vendor/
-npm test              # 48 simulated tests (fake Google API, mocked Gemini)
+npm test              # 54 simulated tests (fake Google API, mocked Gemini)
 npm run fake-google   # simulation server + dashboard at http://127.0.0.1:8790/ (mock sign-in)
 node test/sim/worker.mjs <setup|import|ai> <workspaceId> [--day day2]   # run the worker against the simulation
 ```
+
+The interface is Chinese by default: wrap visible text in `tr('English text')` (plain) or `tl('English text')` (menus and buttons, shown as `中文（English）`) from `app/shared/i18n.mjs`, and add the Chinese to `app/shared/i18n-zh.mjs`; `test/i18n.test.mjs` fails on anything missing. Set `DASHBOARD_LANGUAGE=en` to force the worker's language.
 
 `setup` and `ai` call the real Gemini endpoint. To stay offline in the simulation,
 preload the stand-in: `NODE_OPTIONS=--import=./test/sim/mock-gemini.mjs

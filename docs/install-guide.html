@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<!-- 安装 SOP 的独立 HTML 导出版（1.2.0-rc.1）。学生测试校对版，2026-09-23；已校对仓库与安装说明。不含任何钥匙，也不会向你要钥匙。 -->
+<!-- 安装 SOP 的独立 HTML 导出版（1.2.0-rc.3）。学生测试校对版，2026-09-23；已校对仓库与安装说明。不含任何钥匙，也不会向你要钥匙。 -->
 <style>[hidden]{display:none!important} img{max-width:100%}</style>
 </head>
 <body>
@@ -178,7 +178,7 @@ footer { border-top:1px solid var(--line); padding:24px 0 12px; text-align:cente
     <h1>业务仪表盘<br><span>安装 SOP</span></h1>
     <p class="hero-subtitle">你的生意 · 你的数据 · 你的仪表盘</p>
     <div class="hero-badge">零终端 · 不用打任何指令</div>
-    <div class="hero-meta">约 45 分钟 · 网页版 · 学生测试版 1.2.0-rc.1</div>
+    <div class="hero-meta">约 45 分钟 · 网页版 · 学生测试版 1.2.0-rc.3</div>
   </div>
 </header>
 <div class="wrap">
@@ -205,7 +205,7 @@ footer { border-top:1px solid var(--line); padding:24px 0 12px; text-align:cente
     </nav>
 
     <div class="main">
-      <div class="note"><b>学生测试版 · 1.2.0-rc.1。</b>模板仓库已填好。每一步要填的资料就在那一步里；钥匙只进 GitHub Secrets；生意的介绍在仪表盘里填（第 7 步）。全程不用 Claude，也不用下载任何 ZIP。</div>
+      <div class="note"><b>学生测试版 · 1.2.0-rc.3。</b>模板仓库已填好。仪表盘界面是中文，按钮和菜单后面括号里是英文原名，方便对照。每一步要填的资料就在那一步里；钥匙只进 GitHub Secrets；生意的介绍在仪表盘里填（第 7 步）。全程不用 Claude，也不用下载任何 ZIP。</div>
 
       <section class="step" id="s0" aria-labelledby="h0">
         <div class="step-head"><span class="num">第 0 步</span><h2 id="h0">准备账号（建议课前先建好）</h2><span class="where">开始前</span></div>
@@ -308,74 +308,74 @@ footer { border-top:1px solid var(--line); padding:24px 0 12px; text-align:cente
         <div class="example">Dashboard published
 Open: https://<i>用户名</i>.github.io/<i>仓库名</i>/</div>
         <div class="metaphor">比喻：电饭煲按下去就走开——网页好了自然在，不用盯着。</div>
-        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="4"><span>打开 <span id="v-site2" class="pill">…github.io/…</span>，看到 <b>Connect Google</b> 按钮（不是 <i>Not configured yet</i>）。</span></label></div>
-        <p class="stuck"><b>显示 Not configured yet？</b>第 3 步的 Variable 没填或名字打错了，补上再跑一次 Publish dashboard。<b>网页 404？</b>Pages 的 Source 没选 GitHub Actions，或者还没跑完。</p>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="4"><span>打开 <span id="v-site2" class="pill">…github.io/…</span>，看到 <b>连接 Google（Connect Google）</b> 按钮（不是 <i>尚未设置</i>）。</span></label></div>
+        <p class="stuck"><b>显示「尚未设置」？</b>第 3 步的 Variable 没填或名字打错了，补上再跑一次 Publish dashboard。<b>网页 404？</b>Pages 的 Source 没选 GitHub Actions，或者还没跑完。</p>
       </section>
 
       <section class="step" id="s5" aria-labelledby="h5">
         <div class="step-head"><span class="num">第 5 步</span><h2 id="h5">登录，建你的仪表盘工作簿</h2><span class="where">在你的仪表盘网页</span></div>
         <ol>
-          <li>打开仪表盘 → <b>Connect Google</b> → 选你在第 2 步加成 test user 的那个邮箱 → <b>Continue</b> → 允许。Google 会告诉你它能碰什么：<i>"查看、编辑、创建和删除您通过此应用使用的特定 Google 云端硬盘文件"</i>——只有它自己建的文件。</li>
-          <li>点 <b>Create a new Dashboard Workspace</b>。仪表盘会在你的 Google Drive 里新建一个叫 <i>Dashboard Workspace</i> 的 Google Sheet，然后自动打开 <b>Data connections</b> 页。</li>
+          <li>打开仪表盘 → <b>连接 Google（Connect Google）</b> → 选你在第 2 步加成 test user 的那个邮箱 → <b>Continue</b> → 允许。Google 会告诉你它能碰什么：<i>"查看、编辑、创建和删除您通过此应用使用的特定 Google 云端硬盘文件"</i>——只有它自己建的文件。</li>
+          <li>点 <b>新建仪表盘工作簿（Create a new Dashboard Workspace）</b>。仪表盘会在你的 Google Drive 里新建一个叫 <i>Dashboard Workspace</i> 的 Google Sheet，然后自动打开 <b>数据连接（Data connections）</b> 页。</li>
         </ol>
         <div class="metaphor">比喻：这个工作簿是仪表盘的"抽屉"——设置、每天读进来的快照、待办、日历备注、AI 简报都放在里面。你的原始数据 Sheet 是另外的文件，永远不会被改。</div>
-        <div class="note">Google 登录大约一小时会过期。仪表盘提示时点 <b>Reconnect</b> 就好，什么都不会丢。<b>Sign out</b> 会把页面上的所有数字清掉——公用电脑记得点。</div>
-        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="5"><span><b>Data connections</b> 页显示了 <b>Workspace ID</b>（带 Copy 按钮）和 <b>Open workspace</b> 链接。</span></label></div>
+        <div class="note">Google 登录大约一小时会过期。仪表盘提示时点 <b>重新连接（Reconnect）</b> 就好，什么都不会丢。<b>退出（Sign out）</b> 会把页面上的所有数字清掉——公用电脑记得点。</div>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="5"><span><b>数据连接（Data connections）</b> 页显示了 <b>工作簿 ID（Workspace ID）</b>（带「复制（Copy）」按钮）和 <b>打开工作簿（Open workspace） ↗</b> 链接。</span></label></div>
         <p class="stuck"><b>"Access blocked: … has not completed the Google verification process"</b> —— 你的邮箱没加成 test user（第 2 步 B）。<b>"origin_mismatch / redirect_uri_mismatch"</b> —— 第 2 步 C 的 Authorized JavaScript origin 不是一模一样的 <span class="pill" id="v-origin3">https://…github.io</span>。</p>
       </section>
 
       <section class="step" id="s6" aria-labelledby="h6">
         <div class="step-head"><span class="num">第 6 步</span><h2 id="h6">把工作簿分享给机器账号，跑安装检查</h2><span class="where">仪表盘 · Google Sheets · GitHub</span></div>
         <ol>
-          <li>在 <b>Data connections</b> 页，把服务账号邮箱 <span class="chip"><code id="v-sa">（先在上面贴服务账号邮箱）</code><button type="button" data-copy="v-sa">复制</button></span> 贴进输入框 → <b>Save</b>。以后要分享 Sheet 时仪表盘会把它显示出来给你复制。</li>
-          <li>点 Workspace ID 旁边的 <b>Copy</b> → <a id="lnk-secrets2" href="#" target="_blank" rel="noopener">GitHub Secrets ↗</a> → <b>New repository secret</b>：名字 <span class="chip"><code>DASHBOARD_WORKSPACE_ID</code><button type="button" data-copy-text="DASHBOARD_WORKSPACE_ID">复制名字</button></span>，内容 = 刚复制的 ID。</li>
-          <li>点 <b>Open workspace ↗</b> → 在 Google Sheets 点右上角 <b>Share（共享）</b> → 加服务账号邮箱，权限选 <b>Editor（编辑者）</b> → Send（有"通知"选项就取消勾）。<b>General access 保持 Restricted</b>。</li>
+          <li>在 <b>数据连接（Data connections）</b> 页，把服务账号邮箱 <span class="chip"><code id="v-sa">（先在上面贴服务账号邮箱）</code><button type="button" data-copy="v-sa">复制</button></span> 贴进输入框 → <b>保存（Save）</b>。以后要分享 Sheet 时仪表盘会把它显示出来给你复制。</li>
+          <li>点 工作簿 ID（Workspace ID） 旁边的 <b>复制（Copy）</b> → <a id="lnk-secrets2" href="#" target="_blank" rel="noopener">GitHub Secrets ↗</a> → <b>New repository secret</b>：名字 <span class="chip"><code>DASHBOARD_WORKSPACE_ID</code><button type="button" data-copy-text="DASHBOARD_WORKSPACE_ID">复制名字</button></span>，内容 = 刚复制的 ID。</li>
+          <li>点 <b>打开工作簿（Open workspace） ↗</b> → 在 Google Sheets 点右上角 <b>Share（共享）</b> → 加服务账号邮箱，权限选 <b>Editor（编辑者）</b> → Send（有"通知"选项就取消勾）。<b>General access 保持 Restricted</b>。</li>
           <li><a id="lnk-actions2" href="#" target="_blank" rel="noopener">Actions ↗</a> → 左边 <b>1 · Install check</b> → <b>Run workflow</b>。跑完点进去看摘要。</li>
         </ol>
-        <div class="example">| Check                                  | Result | Detail                       |
-| Service-account key parsed             | ✅     | dashboard-worker@…           |
-| Workbook is a Dashboard Workspace      | ✅     | schema v1, 15 tabs           |
-| Worker can write to the workspace      | ✅     | Sync_Log row appended        |
-| Setup package                          | ❌     | not configured yet — complete Business setup …
-Install check found problems</div>
-        <p>现在 <b>Setup package ❌</b> 是正常的——第 7、8 步就会补上。其他每一行都必须是 ✅。</p>
-        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="6"><span>安装检查里，钥匙、工作簿、"Worker can write to the workspace" 三项都是 ✅。</span></label></div>
-        <p class="stuck"><b>"Workspace reachable with Editor access ❌"</b> —— 工作簿要分享给服务账号邮箱，而且是 <b>Editor</b>，不是 Viewer。<b>"GOOGLE_SERVICE_ACCOUNT_JSON is missing or is not the complete JSON key"</b> —— 钥匙文件没贴全，整个文件重新贴一次。</p>
+        <div class="example">| 检查项 | 结果 | 说明 |
+| 服务账号钥匙可读取（Service-account key parsed） | ✅ | dashboard-worker@… |
+| 这是仪表盘工作簿（Workbook is a Dashboard Workspace） | ✅ | 结构 v1，16 张分页 |
+| 后台可以写入工作簿（Worker can write to the workspace） | ✅ | 已追加 Sync_Log 行 |
+| 设置资料包（Setup package） | ❌ | 尚未设置——请完成 设置 › 业务设置
+安装检查发现问题</div>
+        <p>现在 <b>设置资料包（Setup package） ❌</b> 是正常的——第 7、8 步就会补上。其他每一行都必须是 ✅。</p>
+        <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="6"><span>安装检查里，钥匙、工作簿、“后台可以写入工作簿（Worker can write to the workspace）”和“已设置 GEMINI_API_KEY Secret（GEMINI_API_KEY secret present）”都是 ✅。</span></label></div>
+        <p class="stuck"><b>“能以编辑者权限访问工作簿（Workspace reachable with Editor access） ❌”</b> —— 工作簿要分享给服务账号邮箱，而且是 <b>Editor</b>，不是 Viewer。<b>“GOOGLE_SERVICE_ACCOUNT_JSON 缺少或不是完整的 JSON 钥匙”</b> —— 钥匙文件没贴全，整个文件重新贴一次。</p>
       </section>
 
       <section class="step" id="s7" aria-labelledby="h7"><div class="step-head"><span class="num">第 7 步</span><h2 id="h7">描述业务，准备数据来源</h2><span class="where">仪表盘 · GitHub</span></div><ol>
-<li>仪表盘 → <b>Settings → Business setup</b>，填写业务名称、类型、简介、语言、货币、时区，以及 AI 该优先关注什么。</li>
-<li><b>AI data setting</b>：BetterSpace 练习选择 <b>Synthetic practice records · free tier</b>；真实私人资料选择 <b>Real business records · billing-enabled Gemini project</b>，并先在 Google 项目开通结算。此选项不会替你开通结算。</li>
-<li><b>Report date</b>：真实业务选 <b>Today</b>；历史练习选 <b>Latest record date</b>。点 <b>Save business profile</b>。</li>
-<li><b>Source → Add a new source</b>。Google Sheet：填原始数据表链接，分享给服务账号邮箱 <span class="chip"><code id="v-sa2">（第 2 步填写）</code><button type="button" data-copy="v-sa2">复制</button></span>，权限 <b>Viewer</b>。须为原生 Google Sheet，上传的 Excel 先用 <b>File → Save as Google Sheets</b> 转换。</li>
-<li>本地文件：选 <b>Local file</b>，选 XLSX、CSV、文字版 PDF 或 DOCX，并填写记录截至哪天。不要重复加入同一批订单的 Excel 和 PDF。</li>
-<li>点 <b>Prepare source</b> → 下方 <b>Open Import data → Run workflow</b> → 在 GitHub 点 <b>Run workflow</b>。运行结束后回仪表盘点 <b>Reload</b>。</li></ol>
-<div class="note">准备工作在后台执行。未手动运行会等下一次每小时后台机会，GitHub 可能延迟；一次先准备一个来源，审核后再加入下一个。</div><div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="7"><span>Business setup 显示 Ready for review，并出现 Review detected records。</span></label></div></section>
+<li>仪表盘 → <b>设置（Settings） → 业务设置（Business setup）</b>，填写业务名称、类型、简介、语言（默认中文，整个仪表盘都用它）、货币、时区，以及 AI 该优先关注什么。</li>
+<li><b>AI 数据设置（AI data setting）</b>：BetterSpace 练习选择 <b>虚构练习数据 · 免费额度（Synthetic practice records · free tier）</b>；真实私人资料选择 <b>真实业务记录 · 已开通结算的 Gemini 项目（Real business records · billing-enabled Gemini project）</b>，并先在 Google 项目开通结算。此选项不会替你开通结算。</li>
+<li><b>报告日期（Report date）</b>：真实业务选 <b>今天（日常经营）（Today (daily business)）</b>；历史练习选 <b>最新记录日期（历史练习数据）（Latest record date (historical practice data)）</b>。点 <b>保存业务简介（Save business profile）</b>。</li>
+<li><b>来源（Source） → 新增来源（Add a new source）</b>。Google Sheet：填原始数据表链接，分享给服务账号邮箱 <span class="chip"><code id="v-sa2">（第 2 步填写）</code><button type="button" data-copy="v-sa2">复制</button></span>，权限 <b>Viewer</b>。须为原生 Google Sheet，上传的 Excel 先用 <b>File → Save as Google Sheets</b> 转换。</li>
+<li>本地文件：选 <b>本地文件：XLSX / CSV / PDF / DOCX（Local file: XLSX / CSV / PDF / DOCX）</b>，选文件，并在「文件数据截至（File data as of）」填写记录截至哪天。不要重复加入同一批订单的 Excel 和 PDF。</li>
+<li>点 <b>准备来源（Prepare source）</b> → 下方 <b>打开「Import data」→ 点 Run workflow</b> → 在 GitHub 点 <b>Run workflow</b>。运行结束后回仪表盘点 <b>重新载入（Reload）</b>。</li></ol>
+<div class="note">准备工作在后台执行。未手动运行会等下一次每小时后台机会，GitHub 可能延迟；一次先准备一个来源，审核后再加入下一个。</div><div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="7"><span>业务设置（Business setup） 显示「可以审核了」，并出现 <b>审核识别结果（Review detected records）</b> 按钮。</span></label></div></section>
 
       <section class="step" id="s8" aria-labelledby="h8"><div class="step-head"><span class="num">第 8 步</span><h2 id="h8">审核列含义与记录，启用来源</h2><span class="where">仪表盘 · GitHub</span></div><ol>
-<li>点 <b>Review detected records</b>。确认日期格式、每行代表什么（客户、订单、收到的付款或库存）；无关表选 <b>Ignore</b>。</li>
-<li>核对带 * 的必要字段，尤其稳定编号、订单日期、金额、收款日期和付款期限。下拉选项是你自己的列名。金额须明确是订单额还是已收到的款项；不相关字段选 <b>Not provided</b>。</li>
-<li>订单状态分别填到 <b>pending / done / excluded</b>（未完成 / 完成 / 不计入），多个值用逗号分开。展开记录核对，PDF/DOCX 特别注意漏行、编号、日期和金额。</li>
-<li>勾选已检查 → <b>Validate and preview totals</b> → 核对行数和金额 → <b>Activate source</b>。</li>
-<li><a id="lnk-import" href="#" target="_blank" rel="noopener">Actions → 2 · Import data ↗</a> → <b>Run workflow</b>。完成后回仪表盘 <b>Reload</b>，新数字和待办才会更新。</li>
+<li>点 <b>审核识别结果（Review detected records）</b>。确认日期格式、每行代表什么（客户、订单、收到的付款或库存）；无关表选 <b>忽略这张表（Ignore this table）</b>。</li>
+<li>核对带 * 的必要字段，尤其稳定编号、订单日期、金额、收款日期和付款期限。下拉选项是你自己的列名。金额须明确是订单额还是已收到的款项；不相关字段选 <b>未提供（Not provided）</b>。</li>
+<li>订单状态分别填到 <b>未完成 / 已完成 / 不计入</b>（pending / done / excluded），多个值用逗号分开。展开记录核对，PDF/DOCX 特别注意漏行、编号、日期和金额。</li>
+<li>勾选已检查 → <b>核对并预览合计（Validate and preview totals）</b> → 核对行数和金额 → <b>启用来源（Activate source）</b>。</li>
+<li><a id="lnk-import" href="#" target="_blank" rel="noopener">Actions → 2 · Import data ↗</a> → <b>Run workflow</b>。完成后回仪表盘 <b>重新载入（Reload）</b>，新数字和待办才会更新。</li>
 <li>其余来源重复第 7、8 步。每类记录目前只支持一张主要表；付款表需要对应订单表。</li></ol>
 <p>BetterSpace B2C 初始练习（2026-08-30），所有必要表连接后：8 月订单额 <b>RM 25,650</b>、<b>104</b> 张订单、未收款 <b>RM 0</b>、<b>3</b> 个低库存、<b>8</b> 个逾期未完成。</p>
-<p>详细运行信息在仪表盘 <b>Data connections → Recent runs → Message</b>；GitHub 日志只显示简短状态。</p>
-<div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="8"><span>顶部显示 data as of 日期，Overview 数字与原记录相符。</span></label></div>
-<p class="stuck">列名或含义不对：在 Business setup 选择已有来源，重新准备和审核。准备失败或验证错误会保留旧数据；按提示修正对应列。</p></section>
+<p>详细运行信息在仪表盘 <b>数据连接（Data connections） → 最近运行（Recent runs） → 消息（Message）</b>；GitHub 日志只显示简短状态。</p>
+<div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="8"><span>顶部显示「数据截至 某日期」，概览（Overview） 的数字与原记录相符。</span></label></div>
+<p class="stuck">列名或含义不对：在 业务设置（Business setup） 选择已有来源，重新准备和审核。准备失败或验证错误会保留旧数据；按提示修正对应列。</p></section>
 
       <section class="step" id="s9" aria-labelledby="h9">
         <div class="step-head"><span class="num">第 9 步</span><h2 id="h9">五分钟验收</h2><span class="where">仪表盘 · 你的 Sheet · GitHub</span></div>
         <ol>
-          <li><b>Tasks</b> 页：接受（Accept）一条建议、完成（Complete）一条、忽略（Dismiss）一条、编辑（Edit）一条的日期/负责人/备注。每次保存都会提示 <i>Saved to your workspace</i>。</li>
+          <li><b>待办（Tasks）</b> 页：接受（Accept）一条建议、完成（Complete）一条、忽略（Dismiss）一条、编辑（Edit）一条的日期/负责人/备注。每次保存都会提示 <i>已保存到你的工作簿</i>。</li>
           <li>关掉浏览器。重新打开仪表盘、重新登录。刚才的决定都还在。</li>
-          <li>在你的数据 Sheet 里改一个数（BetterSpace 练习：Stock 表，R003 的 on_hand 从 <b>8 改成 33</b>）。跑 <b>2 · Import data</b> → Reload。低库存 <b>3 → 2</b>，对应建议显示 <i>resolved by data</i>，你的待办决定和备注还在，没有重复的待办冒出来。</li>
+          <li>在你的数据 Sheet 里改一个数（BetterSpace 练习：Stock 表，R003 的 on_hand 从 <b>8 改成 33</b>）。跑 <b>2 · Import data</b> → 重新载入（Reload）。低库存 <b>3 → 2</b>，对应建议显示 <i>已由数据解决</i>，你的待办决定和备注还在，没有重复的待办冒出来。</li>
           <li>把 on_hand 改回 <b>8</b>，再跑一次。低库存 <b>2 → 3</b>，低库存条件再次成立；你写的备注还在。已完成或已忽略的待办保留你的决定，需要你自己重新打开（Reopen）。如果只有手动文件来源，按下方「混合来源」导入修改后的记录，再运行同样的验收。</li>
         </ol>
         <div class="checkpoint"><span class="mark">检查</span><label><input type="checkbox" data-check="9"><span>数据改动进来了；我的待办决定经过一次关浏览器、两次更新都还在；没有任何重复。</span></label></div>
       </section>
 
-      <section class="step" id="smixed" aria-labelledby="hmixed"><h2 id="hmixed">混合来源：只替换改变的文件</h2><p>Google Sheet 自动读取；本地文件保留上次确认记录。原文件留在电脑，提取的文字、表格与审核记录保存到自己的 Workspace。</p><ol><li>Data connections → 对应来源 → <b>Update this file in Business setup</b>。</li><li>在 Source 选择 <b>Update / remap: 该来源名称</b>，不要 Add a new source。选新版文件，填写资料截至日期。</li><li><b>Prepare source</b> → 运行 Import data → Reload → 审核 → <b>Activate source</b>。</li><li>再运行 Import data 更新仪表盘。只替换该来源，其余来源和待办决定保留。</li></ol><div class="note">默认整份替换：新版应包含该来源要保留的完整记录和原有全部表。缺少的旧记录会移除。不要把只有当天新增记录的小文件当成完整替换。</div></section>
+      <section class="step" id="smixed" aria-labelledby="hmixed"><h2 id="hmixed">混合来源：只替换改变的文件</h2><p>Google Sheet 自动读取；本地文件保留上次确认记录。原文件留在电脑，提取的文字、表格与审核记录保存到自己的工作簿。</p><ol><li>数据连接（Data connections） → 对应来源 → <b>在业务设置中更新这个文件（Update this file in Business setup）</b>。</li><li>在 来源（Source） 选择 <b>更新 / 重新对应（Update / remap）：该来源名称</b>，不要选 新增来源（Add a new source）。选新版文件，填写资料截至日期。</li><li><b>准备来源（Prepare source）</b> → 运行 Import data → 重新载入（Reload） → 审核 → <b>启用来源（Activate source）</b>。</li><li>再运行 Import data 更新仪表盘。只替换该来源，其余来源和待办决定保留。</li></ol><div class="note">默认整份替换：新版应包含该来源要保留的完整记录和原有全部表。缺少的旧记录会移除。不要把只有当天新增记录的小文件当成完整替换。</div></section>
 
       <section class="panel" id="after" aria-labelledby="hafter">
         <h2 id="hafter">装好之后 · 每天只做这几件事</h2>
@@ -383,17 +383,17 @@ Install check found problems</div>
           <div>
             <h3>每天</h3>
             <ul>
-              <li>更新在 <code>REFRESH_HOURS_UTC</code> 设的时间自动跑（默认 UTC 23:17 ≈ 马来西亚早 7:17）。GitHub 的定时任务偶尔会晚到或跳过；公开仓库若 60 天没有活动，定时任务会停用，请到 Actions 检查并重新启用。改 Google Sheet 不算仓库活动；急着要就去 <b>Data connections → Run "Import data" now</b>。</li>
-              <li>设了 <code>GEMINI_API_KEY</code> 的话，每次成功导入或确认数据未变后生成 AI 简报（跳过/失败的导入不会触发）；也可以在 <b>AI insights → Request analysis</b> 排队，下次后台跑的时候处理，或者马上跑 <b>3 · AI brief</b>。</li>
-              <li>Google 登录一小时过期，点 Reconnect；公用电脑记得 Sign out。</li>
+              <li>更新在 <code>REFRESH_HOURS_UTC</code> 设的时间自动跑（默认 UTC 23:17 ≈ 马来西亚早 7:17）。GitHub 的定时任务偶尔会晚到或跳过；公开仓库若 60 天没有活动，定时任务会停用，请到 Actions 检查并重新启用。改 Google Sheet 不算仓库活动；急着要就去 <b>数据连接（Data connections） → 立即运行「Import data」（Run "Import data" now） ↗</b>。</li>
+              <li>设了 <code>GEMINI_API_KEY</code> 的话，每次成功导入或确认数据未变后生成 AI 简报（跳过/失败的导入不会触发）；也可以在 <b>AI 简报（AI insights） → 申请分析（Request analysis）</b> 排队，下次后台跑的时候处理，或者马上跑 <b>3 · AI brief</b>。</li>
+              <li>Google 登录一小时过期，点 重新连接（Reconnect）；公用电脑记得 退出（Sign out）。</li>
             </ul>
           </div>
           <div>
             <h3>偶尔</h3>
             <ul>
-              <li><b>备份</b>：Settings → Export backup（设置、链接、待办决定、备注及保存的文件记录；不含重建快照和钥匙，请私下保管）。恢复用 <b>Restore from backup</b>。</li>
+              <li><b>备份</b>：设置（Settings） → 导出备份（Export backup）（设置、链接、待办决定、备注及保存的文件记录；不含重建快照和钥匙，请私下保管）。恢复用 <b>从备份恢复（Restore from backup）…</b>。</li>
               <li><b>升级</b>：老师发布新版本时，Actions → <b>5 · Update from template</b> 填版本号 → 再跑 <b>4 · Publish dashboard</b> 和 <b>1 · Install check</b>。你的工作簿不会被动。</li>
-              <li><b>表格改了样子</b>（改了列名、多了新状态）：在 Business setup 选择已有来源，重新准备、审核并启用。待办决定不会丢——每条待办的编号 = 规则 + 记录编号。</li>
+              <li><b>表格改了样子</b>（改了列名、多了新状态）：在 业务设置（Business setup） 选择已有来源，重新准备、审核并启用。待办决定不会丢——每条待办的编号 = 规则 + 记录编号。</li>
             </ul>
           </div>
         </div>
@@ -407,27 +407,27 @@ Install check found problems</div>
         <div class="table-wrap"><table>
           <thead><tr><th>现象</th><th>怎么办</th></tr></thead>
           <tbody>
-            <tr><td>网页显示 <i>Not configured yet</i></td><td>补 Variable <code>GOOGLE_OAUTH_CLIENT_ID</code>，重跑 4 · Publish dashboard</td></tr>
+            <tr><td>网页显示 <i>尚未设置</i></td><td>补 Variable <code>GOOGLE_OAUTH_CLIENT_ID</code>，重跑 4 · Publish dashboard</td></tr>
             <tr><td>Google：<i>Access blocked</i></td><td>把你的邮箱加成 test user（Google Auth Platform → Audience）</td></tr>
             <tr><td>Google：<i>origin_mismatch</i></td><td>Authorized JavaScript origin 必须是 <span class="pill" id="v-origin4">https://…github.io</span></td></tr>
-            <tr><td>安装检查：<i>Workspace reachable … ❌</i></td><td>工作簿分享给服务账号邮箱，权限 <b>Editor</b></td></tr>
-            <tr><td>导入：<i>share that Sheet … as Viewer</i></td><td>数据 Sheet 分享给服务账号邮箱，权限 <b>Viewer</b></td></tr>
-            <tr><td>导入：<i>Column "X" was not found</i></td><td>列名改回去，或在 Business setup 选 <b>Update / remap</b> 该来源，重新准备、审核、启用</td></tr>
-            <tr><td>安装检查：<i>GEMINI_API_KEY secret present</i> ❌</td><td>在 Google AI Studio 建 API key，加进 Secrets，名字 GEMINI_API_KEY</td></tr>
-            <tr><td>Business setup 一直显示 <i>Waiting for the worker</i></td><td>点 Open Import data → Run workflow，跑完回仪表盘点 Reload</td></tr>
-            <tr><td>Business setup：<i>Gemini quota reached</i></td><td>免费额度用完了。等额度恢复后点 Retry preparation；数据导入照常，旧数字不受影响</td></tr>
-            <tr><td><i>PDF page … has no readable text</i></td><td>这是扫描版 PDF，不支持。改用原始 Excel/CSV 或文字版 PDF</td></tr>
-            <tr><td>标签：<i>stale — last import failed</i></td><td>Data connections → Message 写了原因；页面显示的还是上一次的好数据</td></tr>
-            <tr><td>AI：<i>GEMINI_API_KEY secret is not set</i></td><td>加这个 Secret，或者不用 AI 这一页</td></tr>
-            <tr><td>AI：<i>1 request(s) queued</i> 等了很久</td><td>跑 3 · AI brief，或等下一次自动更新</td></tr>
+            <tr><td>安装检查：<i>能以编辑者权限访问工作簿（Workspace reachable with Editor access） ❌</i></td><td>工作簿分享给服务账号邮箱，权限 <b>Editor</b></td></tr>
+            <tr><td>导入：<i>服务账号无法读取“…”</i></td><td>数据 Sheet 分享给服务账号邮箱，权限 <b>Viewer</b></td></tr>
+            <tr><td>导入：<i>找不到列“X”</i></td><td>列名改回去，或在 业务设置（Business setup） 选 <b>更新 / 重新对应（Update / remap）</b> 该来源，重新准备、审核、启用</td></tr>
+            <tr><td>安装检查：<i>已设置 GEMINI_API_KEY Secret（GEMINI_API_KEY secret present）</i> ❌</td><td>在 Google AI Studio 建 API key，加进 Secrets，名字 GEMINI_API_KEY</td></tr>
+            <tr><td>业务设置（Business setup） 一直显示 <i>等待后台运行</i></td><td>点「打开「Import data」→ 点 Run workflow」，跑完回仪表盘点 重新载入（Reload）</td></tr>
+            <tr><td>业务设置（Business setup）：<i>Gemini 额度已用完</i></td><td>免费额度用完了。等额度恢复后点 重新准备（Retry preparation）；数据导入照常，旧数字不受影响</td></tr>
+            <tr><td><i>PDF 第 … 页没有可读取的文字</i></td><td>这是扫描版 PDF，不支持。改用原始 Excel/CSV 或文字版 PDF</td></tr>
+            <tr><td>标签：<i>数据过期——上次导入失败</i></td><td>数据连接（Data connections） → 消息（Message） 写了原因；页面显示的还是上一次的好数据</td></tr>
+            <tr><td>AI：<i>这个仓库还没有设置 GEMINI_API_KEY Secret</i></td><td>加这个 Secret，或者不用 AI 这一页</td></tr>
+            <tr><td>AI：<i>1 个申请在排队</i> 等了很久</td><td>跑 3 · AI brief，或等下一次自动更新</td></tr>
           </tbody>
         </table></div>
         <div class="danger"><b>红线 1</b>：JSON 钥匙和 API 钥匙只进 Secrets，不要贴别处、不要发群。<b>红线 2</b>：仓库是 Public，但里面只有通用代码——你的记录、设置、待办都在你 Drive 的工作簿里，不在仓库里；不要把数据文件传进仓库。<b>红线 3</b>：数据 Sheet 和工作簿的 General access 保持 Restricted，只分享给你自己的服务账号邮箱。</div>
-        <p class="hint" style="font-size:13px;color:var(--muted)">都对不上？Data connections → Recent runs → 把那一行的 <i>message</i> 文字发给老师。不要发钥匙文件，不要发工作簿。</p>
+        <p class="hint" style="font-size:13px;color:var(--muted)">都对不上？数据连接（Data connections） → 最近运行（Recent runs） → 把那一行的「消息（Message）」文字发给老师。不要发钥匙文件，不要发工作簿。</p>
         <p class="hint" style="font-size:13px;color:var(--muted)">费用：Gemini 有免费额度，练习使用虚构数据；真实私人资料使用开通结算的项目。<a href="https://ai.google.dev/gemini-api/docs/pricing">Gemini 价格</a> · <a href="https://ai.google.dev/gemini-api/terms">数据条款</a>。</p>
       </section>
 
-      <footer>InfiniteSales AI · 业务仪表盘网页版安装 SOP · 1.2.0-rc.1 学生测试校对版 · 2026-09-23 · 上面填的资料只存在你这台设备的浏览器里，不会上传到任何地方。这份指南不含任何钥匙，也不会向你要钥匙。有问题把截图（不含钥匙）发到学员群。</footer>
+      <footer>InfiniteSales AI · 业务仪表盘网页版安装 SOP · 1.2.0-rc.3 学生测试校对版 · 2026-09-23 · 上面填的资料只存在你这台设备的浏览器里，不会上传到任何地方。这份指南不含任何钥匙，也不会向你要钥匙。有问题把截图（不含钥匙）发到学员群。</footer>
     </div>
   </div>
 </div>

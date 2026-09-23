@@ -53,7 +53,7 @@ Synthetic data only: choose *Synthetic practice records · free tier* in Busines
 |---|---|---|---|
 | C1 | Tasks: accept `completion_overdue:RS-001`, complete `review_replenishment:R003` with a note, dismiss one, edit one date | Toast *Saved to your workspace*; Task_Decisions tab in the workbook has the rows | |
 | C2 | Sign out, close browser, reopen, reconnect | Decisions unchanged; no business text visible before sign-in | |
-| C3 | Calendar | Recorded deadlines (orange), accepted task dates (blue), overdue (red); no invented times | |
+| C3 | Calendar | Recorded deadlines (gold edge), accepted task dates (blue), your notes (dashed grey), overdue deadlines (orange-red with ⚠); no invented times | |
 | C4 | In the source Sheet change Stock R003 on_hand 8 → 33; run import; Reload | Low-stock 3 → 2; R003 task shows *resolved by data* with your note kept; no duplicate tasks | |
 | C5 | Replace all four tabs with the Day 2 workbook contents (full replacement); import | Badge *data as of 31 Aug 2026*; 105 orders, RM 25,735; overdue completions 10; RS-001 completion task resolved; decisions kept | |
 | C6 | Rename header `total_amount` to `Total (RM)` in the source; import | Failed with *Column "total_amount" … Headers found: … "Total (RM)"*; previous data still shown | |
